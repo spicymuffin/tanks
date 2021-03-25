@@ -32,6 +32,10 @@ public class GameManager : MonoBehaviour
     public GameObject ScoreBoardPanelPrefab;
 
 
+
+    private bool lastRound = false;
+    public SceneField winScene;
+
     public class RoundStats
     {
         GameManager GameManager;
@@ -198,16 +202,27 @@ public class GameManager : MonoBehaviour
     }
     public IEnumerator ShowRoundEndScreen()
     {
-        yield return new WaitForSeconds(1f);
-        StartCoroutine(LoadNextLevel());
-        ScoreboardUI.SetActive(true);
-        PlayerUI.SetActive(false);
-        playersAlive[0].StopAllCoroutines();
-        ClearPlayerUI();
-        yield return new WaitForSeconds(4f);
-        ScoreboardUI.SetActive(false);
-        StartRound();
+        if (!lastRound)
+        {
+            yield return new WaitForSeconds(1f);
+            StartCoroutine(LoadNextLevel());
+            ScoreboardUI.SetActive(true);
+            PlayerUI.SetActive(false);
+            playersAlive[0].StopAllCoroutines();
+            ClearPlayerUI();
+            yield return new WaitForSeconds(4f);
+            ScoreboardUI.SetActive(false);
+            StartRound();
+        }
+        else
+        {
+            //screen fade effect...?
+            //start endgame
+            StartCoroutine(LoadLevel(winScene));
+            
+        }
     }
+
     IEnumerator LoadNextLevel()
     {
         AsyncOperation asyncLoadLevel = SceneManager.LoadSceneAsync(queue[0].scene, LoadSceneMode.Single);
@@ -218,6 +233,20 @@ public class GameManager : MonoBehaviour
         }
         LoadLevelData();
         queue.RemoveAt(0);
+        if (queue.Count == 0)
+        {
+            lastRound = true;
+        }
+    }
+    IEnumerator LoadLevel(SceneField scene)
+    {
+        AsyncOperation asyncLoadLevel = SceneManager.LoadSceneAsync(scene, LoadSceneMode.Single);
+        while (!asyncLoadLevel.isDone)
+        {
+            print("Loading the Scene");
+            yield return null;
+        }
+        LoadLevelData();
     }
     #endregion
     #region Misc
@@ -254,7 +283,7 @@ public class GameManager : MonoBehaviour
         Debug.Log($"landmineKills: {_stats.landmineKills}");
     }
     #endregion
-    #region
+    #region ??
     public void ParseStats()
     {
         foreach(RoundStats round in matchStats)
