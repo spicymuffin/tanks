@@ -32,6 +32,13 @@ public class GameManager : MonoBehaviour
     public GameObject ScoreBoardPanelPrefab;
 
 
+<<<<<<< HEAD
+=======
+
+    private bool lastRound = false;
+    public SceneField winScene;
+
+>>>>>>> 4ba8693df0ab0b7d21286c6e9561d8a253404d6a
     public class RoundStats
     {
         GameManager GameManager;
@@ -198,6 +205,7 @@ public class GameManager : MonoBehaviour
     }
     public IEnumerator ShowRoundEndScreen()
     {
+<<<<<<< HEAD
         yield return new WaitForSeconds(1f);
         StartCoroutine(LoadNextLevel());
         ScoreboardUI.SetActive(true);
@@ -208,6 +216,29 @@ public class GameManager : MonoBehaviour
         ScoreboardUI.SetActive(false);
         StartRound();
     }
+=======
+        if (!lastRound)
+        {
+            yield return new WaitForSeconds(1f);
+            StartCoroutine(LoadNextLevel());
+            ScoreboardUI.SetActive(true);
+            PlayerUI.SetActive(false);
+            playersAlive[0].StopAllCoroutines();
+            ClearPlayerUI();
+            yield return new WaitForSeconds(4f);
+            ScoreboardUI.SetActive(false);
+            StartRound();
+        }
+        else
+        {
+            //screen fade effect...?
+            //start endgame
+            StartCoroutine(LoadLevel(winScene));
+            
+        }
+    }
+
+>>>>>>> 4ba8693df0ab0b7d21286c6e9561d8a253404d6a
     IEnumerator LoadNextLevel()
     {
         AsyncOperation asyncLoadLevel = SceneManager.LoadSceneAsync(queue[0].scene, LoadSceneMode.Single);
@@ -218,6 +249,23 @@ public class GameManager : MonoBehaviour
         }
         LoadLevelData();
         queue.RemoveAt(0);
+<<<<<<< HEAD
+=======
+        if (queue.Count == 0)
+        {
+            lastRound = true;
+        }
+    }
+    IEnumerator LoadLevel(SceneField scene)
+    {
+        AsyncOperation asyncLoadLevel = SceneManager.LoadSceneAsync(scene, LoadSceneMode.Single);
+        while (!asyncLoadLevel.isDone)
+        {
+            print("Loading the Scene");
+            yield return null;
+        }
+        LoadLevelData();
+>>>>>>> 4ba8693df0ab0b7d21286c6e9561d8a253404d6a
     }
     #endregion
     #region Misc
@@ -254,7 +302,11 @@ public class GameManager : MonoBehaviour
         Debug.Log($"landmineKills: {_stats.landmineKills}");
     }
     #endregion
+<<<<<<< HEAD
     #region
+=======
+    #region ??
+>>>>>>> 4ba8693df0ab0b7d21286c6e9561d8a253404d6a
     public void ParseStats()
     {
         foreach(RoundStats round in matchStats)
