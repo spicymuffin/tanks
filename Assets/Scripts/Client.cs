@@ -25,6 +25,16 @@ public class Client
         udp = new UDP(id);
     }
 
+    //for debug purposes
+    public Client(int _clientId, string _username, int _score)
+    {
+        id = _clientId;
+        username = _username;
+        score = _score;
+        tcp = new TCP(id);
+        udp = new UDP(id);
+    }
+
     public class TCP
     {
         public TcpClient socket;

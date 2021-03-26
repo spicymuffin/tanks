@@ -16,7 +16,14 @@
 
         public Stats()
         {
-
+            shots = 0;
+            closeCalls = 0;
+            ADTotal = 0;
+            kills = 0;
+            deaths = 0;
+            shieldBlocks = 0;
+            landminesCreated = 0;
+            landmineKills = 0;
         }
 
         public Stats(int _shots, int _closeCalls, int _ADTotal, int _kills, int _deaths, int _shieldBlocks, int _landminesCreated, int _landmineKills)

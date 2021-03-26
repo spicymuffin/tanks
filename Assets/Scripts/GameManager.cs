@@ -18,7 +18,7 @@ public class GameManager : MonoBehaviour
     List<RoundStats> matchStats = new List<RoundStats>();
     List<PlayerScorePanel> scoreInterfaces = new List<PlayerScorePanel>();
     List<Stats> playerStats = new List<Stats>() { null, null, null, null };
-    Stats match;
+    Stats match = null;
 
     [Space(30)]
     public GameObject ScoreboardUI;
@@ -40,6 +40,7 @@ public class GameManager : MonoBehaviour
     {
         GameManager GameManager;
         Stats commonStats = new Stats();
+        //for round-summary
         public List<Stats> playerStats = new List<Stats>();
 
         public void SetPlayerStats(int _id, Stats _stats)
@@ -219,7 +220,9 @@ public class GameManager : MonoBehaviour
             //screen fade effect...?
             //start endgame
             StartCoroutine(LoadLevel(winScene));
-            
+            ParseStats();
+            StatScreen.instance.PassStats(playerStats, match, clients);
+
         }
     }
 
@@ -283,7 +286,7 @@ public class GameManager : MonoBehaviour
         Debug.Log($"landmineKills: {_stats.landmineKills}");
     }
     #endregion
-    #region ??
+    #region Stats
     public void ParseStats()
     {
         foreach(RoundStats round in matchStats)
