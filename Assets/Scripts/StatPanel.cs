@@ -1,7 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using TankStatistics;
 
 public class StatPanel : MonoBehaviour
 {
@@ -33,5 +33,21 @@ public class StatPanel : MonoBehaviour
     {
         placementIcons[place - 1].SetActive(true);
         rank.text = placementStrings[place - 1];
+    }
+
+    public void SetADStats(Stats stat)
+    {
+        if (stat.shieldBlocks != 0)
+        {
+            adspecific.text += $"bullets blocked by shield: {stat.shieldBlocks}\n";
+        }
+        if (stat.landminesCreated != 0)
+        {
+            adspecific.text += $"bullets blocked by shield: {stat.shieldBlocks}\n";
+        }
+        if (stat.landmineKills != 0)
+        {
+            adspecific.text += $"bullets blocked by shield: {stat.shieldBlocks}\n";
+        }
     }
 }
