@@ -67,6 +67,10 @@ public class StatScreen : MonoBehaviour
             panel.SetUsername(clients[i].username);
             panel.SetScore(clients[i].score);
             panel.SetPlacementIcon(i + 1);
+
+            //stats
+            //panel.SetCommonStats(playerStats[i].kills, playerStats[i].shots, playerStats[i].closeCalls, playerStats[i].ADTotal);
+            //panel.SetADStats(playerStats[i]);
         }
     }
 }
