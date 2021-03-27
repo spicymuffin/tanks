@@ -368,7 +368,7 @@ public class Player : MonoBehaviour
         {
             if (isReloading)
             {
-                Debug.Log("restart reload");
+                //Debug.Log("restart reload");
                 StopCoroutine(reloadCoroutine);
                 reloadCoroutine = StartCoroutine(Reload());
             }
@@ -389,11 +389,11 @@ public class Player : MonoBehaviour
                 RemoveBullet();
             }
             shots++;
-            Debug.Log($"-bullet: {currentRockets}");
+            //Debug.Log($"-bullet: {currentRockets}");
         }
         if (currentRockets < MAX_ROCKETS && !isReloading && !fire)
         {
-            Debug.Log($"start reload");
+            //Debug.Log($"start reload");
             reloadCoroutine = StartCoroutine(Reload());
         }
     }

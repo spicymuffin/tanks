@@ -17,13 +17,13 @@ public class LevelConfig : MonoBehaviour
         for (int i = 0; i < iterations; i++)
         {
             index = random.Next(tempSP.Count);
-            Debug.Log(index);
-            Debug.Log(tempSP.Count);
+            //Debug.Log(index);
+            //Debug.Log(tempSP.Count);
             foreach(GameObject obj in tempSP)
             {
-                Debug.Log(obj.transform.position);
+                //Debug.Log(obj.transform.position);
             }
-            Debug.Log(tempSP[index].transform.position);
+            //Debug.Log(tempSP[index].transform.position);
             spawnpoints.Add(tempSP[index].transform.position);
             tempSP.Remove(tempSP[index]);
         }

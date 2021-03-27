@@ -106,12 +106,12 @@ public class CreateGameScreen : MonoBehaviour
             message = message.Remove(message.Length - 1);
             message += playerCount.ToString();
             msg = Encoding.ASCII.GetBytes(message); 
-            Debug.Log("sending packet");
+            //Debug.Log("sending packet");
             udpClient.Send(msg, msg.Length, "255.255.255.255", 46969);
             int connectedCount = 0;
             foreach (Client _client in Server.clients.Values)
             {
-                Debug.Log(_client.id - 1);
+                //Debug.Log(_client.id - 1);
                 if (_client.connected && !connected.Contains(_client))
                 {
                     connected[_client.id - 1] = _client;
