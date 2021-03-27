@@ -42,7 +42,7 @@ public class ServerHandle
         input.use = _packet.ReadBool();
         input.horizontal = _packet.ReadFloat();
         input.vertical = _packet.ReadFloat();
-        //Debug.Log($"pack {input.horizontal}:{input.vertical}");
+        Debug.Log($"pack {input.horizontal}:{input.vertical}");
         if (Server.clients[_fromClient].player != null)
         {
             Server.clients[_fromClient].player.SetInput(input);

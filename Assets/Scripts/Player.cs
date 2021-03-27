@@ -5,9 +5,17 @@ using UnityEngine.UI;
 using System;
 using TMPro;
 using TankStatistics;
+using Random = UnityEngine.Random;
 
 public class Player : MonoBehaviour
 {
+
+    #region Audio
+    public AudioSource shotSound;
+    public AudioSource pickUpAirDropSound;
+    public AudioSource usingAirDropSound;
+    #endregion
+
     #region Networking
     public int id;
     public string username;
@@ -249,6 +257,11 @@ public class Player : MonoBehaviour
         id = _id;
         username = _username;
     }
+
+    public void Start()
+    {
+        shotSound = GetComponent<AudioSource>();
+    }
     /// <summary>
     /// Startup this script
     /// </summary>
@@ -362,6 +375,8 @@ public class Player : MonoBehaviour
             if (!isRicochet)
             {
                 GameObject currentRocket = Instantiate(Rocket, tip.position, Quaternion.Euler(tip.rotation.eulerAngles.x, tip.rotation.eulerAngles.y + UnityEngine.Random.Range(-maxBulletDeviationAngle, maxBulletDeviationAngle), tip.rotation.eulerAngles.z));
+                shotSound.pitch = Random.Range(1, 2);
+                shotSound.Play();
                 currentRocket.GetComponent<Rocket>().sender = this;
             }
             else
@@ -413,6 +428,7 @@ public class Player : MonoBehaviour
     {
         if (use && hasItem)
         {
+            usingAirDropSound.Play();
             currentItem.Use();
         }
     }
@@ -521,12 +537,14 @@ public class Player : MonoBehaviour
 
         if (_type == "InfiniteBullets")
         {
+            pickUpAirDropSound.Play();
             InfiniteBulletsADC adc = _airdrop.GetComponent<InfiniteBulletsADC>();
             currentItemIcon = Instantiate(adc.icon, myUIItemPanel.transform);
             new InfiniteBullets(adc.time, this);
         }
         if (_type == "LandMine")
         {
+            pickUpAirDropSound.Play();
             LandmineADC adc = _airdrop.GetComponent<LandmineADC>();
             currentItemIcon = Instantiate(adc.icon[adc.count - 1], myUIItemPanel.transform);
             new Landmine(adc.count, this);
@@ -535,12 +553,14 @@ public class Player : MonoBehaviour
         }
         if (_type == "Shield")
         {
+            pickUpAirDropSound.Play();
             ShieldADC adc = _airdrop.GetComponent<ShieldADC>();
             currentItemIcon = Instantiate(adc.icon, myUIItemPanel.transform);
             new Shield(adc.time, this);
         }
         if (_type == "Ricochet")
         {
+            pickUpAirDropSound.Play();
             RicochetADC adc = _airdrop.GetComponent<RicochetADC>();
             currentItemIcon = Instantiate(adc.icon, myUIItemPanel.transform);
             new Ricochet(adc.time, this);

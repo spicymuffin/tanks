@@ -54,7 +54,7 @@ public class MatchMaker : MonoBehaviour
         else
         {
             selection = LC.LevelsFor4;
-            Debug.LogError($"Player count mismatch, {_playerCount} connected. Entering debug mode");
+            //Debug.LogError($"Player count mismatch, {_playerCount} connected. Entering debug mode");
         }
         foreach(GameObject lvl in selection)
         {
