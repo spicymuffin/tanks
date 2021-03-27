@@ -27,7 +27,7 @@ public class GameManager : MonoBehaviour
     [Space(30)]
     public GameObject PlayerUI;
     public List<GameObject> playerUISpawnPoints = new List<GameObject>();
-    
+
     [Header("Prefabs")]
     public GameObject ScoreBoardPanelPrefab;
 
@@ -45,8 +45,8 @@ public class GameManager : MonoBehaviour
 
         public void SetPlayerStats(int _id, Stats _stats)
         {
-            playerStats[_id-1] = _stats;
-            PrintStatistic(_stats);
+            playerStats[_id - 1] = _stats;
+            //PrintStatistic(_stats);
         }
         public void PrintStatistic(Stats _stats)
         {
@@ -93,10 +93,17 @@ public class GameManager : MonoBehaviour
             instance = this;
         }
     }
+
     public void Start()
     {
         //fucking slaves
         DontDestroyOnLoad(this.gameObject);
+    }
+
+    void OnApplicationQuit()
+    {
+        Debug.Log("Application ending after " + Time.time + " seconds");
+        ServerSend.DisconnectAll();
     }
 
     public void ResetServer()
@@ -149,7 +156,7 @@ public class GameManager : MonoBehaviour
         LoadLevelData();
         queue.RemoveAt(0);
         StartRound();
-    } 
+    }
     #endregion
     #region Round-time
     public void KillPlayer(Player _player)
@@ -170,24 +177,25 @@ public class GameManager : MonoBehaviour
         winner.score++;
         scoreInterfaces[winner.id - 1].SetScore(winner.score);
         StartCoroutine(ShowRoundEndScreen());
-    } 
+    }
     public void LoadLevelData()
     {
         LevelConfig = GameObject.FindGameObjectWithTag("LevelConfig").GetComponent<LevelConfig>();
     }
     public void Check4EndRound()
     {
+        Debug.Log($"players alive:{playersAlive.Count}");
         if (playersAlive.Count == 1)
         {
             EndRound(playersAlive[0].myClient);
         }
+        playersAlive.Clear();
     }
     public void Spawn()
     {
         LevelConfig.RandomizeSpawnPoints();
         int index = 0;
         List<Vector3> spawnpoints = LevelConfig.spawnpoints;
-
         foreach (Client _client in Server.clients.Values)
         {
             if (_client.connected == true && _client.player == null)
@@ -203,13 +211,13 @@ public class GameManager : MonoBehaviour
     }
     public IEnumerator ShowRoundEndScreen()
     {
+        Debug.Log("Ending round...");
         if (!lastRound)
         {
             yield return new WaitForSeconds(1f);
             StartCoroutine(LoadNextLevel());
             ScoreboardUI.SetActive(true);
             PlayerUI.SetActive(false);
-            playersAlive[0].StopAllCoroutines();
             ClearPlayerUI();
             yield return new WaitForSeconds(4f);
             ScoreboardUI.SetActive(false);
@@ -220,9 +228,9 @@ public class GameManager : MonoBehaviour
             //screen fade effect...?
             //start endgame
             StartCoroutine(LoadLevel(winScene));
+            Debug.LogWarning("loaded winscreen");
             ParseStats();
             StatScreen.instance.PassStats(playerStats, match, clients);
-
         }
     }
 
@@ -239,6 +247,7 @@ public class GameManager : MonoBehaviour
         if (queue.Count == 0)
         {
             lastRound = true;
+            Debug.Log("lastRound");
         }
     }
     IEnumerator LoadLevel(SceneField scene)
@@ -270,7 +279,7 @@ public class GameManager : MonoBehaviour
         {
             Debug.Log($"id: {client.id}");
         }
-    } 
+    }
     #endregion
     #region Debug
     public void PrintStatistic(Stats _stats)
@@ -289,18 +298,18 @@ public class GameManager : MonoBehaviour
     #region Stats
     public void ParseStats()
     {
-        foreach(RoundStats round in matchStats)
+        foreach (RoundStats round in matchStats)
         {
-            foreach(Stats stat in round.playerStats)
+            foreach (Stats stat in round.playerStats)
             {
                 match.shots += stat.shots;
                 match.ADTotal += stat.ADTotal;
             }
         }
-        
-        foreach(RoundStats round in matchStats)
+
+        foreach (RoundStats round in matchStats)
         {
-            foreach(Stats stat in round.playerStats)
+            foreach (Stats stat in round.playerStats)
             {
                 playerStats[stat.client.id - 1].shots += stat.shots;
                 playerStats[stat.client.id - 1].closeCalls += stat.closeCalls;
