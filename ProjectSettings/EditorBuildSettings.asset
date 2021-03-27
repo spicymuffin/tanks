@@ -9,12 +9,15 @@ EditorBuildSettings:
     path: Assets/Scenes/MainMenu/MainMenu.unity
     guid: 23692892ca4e00942a732c1e507b34e1
   - enabled: 1
-    path: Assets/Scenes/FFA1.unity
+    path: Assets/Scenes/FFA1/FFA1.unity
     guid: 7db7cf382d2967a45a7bf814e1198bde
   - enabled: 1
-    path: Assets/Scenes/FFA2.unity
+    path: Assets/Scenes/FFA2/FFA2.unity
     guid: 55f1d410dfcf8d64eb0c8ff261941e75
   - enabled: 1
     path: Assets/Scenes/TestScene.unity
     guid: 3c480f0cfc32ace4693e3e03a67ed96e
+  - enabled: 1
+    path: Assets/Scenes/WinScreen/WinScreen.unity
+    guid: bdd7ad956a7d73748b5316f4da521270
   m_configObjects: {}

@@ -16,7 +16,14 @@ public class ServerHandle
         }
         if (_username == "")
         {
-            _username = NamesLoader.instance.GetRandomString(NamesLoader.instance.player_names);
+            if (NamesLoader.instance != null)
+            {
+                _username = NamesLoader.instance.GetRandomString(NamesLoader.instance.player_names);
+            }
+            else
+            {
+                _username = "dummy";
+            }
         }
         Server.clients[_fromClient].SetUsername(_username);
         Server.clients[_fromClient].connected = true;

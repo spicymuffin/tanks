@@ -39,6 +39,7 @@ public class CreateGameScreen : MonoBehaviour
         }
     }
 
+
     string message;
     UdpClient udpClient;
     byte[] msg;
