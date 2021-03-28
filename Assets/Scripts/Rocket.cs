@@ -6,7 +6,10 @@ public class Rocket : MonoBehaviour
 {
     public float speed;
     public Player sender;
-
+    public AudioSource hittingTheWallSound1;
+    public AudioSource hittingTheWallSound2;
+    public Renderer rend;
+    public System.Random rand = new System.Random();
     private void FixedUpdate()
     {
         transform.position += transform.forward * speed;
@@ -29,12 +32,24 @@ public class Rocket : MonoBehaviour
                 sender.kills++;
             }
         }
-        if (!other.CompareTag("CloseCallBox")) Destroy(this.gameObject);
+        if (!other.CompareTag("CloseCallBox"))
+        {
+            int value = rand.Next(1, 3);
+            if (value == 1)
+            {
+                hittingTheWallSound1.Play();
+            }
+            else
+            {
+                hittingTheWallSound2.Play();
+            }
+            StartCoroutine(Wait());
+        }
     }
-
     private void Awake()
     {
         StartCoroutine(Destroy());
+
     }
 
     IEnumerator Destroy()
@@ -42,4 +57,14 @@ public class Rocket : MonoBehaviour
         yield return new WaitForSeconds(20);
         Destroy(this.gameObject);
     }
+
+    IEnumerator Wait()
+    {
+
+        rend.enabled = false;
+        yield return new WaitForSeconds(1f);
+        Destroy(this.gameObject);
+    }
+
+       
 }
