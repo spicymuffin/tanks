@@ -508,6 +508,17 @@ public class Player : MonoBehaviour
         GameManager.instance.KillPlayer(this);
     }
 
+    public void ExplosionDie()
+    {
+        deaths++;
+        if (isShielded)
+        {
+            shieldBlocks--;
+        }
+        dead = true;
+        GameManager.instance.KillPlayer(this);
+    }
+
     public void Die()
     {
         StopAllCoroutines();
