@@ -19,8 +19,6 @@ TagManager:
   - Username
   - Score
   - Trails
-  - Rockets
-  - Effects
   layers:
   - Default
   - TransparentFX

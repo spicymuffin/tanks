@@ -39,7 +39,6 @@ public class Rocket : MonoBehaviour
 
     private void Awake()
     {
-        transform.parent = GameObject.FindGameObjectWithTag("Rockets").transform;
         StartCoroutine(Destroy());
     }
 

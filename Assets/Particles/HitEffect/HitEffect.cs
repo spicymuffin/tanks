@@ -10,7 +10,6 @@ public class HitEffect : MonoBehaviour
 
     private void Awake()
     {
-        transform.parent = GameObject.FindGameObjectWithTag("Effects").transform;
         smoke.Play();
         flames.Play();
         smallbois.Play();
