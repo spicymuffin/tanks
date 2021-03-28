@@ -46,8 +46,6 @@ public class Player : MonoBehaviour
     public GameObject landmine;
     public Transform tip;
     public Transform shieldPos;
-    public TextMeshPro nameDisplay;
-    public Image staminaBar;
     public Image rocketIcon;
     public GameObject UIPanel;
     public BoxCollider closeCallBox;
@@ -268,7 +266,6 @@ public class Player : MonoBehaviour
     private void StartUp()
     {
         rb = GetComponent<Rigidbody>();
-        nameDisplay.text = username;
     }
 
     #region Reload Functions
@@ -419,7 +416,6 @@ public class Player : MonoBehaviour
                 isDepleting = false;
             }
         }
-        staminaBar.fillAmount = sprintStamina;
     }
     /// <summary>
     /// Uses Item
@@ -586,7 +582,6 @@ public class Player : MonoBehaviour
             lastInputFire = input.fire;
             lastInputSprint = input.sprint;
             lastInputUse = input.use;
-            nameDisplay.transform.rotation = Quaternion.Euler(90, 0, 0);
         }
     }
     private void Awake()

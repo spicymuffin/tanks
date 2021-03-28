@@ -7,11 +7,12 @@ public class Rocket : MonoBehaviour
     public float speed;
     public GameObject HitEffect;
     public SelfDestruct smokeTrail;
-    public Player sender;
     public AudioSource hittingTheWallSound1;
     public AudioSource hittingTheWallSound2;
     public Renderer rend;
     public System.Random rand = new System.Random();
+    public Player sender;
+
     private void FixedUpdate()
     {
         transform.position += transform.forward * speed;
@@ -34,14 +35,35 @@ public class Rocket : MonoBehaviour
                 sender.kills++;
             }
         }
-        if (!other.CompareTag("CloseCallBox")) Destroy(this.gameObject);
+        if (!other.CompareTag("CloseCallBox"))
+        {
+            int value = rand.Next(1, 3);
+            if (value == 1)
+            {
+                hittingTheWallSound1.Play();
+            }
+            else
+            {
+                hittingTheWallSound2.Play();
+            }
+            if (other.CompareTag("Shield"))
+            {
+                if (other.GetComponent<ShieldScript>().player == sender)
+                {
+                    return;
+                }
+            }
+            GameObject instance = Instantiate(HitEffect, transform.position, Quaternion.identity);
+            smokeTrail.gameObject.transform.parent = GameObject.FindGameObjectWithTag("Effects").transform;
+            smokeTrail.Destroy();
+            StartCoroutine(Wait());
+        }
     }
 
     private void Awake()
     {
         transform.parent = GameObject.FindGameObjectWithTag("Rockets").transform;
         StartCoroutine(Destroy());
-
     }
 
     IEnumerator Destroy()
@@ -57,6 +79,4 @@ public class Rocket : MonoBehaviour
         yield return new WaitForSeconds(1f);
         Destroy(this.gameObject);
     }
-
-       
 }
