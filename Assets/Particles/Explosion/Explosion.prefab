@@ -24372,8 +24372,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 476a05723a171584d9d4d5bde06c87dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  primaryEffect: {fileID: 6462400348141712246}
-  secondaryEffect: {fileID: 6462400348002591074}
-  smokeEffect: {fileID: 6462400348307226460}
-  smallBois: {fileID: 6462400348557426623}
-  debris: {fileID: 6462400349302022333}
+  primary: {fileID: 6462400348141712240}
+  secondary: {fileID: 6462400348002591084}
+  smoke: {fileID: 6462400348307226462}
+  small: {fileID: 6462400348557426617}
+  deb: {fileID: 6462400349302022335}

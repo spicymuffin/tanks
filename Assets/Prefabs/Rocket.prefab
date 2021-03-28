@@ -157,6 +157,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 1
+  HitEffect: {fileID: 4601479178203940319, guid: 07b5b64445c628d41988258e2033d08a,
+    type: 3}
   sender: {fileID: 0}
 --- !u!65 &7300970139202133349
 BoxCollider:

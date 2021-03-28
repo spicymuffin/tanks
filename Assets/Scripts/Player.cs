@@ -244,7 +244,7 @@ public class Player : MonoBehaviour
     #endregion
 
     #region State
-    bool dead = false; 
+    private bool dead = false; 
     #endregion
 
     /// <summary>
@@ -282,7 +282,7 @@ public class Player : MonoBehaviour
         isReloading = true;
         yield return new WaitForSeconds(reloadTime);
         AddBullet();
-        Debug.Log($"+bullet: {currentRockets}");
+        //Debug.Log($"+bullet: {currentRockets}");
         isReloading = false;
     }
     /// <summary>

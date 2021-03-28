@@ -5,6 +5,7 @@ using UnityEngine;
 public class LevelDebugger : MonoBehaviour
 {
     LevelConfig LevelConfig;
+    AirdropManager AirdropManager;
     public List<GameObject> playerUISpawnPoints = new List<GameObject>();
     public void StartServer()
     {
@@ -15,6 +16,15 @@ public class LevelDebugger : MonoBehaviour
     {
         StartServer();
         LevelConfig = GameObject.FindGameObjectWithTag("LevelConfig").GetComponent<LevelConfig>();
+        AirdropManager = GameObject.FindGameObjectWithTag("AirdropManager").GetComponent<AirdropManager>();
+        if (LevelConfig == null)
+        {
+            Debug.LogWarning("LevelConfig not found");
+        }
+        if (AirdropManager == null)
+        {
+            Debug.LogWarning("AirdropManager not found");
+        }
     }
 
     public void Spawn()
@@ -32,5 +42,16 @@ public class LevelDebugger : MonoBehaviour
                 index++;
             }
         }
+    }
+
+    public void SpawnAD()
+    {
+        AirdropManager.SpawnRndAirdrop();
+    }
+
+    private void OnApplicationQuit()
+    {
+        Debug.Log("Application ending after " + Time.time + " seconds");
+        ServerSend.DisconnectAll();
     }
 }

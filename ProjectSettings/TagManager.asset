@@ -18,6 +18,7 @@ TagManager:
   - MatchMaker
   - Username
   - Score
+  - Trails
   layers:
   - Default
   - TransparentFX

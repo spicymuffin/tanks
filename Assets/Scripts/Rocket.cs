@@ -5,6 +5,7 @@ using UnityEngine;
 public class Rocket : MonoBehaviour
 {
     public float speed;
+    public GameObject HitEffect;
     public Player sender;
 
     private void FixedUpdate()
@@ -29,7 +30,11 @@ public class Rocket : MonoBehaviour
                 sender.kills++;
             }
         }
-        if (!other.CompareTag("CloseCallBox")) Destroy(this.gameObject);
+        if (!other.CompareTag("CloseCallBox"))
+        {
+            GameObject instance = Instantiate(HitEffect, transform.position, Quaternion.identity);
+            Destroy(this.gameObject);
+        }
     }
 
     private void Awake()
