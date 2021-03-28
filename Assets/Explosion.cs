@@ -9,12 +9,7 @@ public class Explosion : MonoBehaviour
     public float destroyDelay;
     public bool isExplosion;
     public bool run = false;
-<<<<<<< HEAD
     private Player player;
-=======
-    public Player player;
->>>>>>> 908cdbfbe43aab33b0fbe4c2faebe9e093fa8e49
-
 
     public void FixedUpdate()
     {

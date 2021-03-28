@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 3338295660369197658}
   - component: {fileID: 7799986669908241317}
   - component: {fileID: 7231007294727507870}
+  - component: {fileID: 8487297998147530752}
   m_Layer: 0
   m_Name: ExplosiveBarrel
   m_TagString: Untagged
@@ -112,5 +113,20 @@ MonoBehaviour:
   DestroyTime: 3
   isExplosion: 0
   run: 0
-  Player: {fileID: 2901097796110787563, guid: 65016622623e0764893658380733ca79, type: 3}
-  Tank: {fileID: 0}
+  player: {fileID: 0}
+--- !u!54 &8487297998147530752
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5216774286813086909}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
