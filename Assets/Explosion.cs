@@ -4,13 +4,12 @@ using UnityEngine;
 
 public class Explosion : MonoBehaviour
 {
-    public float Radius;
-    public float Force;
-    public float DestroyTime;
+    public float radius;
+    public float force;
+    public float destroyDelay;
     public bool isExplosion;
     public bool run = false;
-    public Player Player;
-    public Transform Tank;
+    private Player player;
 
 
     public void FixedUpdate()
@@ -41,25 +40,25 @@ public class Explosion : MonoBehaviour
 
     public void Explode()
     {
-        Collider[] overlappedColliders = Physics.OverlapSphere(transform.position, Radius);
+        Collider[] overlappedColliders = Physics.OverlapSphere(transform.position, radius);
         for (int i = 0; i < overlappedColliders.Length; i++)
         {
             Rigidbody rigidbody = overlappedColliders[i].attachedRigidbody;
 
-            if (overlappedColliders[i].TryGetComponent<Player>(out Player) && Physics.Linecast(transform.position, overlappedColliders[i].transform.position))
+            if (overlappedColliders[i].TryGetComponent<Player>(out player) && Physics.Linecast(transform.position, overlappedColliders[i].transform.position))
             {
                 Debug.LogError('a');
-                Player.ExplosionDie();
+                player.ExplosionDie();
             }
 
             if (rigidbody)
             {
-                rigidbody.AddExplosionForce(Force, transform.position, Radius);
+                rigidbody.AddExplosionForce(force, transform.position, radius);
                 Explosion explosion = rigidbody.GetComponent<Explosion>();
 
                 if (explosion)
                 {
-                    if (Vector3.Distance(transform.position, rigidbody.position) < Radius / 2f)
+                    if (Vector3.Distance(transform.position, rigidbody.position) < radius / 2f)
                     {
                         explosion.ExplodeDelay();
                     }
