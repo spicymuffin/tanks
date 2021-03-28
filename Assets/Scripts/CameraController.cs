@@ -4,29 +4,29 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
-    public Transform playerCamera;
-    public float shakeSpeed = 37f;
-    public float shakeDistance = 0.5f;
+    public Transform camera;
+    public float shakeSpeed = 40f;
+    public float shakeDistance = 0.7f;
     public float shakeDuration = 0.25f;
-    public float tolerance = 0.1f;
+    public float tolerance = 0.3f;
     private Vector3 normalPos;
     private Vector3 newPosition;
     private float time = 0;
 
     private void Awake()
     {
-        normalPos = playerCamera.localPosition;
+        normalPos = camera.localPosition;
     }
 
     private IEnumerator Shake(float shakeSpeed, float shakeDistance, float shakeDuration, float tolerance, Vector3 normalPos)
     {
         while (time < shakeDuration)
         {
-            if ((newPosition - playerCamera.localPosition).sqrMagnitude <= tolerance * tolerance)
+            if ((newPosition - camera.localPosition).sqrMagnitude <= tolerance * tolerance)
             {
                 newPosition = normalPos + Random.insideUnitSphere * shakeDistance;
             }
-            playerCamera.localPosition = Vector3.Lerp(transform.localPosition, newPosition, Time.deltaTime * shakeSpeed);
+            camera.localPosition = Vector3.Lerp(transform.localPosition, newPosition, Time.deltaTime * shakeSpeed);
             time += Time.deltaTime;
             yield return null;
         }
@@ -41,11 +41,11 @@ public class CameraController : MonoBehaviour
 
     private IEnumerator ResetPosSmooth(Vector3 normalPos)
     {
-        while (Vector3.Distance(playerCamera.transform.localPosition, normalPos) > 0.01f)
+        while (Vector3.Distance(camera.transform.localPosition, normalPos) > 0.01f)
         {
-            playerCamera.transform.localPosition = Vector3.Lerp(playerCamera.transform.localPosition, normalPos, Time.deltaTime * 20f);
+            camera.transform.localPosition = Vector3.Lerp(camera.transform.localPosition, normalPos, Time.deltaTime * 20f);
             yield return null;
         }
-        playerCamera.localPosition = normalPos;
+        camera.localPosition = normalPos;
     }
 }

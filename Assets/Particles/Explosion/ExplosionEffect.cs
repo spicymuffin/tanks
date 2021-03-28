@@ -12,7 +12,11 @@ public class ExplosionEffect : MonoBehaviour
 
     private void Awake()
     {
-        transform.parent = GameObject.FindGameObjectWithTag("Effects").transform;
+        GameObject effects = GameObject.FindGameObjectWithTag("Effects");
+        if (effects != null)
+        {
+            transform.parent = effects.transform;
+        }
         primary.Play();
         secondary.Play();
         smoke.Play();
