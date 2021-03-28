@@ -105,7 +105,7 @@ public class MatchMaker : MonoBehaviour
     }
     public void PassQueue()
     {
-        GameObject.FindObjectOfType<GameManager>().SetQueue(match);
+        FindObjectOfType<GameManager>().SetQueue(match);
     }
     public Level GetLastLevel()
     {

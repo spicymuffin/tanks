@@ -17,8 +17,8 @@ public class GameManager : MonoBehaviour
     List<Player> players4datacollect = new List<Player>();
     List<RoundStats> matchStats = new List<RoundStats>();
     List<PlayerScorePanel> scoreInterfaces = new List<PlayerScorePanel>();
-    List<Stats> playerStats = new List<Stats>() { null, null, null, null };
-    Stats match = null;
+    List<Stats> playerStats = new List<Stats>();
+    Stats match = new Stats();
 
     [Space(30)]
     public GameObject ScoreboardUI;
@@ -31,7 +31,7 @@ public class GameManager : MonoBehaviour
     [Header("Prefabs")]
     public GameObject ScoreBoardPanelPrefab;
 
-
+    bool isLoading = false;
 
     private bool lastRound = false;
     public SceneField winScene;
@@ -39,7 +39,6 @@ public class GameManager : MonoBehaviour
     public class RoundStats
     {
         GameManager GameManager;
-        Stats commonStats = new Stats();
         //for round-summary
         public List<Stats> playerStats = new List<Stats>();
 
@@ -71,7 +70,7 @@ public class GameManager : MonoBehaviour
         public RoundStats(GameManager _GameManager)
         {
             GameManager = _GameManager;
-            foreach (Client _client in Server.clients.Values)
+            foreach (Client _client in GameManager.clients)
             {
                 if (_client.connected == true)
                 {
@@ -143,6 +142,10 @@ public class GameManager : MonoBehaviour
     {
         CreateClientsList();
         StartScoreboardUI();
+        if (queue.Count == 1)
+        {
+            lastRound = true;
+        }
         StartCoroutine(LoadAndStartFirstLevel(queue[0].scene));
     }
     IEnumerator LoadAndStartFirstLevel(SceneField _scene)
@@ -188,8 +191,9 @@ public class GameManager : MonoBehaviour
         if (playersAlive.Count == 1)
         {
             EndRound(playersAlive[0].myClient);
+            playersAlive[0].StopAllCoroutines();
+            playersAlive.Clear();
         }
-        playersAlive.Clear();
     }
     public void Spawn()
     {
@@ -227,9 +231,22 @@ public class GameManager : MonoBehaviour
         {
             //screen fade effect...?
             //start endgame
-            StartCoroutine(LoadLevel(winScene));
             Debug.LogWarning("loaded winscreen");
+            yield return new WaitForSeconds(1f);
+            ScoreboardUI.SetActive(true);
+            PlayerUI.SetActive(false);
+            ClearPlayerUI();
+            StartCoroutine(LoadLevel(winScene));
             ParseStats();
+            while (isLoading)
+            {
+                yield return null;
+            }
+            ScoreboardUI.SetActive(false);
+            if (StatScreen.instance == null)
+            {
+                print("null");
+            }
             StatScreen.instance.PassStats(playerStats, match, clients);
         }
     }
@@ -237,28 +254,34 @@ public class GameManager : MonoBehaviour
     IEnumerator LoadNextLevel()
     {
         AsyncOperation asyncLoadLevel = SceneManager.LoadSceneAsync(queue[0].scene, LoadSceneMode.Single);
+        isLoading = true;
         while (!asyncLoadLevel.isDone)
         {
             print("Loading the Scene");
             yield return null;
         }
         LoadLevelData();
+        isLoading = false;
         queue.RemoveAt(0);
         if (queue.Count == 0)
         {
             lastRound = true;
-            Debug.Log("lastRound");
         }
     }
-    IEnumerator LoadLevel(SceneField scene)
+    IEnumerator LoadLevel(SceneField scene, bool loadData = false)
     {
-        AsyncOperation asyncLoadLevel = SceneManager.LoadSceneAsync(scene, LoadSceneMode.Single);
+        AsyncOperation asyncLoadLevel = SceneManager.LoadSceneAsync(scene.SceneName, LoadSceneMode.Single);
+        isLoading = true;
         while (!asyncLoadLevel.isDone)
         {
             print("Loading the Scene");
             yield return null;
         }
-        LoadLevelData();
+        if (loadData)
+        {
+            LoadLevelData();
+        }
+        isLoading = false;
     }
     #endregion
     #region Misc
@@ -273,6 +296,7 @@ public class GameManager : MonoBehaviour
             if (client.connected == true && client.player == null)
             {
                 clients.Add(client);
+                playerStats.Add(new Stats());
             }
         }
         foreach (Client client in clients)
@@ -311,6 +335,7 @@ public class GameManager : MonoBehaviour
         {
             foreach (Stats stat in round.playerStats)
             {
+
                 playerStats[stat.client.id - 1].shots += stat.shots;
                 playerStats[stat.client.id - 1].closeCalls += stat.closeCalls;
                 playerStats[stat.client.id - 1].ADTotal += stat.ADTotal;
@@ -319,6 +344,7 @@ public class GameManager : MonoBehaviour
                 playerStats[stat.client.id - 1].shieldBlocks += stat.shieldBlocks;
                 playerStats[stat.client.id - 1].landminesCreated += stat.landminesCreated;
                 playerStats[stat.client.id - 1].landmineKills += stat.landmineKills;
+
             }
         }
     }

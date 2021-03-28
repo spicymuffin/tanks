@@ -9,8 +9,10 @@ public class ShieldScript : MonoBehaviour
     {
         if (other.CompareTag("Rocket"))
         {
-            player.shieldBlocks++;
-            Destroy(other.gameObject);
+            if(other.GetComponent<Rocket>().sender != player)
+            {
+                player.shieldBlocks++;
+            }
         }
     }
 }

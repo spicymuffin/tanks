@@ -233,18 +233,18 @@ public class Player : MonoBehaviour
     #endregion
 
     #region Stats
-    public int shots;
-    public int closeCalls;
-    public int ADTotal;
-    public int kills;
-    public int deaths;
-    public int shieldBlocks;
-    public int landminesCreated;
-    public int landmineKills;
+    public int shots = 0;
+    public int closeCalls = 0;
+    public int ADTotal = 0;
+    public int kills = 0;
+    public int deaths = 0;
+    public int shieldBlocks = 0;
+    public int landminesCreated = 0;
+    public int landmineKills = 0;
     #endregion
 
     #region State
-    bool dead = false; 
+    private bool dead = false; 
     #endregion
 
     /// <summary>
@@ -282,7 +282,7 @@ public class Player : MonoBehaviour
         isReloading = true;
         yield return new WaitForSeconds(reloadTime);
         AddBullet();
-        Debug.Log($"+bullet: {currentRockets}");
+        //Debug.Log($"+bullet: {currentRockets}");
         isReloading = false;
     }
     /// <summary>

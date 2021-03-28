@@ -7,6 +7,8 @@ public class LevelConfig : MonoBehaviour
 {
     public List<GameObject> staticSP = new List<GameObject>();
     public List<Vector3> spawnpoints = new List<Vector3>();
+    public CameraController cameraController;
+    public Transform trails;
 
     public void RandomizeSpawnPoints()
     {
@@ -26,6 +28,14 @@ public class LevelConfig : MonoBehaviour
             //Debug.Log(tempSP[index].transform.position);
             spawnpoints.Add(tempSP[index].transform.position);
             tempSP.Remove(tempSP[index]);
+        }
+    }
+
+    public void DeleteTrails()
+    {
+        foreach (Transform child in trails.transform)
+        {
+            Destroy(child.gameObject);
         }
     }
 }

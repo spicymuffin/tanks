@@ -5,6 +5,8 @@ using UnityEngine;
 public class Rocket : MonoBehaviour
 {
     public float speed;
+    public GameObject HitEffect;
+    public SelfDestruct smokeTrail;
     public Player sender;
     public AudioSource hittingTheWallSound1;
     public AudioSource hittingTheWallSound2;
@@ -32,22 +34,12 @@ public class Rocket : MonoBehaviour
                 sender.kills++;
             }
         }
-        if (!other.CompareTag("CloseCallBox"))
-        {
-            int value = rand.Next(1, 3);
-            if (value == 1)
-            {
-                hittingTheWallSound1.Play();
-            }
-            else
-            {
-                hittingTheWallSound2.Play();
-            }
-            StartCoroutine(Wait());
-        }
+        if (!other.CompareTag("CloseCallBox")) Destroy(this.gameObject);
     }
+
     private void Awake()
     {
+        transform.parent = GameObject.FindGameObjectWithTag("Rockets").transform;
         StartCoroutine(Destroy());
 
     }

@@ -19,7 +19,7 @@ public class StatScreen : MonoBehaviour
 
     Dictionary<string, Stats> openWith = new Dictionary<string, Stats>();
 
-    private void Awake()
+    private void Start()
     {
         if (instance != null && instance != this)
         {
@@ -36,7 +36,7 @@ public class StatScreen : MonoBehaviour
         this.match = match;
         this.playerStats = playerStats;
 
-        Client temp = null;
+        Client temp;
 
         for (int i = 1; i < clients.Count; i++)
         {
@@ -60,6 +60,7 @@ public class StatScreen : MonoBehaviour
 
     private void SetStats()
     {
+        stats.text = $"total shots: {match.shots}, airdrops picked up: {match.ADTotal}";
         for(int i = 0; i < clients.Count; i++)
         {
             StatPanel panel = Instantiate(StatPanel, StatPanelContainer).GetComponent<StatPanel>();
@@ -69,8 +70,8 @@ public class StatScreen : MonoBehaviour
             panel.SetPlacementIcon(i + 1);
 
             //stats
-            //panel.SetCommonStats(playerStats[i].kills, playerStats[i].shots, playerStats[i].closeCalls, playerStats[i].ADTotal);
-            //panel.SetADStats(playerStats[i]);
+            panel.SetCommonStats(playerStats[i].kills, playerStats[i].shots, playerStats[i].closeCalls, playerStats[i].ADTotal);
+            panel.SetADStats(playerStats[i]);
         }
     }
 }
