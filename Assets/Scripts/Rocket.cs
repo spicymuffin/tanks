@@ -6,6 +6,7 @@ public class Rocket : MonoBehaviour
 {
     public float speed;
     public GameObject HitEffect;
+    public SelfDestruct smokeTrail;
     public Player sender;
 
     private void FixedUpdate()
@@ -32,7 +33,16 @@ public class Rocket : MonoBehaviour
         }
         if (!other.CompareTag("CloseCallBox"))
         {
+            if (other.CompareTag("Shield"))
+            {
+                if (other.GetComponent<ShieldScript>().player == sender)
+                {
+                    return;
+                }
+            }
             GameObject instance = Instantiate(HitEffect, transform.position, Quaternion.identity);
+            smokeTrail.gameObject.transform.parent = GameObject.FindGameObjectWithTag("Effects").transform;
+            smokeTrail.Destroy();
             Destroy(this.gameObject);
         }
     }
