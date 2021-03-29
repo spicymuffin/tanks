@@ -16,7 +16,7 @@ public class ExplosiveBarrel : MonoBehaviour
 
     public void Awake()
     {
-        ignoreMask = ignoreMask | ignoreRayCast;
+        ignoreMask = ignoreLineCast | ignoreRayCast;
     }
 
     public void FixedUpdate()
@@ -41,7 +41,7 @@ public class ExplosiveBarrel : MonoBehaviour
     {
         if (isExplosion) return;
         isExplosion = true;
-        Invoke("Explode", 3f);
+        Invoke("Explode", destroyDelay);
         GetComponent<Renderer>().material.color = Color.red;
     }
 
@@ -52,41 +52,77 @@ public class ExplosiveBarrel : MonoBehaviour
         {
             Rigidbody rigidbody = overlappedColliders[i].attachedRigidbody;
             RaycastHit hitData;
-            bool hit = Physics.Linecast(transform.position, overlappedColliders[i].gameObject.transform.position, out hitData, ~ignoreMask);
-            if (!hit)
+            //int layer = overlappedColliders[i].gameObject.layer;
+            //overlappedColliders[i].gameObject.layer = 2;
+            bool hit = Physics.Raycast(transform.position, overlappedColliders[i].transform.position - transform.position, out hitData, Vector3.Distance(overlappedColliders[i].transform.position, transform.position), ~ignoreMask);
+            Debug.DrawRay(transform.position + Vector3.up, overlappedColliders[i].transform.position - transform.position, Color.yellow, 60);
+            
+            if (hit)
             {
-                if (rigidbody)
+                if (hitData.collider.gameObject == overlappedColliders[i].gameObject)
                 {
-                    rigidbody.AddExplosionForce(force, transform.position, radius);
-
-                    if (overlappedColliders[i].TryGetComponent<Player>(out player))
+                    if (rigidbody)
                     {
-                        player.ExplosionDie();
-                    }
+                        rigidbody.AddExplosionForce(force, transform.position, radius);
 
-                    ExplosiveBarrel barrel = rigidbody.GetComponent<ExplosiveBarrel>();
-                    if (barrel)
-                    {
-                        if (Vector3.Distance(transform.position, rigidbody.position) < radius / 2f)
+                        if (overlappedColliders[i].TryGetComponent<Player>(out player))
                         {
-                            barrel.ExplodeDelay();
+                            player.ExplosionDie();
                         }
+
+                        ExplosiveBarrel barrel = rigidbody.GetComponent<ExplosiveBarrel>();
+                        if (barrel)
+                        {
+                            if (Vector3.Distance(transform.position, rigidbody.position) < radius / 2f)
+                            {
+                                barrel.ExplodeDelay();
+                            }
+                        }
+
                     }
-
                 }
-                Debug.DrawLine(transform.position, overlappedColliders[i].gameObject.transform.position, Color.red, 60);
+
                 GameObject inst = new GameObject();
-                inst.name = $"{hit}: {overlappedColliders[i].name}";
-                inst.transform.position = overlappedColliders[i].gameObject.transform.position;
-            }
-            else
-            {
-                Debug.DrawLine(transform.position, overlappedColliders[i].gameObject.transform.position, Color.green, 60);
-                GameObject inst = new GameObject();
-                inst.name = $"{hit}: {overlappedColliders[i].name}";
-                inst.transform.position = overlappedColliders[i].gameObject.transform.position;
+                inst.name = $"{hitData.collider.gameObject == overlappedColliders[i].gameObject}: {overlappedColliders[i].name}";
+                inst.transform.position = hitData.point;
+
             }
 
+
+            //if (!hit)
+            //{
+            //    if (rigidbody)
+            //    {
+            //        rigidbody.AddExplosionForce(force, transform.position, radius);
+
+            //        if (overlappedColliders[i].TryGetComponent<Player>(out player))
+            //        {
+            //            player.ExplosionDie();
+            //        }
+
+            //        ExplosiveBarrel barrel = rigidbody.GetComponent<ExplosiveBarrel>();
+            //        if (barrel)
+            //        {
+            //            if (Vector3.Distance(transform.position, rigidbody.position) < radius / 2f)
+            //            {
+            //                barrel.ExplodeDelay();
+            //            }
+            //        }
+
+            //    }
+            //    Debug.DrawLine(transform.position, overlappedColliders[i].gameObject.transform.position, Color.red, 60);
+            //    GameObject inst = new GameObject();
+            //    inst.name = $"{hit}: {overlappedColliders[i].name}";
+            //    inst.transform.position = overlappedColliders[i].gameObject.transform.position;
+            //}
+            //else
+            //{
+            //    Debug.DrawLine(transform.position, overlappedColliders[i].gameObject.transform.position, Color.green, 60);
+            //    GameObject inst = new GameObject();
+            //    inst.name = $"{hit}: {overlappedColliders[i].name}:{hitData.collider.gameObject.name}";
+            //    inst.transform.position = overlappedColliders[i].gameObject.transform.position;
+            //}
+            //overlappedColliders[i].gameObject.layer = layer;
         }
         Destroy(gameObject);
     }
