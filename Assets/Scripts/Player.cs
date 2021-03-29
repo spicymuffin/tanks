@@ -14,6 +14,7 @@ public class Player : MonoBehaviour
     public AudioSource shotSound;
     public AudioSource pickUpAirDropSound;
     public AudioSource usingAirDropSound;
+    public AudioSource pickUpAirDropCancelSound;
     #endregion
 
     #region Networking
@@ -490,10 +491,6 @@ public class Player : MonoBehaviour
         StopAllCoroutines();
         closeCalls--;
         deaths++;
-        if (isShielded)
-        {
-            shieldBlocks--;
-        }
         dead = true;
         GameManager.instance.KillPlayer(this);
     }
@@ -511,10 +508,6 @@ public class Player : MonoBehaviour
     public void ExplosionDie()
     {
         deaths++;
-        if (isShielded)
-        {
-            shieldBlocks--;
-        }
         dead = true;
         GameManager.instance.KillPlayer(this);
     }
@@ -539,6 +532,7 @@ public class Player : MonoBehaviour
         if (hasItem)
         {
             //play animation or some shit idk
+            pickUpAirDropCancelSound.Play();
             return;
         }
 
