@@ -52,7 +52,7 @@ public class ExplosiveBarrel : MonoBehaviour
         {
             Rigidbody rigidbody = overlappedColliders[i].attachedRigidbody;
             RaycastHit hitData;
-            bool hit = Physics.Linecast(transform.position, overlappedColliders[i].transform.position, out hitData, ~ignoreMask);
+            bool hit = Physics.Linecast(transform.position, overlappedColliders[i].gameObject.transform.position, out hitData, ~ignoreMask);
             if (!hit)
             {
                 if (rigidbody)
@@ -74,7 +74,17 @@ public class ExplosiveBarrel : MonoBehaviour
                     }
 
                 }
-                    Debug.Log(overlappedColliders[i].gameObject.name);
+                Debug.DrawLine(transform.position, overlappedColliders[i].gameObject.transform.position, Color.red, 60);
+                GameObject inst = new GameObject();
+                inst.name = $"{hit}: {overlappedColliders[i].name}";
+                inst.transform.position = overlappedColliders[i].gameObject.transform.position;
+            }
+            else
+            {
+                Debug.DrawLine(transform.position, overlappedColliders[i].gameObject.transform.position, Color.green, 60);
+                GameObject inst = new GameObject();
+                inst.name = $"{hit}: {overlappedColliders[i].name}";
+                inst.transform.position = overlappedColliders[i].gameObject.transform.position;
             }
 
         }
