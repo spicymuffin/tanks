@@ -7,6 +7,7 @@ public class Rocket : MonoBehaviour
     public float speed;
     public GameObject HitEffect;
     public GameObject audioPlayer;
+    public GameObject shieldAudio;
     public SelfDestruct smokeTrail;
     public Player sender;
 
@@ -36,15 +37,20 @@ public class Rocket : MonoBehaviour
         }
         if (!other.CompareTag("CloseCallBox"))
         {
+            GameObject instance;
             if (other.CompareTag("Shield"))
             {
+                GameObject shieldsound = Instantiate(shieldAudio);
                 if (other.GetComponent<ShieldScript>().player == sender)
                 {
                     return;
                 }
             }
-            GameObject instance = Instantiate(audioPlayer);
-            instance.transform.parent = GameObject.FindGameObjectWithTag("Effects").transform;
+            else
+            { 
+                instance = Instantiate(audioPlayer);
+                instance.transform.parent = GameObject.FindGameObjectWithTag("Effects").transform;
+            }
             instance = Instantiate(HitEffect, transform.position, Quaternion.identity);
             smokeTrail.gameObject.transform.parent = GameObject.FindGameObjectWithTag("Effects").transform;
             smokeTrail.Destroy();
