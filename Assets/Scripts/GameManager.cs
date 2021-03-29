@@ -218,7 +218,7 @@ public class GameManager : MonoBehaviour
         Debug.Log("Ending round...");
         if (!lastRound)
         {
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(3f);
             StartCoroutine(LoadNextLevel());
             ScoreboardUI.SetActive(true);
             PlayerUI.SetActive(false);
@@ -232,7 +232,7 @@ public class GameManager : MonoBehaviour
             //screen fade effect...?
             //start endgame
             Debug.LogWarning("loaded winscreen");
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(4f);
             ScoreboardUI.SetActive(true);
             PlayerUI.SetActive(false);
             ClearPlayerUI();

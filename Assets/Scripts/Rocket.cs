@@ -5,6 +5,7 @@ using UnityEngine;
 public class Rocket : MonoBehaviour
 {
     public float speed;
+    public float punch;
     public GameObject HitEffect;
     public GameObject audioPlayer;
     public GameObject shieldAudio;
@@ -54,6 +55,11 @@ public class Rocket : MonoBehaviour
             instance = Instantiate(HitEffect, transform.position, Quaternion.identity);
             smokeTrail.gameObject.transform.parent = GameObject.FindGameObjectWithTag("Effects").transform;
             smokeTrail.Destroy();
+            Rigidbody rb = other.attachedRigidbody;
+            if (rb)
+            {
+                rb.AddForce(transform.forward * punch);
+            }
             Destroy(this.gameObject);
         }
     }

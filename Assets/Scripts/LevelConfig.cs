@@ -8,7 +8,7 @@ public class LevelConfig : MonoBehaviour
     public List<GameObject> staticSP = new List<GameObject>();
     [HideInInspector]
     public List<Vector3> spawnpoints = new List<Vector3>();
-    public CameraController cameraController;
+
     public Transform trails;
     public Transform rockets;
     public Transform effects;

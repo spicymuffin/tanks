@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
+    public static CameraController instance;
     public Transform camera;
     public float shakeSpeed = 40f;
     public float shakeDistance = 0.7f;
@@ -16,9 +17,17 @@ public class CameraController : MonoBehaviour
     private void Awake()
     {
         normalPos = camera.localPosition;
+        if (instance != null && instance != this)
+        {
+            Destroy(this.gameObject);
+        }
+        else
+        {
+            instance = this;
+        }
     }
 
-    private IEnumerator Shake(float shakeSpeed, float shakeDistance, float shakeDuration, float tolerance, Vector3 normalPos)
+    private IEnumerator ShakeCoroutine(float shakeSpeed, float shakeDistance, float shakeDuration, float tolerance, Vector3 normalPos)
     {
         while (time < shakeDuration)
         {
@@ -34,9 +43,9 @@ public class CameraController : MonoBehaviour
         time = 0;
     }
 
-    public void ShakeCamera()
+    public void Shake()
     {
-        StartCoroutine(Shake(shakeSpeed, shakeDistance, shakeDuration, tolerance, normalPos));
+        StartCoroutine(ShakeCoroutine(shakeSpeed, shakeDistance, shakeDuration, tolerance, normalPos));
     }
 
     private IEnumerator ResetPosSmooth(Vector3 normalPos)
