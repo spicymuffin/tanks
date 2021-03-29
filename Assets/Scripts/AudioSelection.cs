@@ -14,12 +14,12 @@ public class AudioSelection : MonoBehaviour
         int value = rand.Next(1, 3);
         if(value == 1)
         {
-            Debug.Log('1');
+            //Debug.Log('1');
             hittingWallSound1.Play();
         }
         else
         {
-            Debug.Log('2');
+            //Debug.Log('2');
             hittingWallSound2.Play();
         }
     }

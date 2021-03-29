@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 5034119614950488628}
   - component: {fileID: 3338295660369197658}
   - component: {fileID: 7799986669908241317}
-  - component: {fileID: 7231007294727507870}
   - component: {fileID: 8487297998147530752}
+  - component: {fileID: 7231007294727507870}
   m_Layer: 0
   m_Name: ExplosiveBarrel
   m_TagString: Untagged
@@ -29,7 +29,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5216774286813086909}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -19.36026, y: 54.67876, z: -4.099279}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -95,25 +95,7 @@ CapsuleCollider:
   m_Radius: 0.5000001
   m_Height: 2
   m_Direction: 1
-  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
---- !u!114 &7231007294727507870
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5216774286813086909}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 661218d506d401a4b8f728319bba7253, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Radius: 1000
-  Force: 100
-  DestroyTime: 3
-  isExplosion: 0
-  run: 0
-  player: {fileID: 0}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &8487297998147530752
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -130,3 +112,25 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &7231007294727507870
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5216774286813086909}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 661218d506d401a4b8f728319bba7253, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  radius: 10
+  force: 50
+  destroyDelay: 3
+  run: 0
+  ignoreLineCast:
+    serializedVersion: 2
+    m_Bits: 1024
+  ignoreRayCast:
+    serializedVersion: 2
+    m_Bits: 4

@@ -36,7 +36,6 @@ public class Rocket : MonoBehaviour
         }
         if (!other.CompareTag("CloseCallBox"))
         {
-            GameObject AudioPlayer = Instantiate(audioPlayer);
             if (other.CompareTag("Shield"))
             {
                 if (other.GetComponent<ShieldScript>().player == sender)
@@ -44,7 +43,9 @@ public class Rocket : MonoBehaviour
                     return;
                 }
             }
-            GameObject instance = Instantiate(HitEffect, transform.position, Quaternion.identity);
+            GameObject instance = Instantiate(audioPlayer);
+            instance.transform.parent = GameObject.FindGameObjectWithTag("Effects").transform;
+            instance = Instantiate(HitEffect, transform.position, Quaternion.identity);
             smokeTrail.gameObject.transform.parent = GameObject.FindGameObjectWithTag("Effects").transform;
             smokeTrail.Destroy();
             Destroy(this.gameObject);
