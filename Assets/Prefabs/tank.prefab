@@ -802,7 +802,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d656eda11d324e647b5c009bac8582d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trails: []
+  right: {fileID: 4047135641431171109}
+  left: {fileID: 160130520250425846}
+  trail: {fileID: 8608982295824349722, guid: 94e0efbf4d8c3744c94bffffdefb798d, type: 3}
+  spacing: 0.7
+  rotationAnchor: {fileID: 1473714924623525258}
+  emit: 0
 --- !u!1 &2901097796647018274
 GameObject:
   m_ObjectHideFlags: 0
@@ -1688,7 +1693,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 947041879ec853848be1e2cd94a81d5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spacing: 1
+  spacing: 0.7
   trail: {fileID: 8608982295824349722, guid: 94e0efbf4d8c3744c94bffffdefb798d, type: 3}
   rotationAnchor: {fileID: 4047135641431171109}
   trails: {fileID: 0}
