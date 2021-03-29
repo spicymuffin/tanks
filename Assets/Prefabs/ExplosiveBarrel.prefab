@@ -125,8 +125,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   radius: 10
-  force: 50
-  destroyDelay: 3
+  force: 500
+  explosionDelay: 0
   run: 0
   ignoreLineCast:
     serializedVersion: 2

@@ -6,7 +6,7 @@ public class ExplosiveBarrel : MonoBehaviour
 {
     public float radius;
     public float force;
-    public float destroyDelay;
+    public float explosionDelay;
     private bool isExplosion;
     public bool run = false;
     private Player player;
@@ -41,7 +41,7 @@ public class ExplosiveBarrel : MonoBehaviour
     {
         if (isExplosion) return;
         isExplosion = true;
-        Invoke("Explode", destroyDelay);
+        Invoke("Explode", explosionDelay);
         GetComponent<Renderer>().material.color = Color.red;
     }
 
@@ -52,8 +52,6 @@ public class ExplosiveBarrel : MonoBehaviour
         {
             Rigidbody rigidbody = overlappedColliders[i].attachedRigidbody;
             RaycastHit hitData;
-            //int layer = overlappedColliders[i].gameObject.layer;
-            //overlappedColliders[i].gameObject.layer = 2;
             bool hit = Physics.Raycast(transform.position, overlappedColliders[i].transform.position - transform.position, out hitData, Vector3.Distance(overlappedColliders[i].transform.position, transform.position), ~ignoreMask);
             Debug.DrawRay(transform.position + Vector3.up, overlappedColliders[i].transform.position - transform.position, Color.yellow, 60);
             
@@ -87,42 +85,6 @@ public class ExplosiveBarrel : MonoBehaviour
                 inst.transform.position = hitData.point;
 
             }
-
-
-            //if (!hit)
-            //{
-            //    if (rigidbody)
-            //    {
-            //        rigidbody.AddExplosionForce(force, transform.position, radius);
-
-            //        if (overlappedColliders[i].TryGetComponent<Player>(out player))
-            //        {
-            //            player.ExplosionDie();
-            //        }
-
-            //        ExplosiveBarrel barrel = rigidbody.GetComponent<ExplosiveBarrel>();
-            //        if (barrel)
-            //        {
-            //            if (Vector3.Distance(transform.position, rigidbody.position) < radius / 2f)
-            //            {
-            //                barrel.ExplodeDelay();
-            //            }
-            //        }
-
-            //    }
-            //    Debug.DrawLine(transform.position, overlappedColliders[i].gameObject.transform.position, Color.red, 60);
-            //    GameObject inst = new GameObject();
-            //    inst.name = $"{hit}: {overlappedColliders[i].name}";
-            //    inst.transform.position = overlappedColliders[i].gameObject.transform.position;
-            //}
-            //else
-            //{
-            //    Debug.DrawLine(transform.position, overlappedColliders[i].gameObject.transform.position, Color.green, 60);
-            //    GameObject inst = new GameObject();
-            //    inst.name = $"{hit}: {overlappedColliders[i].name}:{hitData.collider.gameObject.name}";
-            //    inst.transform.position = overlappedColliders[i].gameObject.transform.position;
-            //}
-            //overlappedColliders[i].gameObject.layer = layer;
         }
         Destroy(gameObject);
     }

@@ -4,26 +4,39 @@ using UnityEngine;
 
 public class TankEffects : MonoBehaviour
 {
-    public TrailEffect[] trails;
+    public Transform right;
+    public Transform left;
 
-    public void StartTrails()
-    {
-        foreach (TrailEffect trail in trails)
-        {
-            trail.emit = true;
-        }
-    }
+    private Vector3 rPrevPos;
+    private Vector3 lPrevPos;
 
-    public void StopTrails()
-    {
-        foreach (TrailEffect trail in trails)
-        {
-            trail.emit = false;
-        }
-    }
+    public GameObject trail;
+    public float spacing = 0.7f;
+    public Transform rotationAnchor;
+    public bool emit = true;
+
+    private Transform trails;
+
 
     private void Awake()
     {
-        StartTrails();
+        trails = GameObject.FindGameObjectWithTag("Trails").transform;
+    }
+
+    private void Update()
+    {
+        if (emit)
+        {
+            if ((rPrevPos - right.position).sqrMagnitude >= spacing * spacing || (lPrevPos - left.position).sqrMagnitude >= spacing * spacing)
+            {
+                rPrevPos = right.position;
+                lPrevPos = left.position;
+                GameObject instance;
+                instance = Instantiate(trail, right.position, right.rotation);
+                instance.transform.parent = trails;
+                instance = Instantiate(trail, left.position, left.rotation);
+                instance.transform.parent = trails;
+            }
+        }
     }
 }
