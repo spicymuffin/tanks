@@ -8,14 +8,16 @@ public class LandmineScript : MonoBehaviour
     private bool armed = false;
     public Material armedMaterial;
     public Player sender;
+    public GameObject explosionEffect;
+    public GameObject subMesh;
     private MeshRenderer mr;
     private void Awake()
     {
-        mr = GetComponent<MeshRenderer>();
+        mr = subMesh.GetComponent<MeshRenderer>();
         StartCoroutine(Arm());
     }
 
-    private void OnTriggerStay(Collider other)
+    private void OnTriggerEnter(Collider other)
     {
         if (armed)
         {
@@ -26,6 +28,8 @@ public class LandmineScript : MonoBehaviour
                     sender.landmineKills++;
                     sender.kills++;
                 }
+                Instantiate(explosionEffect, transform.position, Quaternion.identity);
+                CameraController.instance.Shake();
                 hit.LandmineDie();
                 Destroy(this.gameObject);
             }

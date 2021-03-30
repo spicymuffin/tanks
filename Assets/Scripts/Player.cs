@@ -9,7 +9,6 @@ using Random = UnityEngine.Random;
 
 public class Player : MonoBehaviour
 {
-
     #region Audio
     public AudioSource shotSound;
     public AudioSource pickUpAirDropSound;
@@ -49,7 +48,7 @@ public class Player : MonoBehaviour
     public Transform shieldPos;
     public Image rocketIcon;
     public GameObject UIPanel;
-    public BoxCollider closeCallBox;
+    public GameObject explosionEffect;
     #endregion
 
     #region Counter movement
@@ -242,6 +241,10 @@ public class Player : MonoBehaviour
     public int landmineKills = 0;
     #endregion
 
+    #region NameDisplay
+    public TextMeshProUGUI nameDisplay;
+    #endregion
+
     #region State
     private bool dead = false; 
     #endregion
@@ -314,6 +317,7 @@ public class Player : MonoBehaviour
         myUIRocketPanel = myUIPanel.transform.FindObjectsWithTag("UIBullet")[0];
         myUIItemPanel = myUIPanel.transform.FindObjectsWithTag("UIItem")[0];
         myUINameDisplay.text = username;
+        nameDisplay.text = username;
         //Start bulllets
         for (int i = 0; i < MAX_ROCKETS; i++)
         {
@@ -492,6 +496,8 @@ public class Player : MonoBehaviour
         closeCalls--;
         deaths++;
         dead = true;
+        CameraController.instance.Shake();
+        Instantiate(explosionEffect, transform.position, Quaternion.identity);
         GameManager.instance.KillPlayer(this);
     }
     /// <summary>
@@ -502,6 +508,8 @@ public class Player : MonoBehaviour
         StopAllCoroutines();
         deaths++;
         dead = true;
+        CameraController.instance.Shake();
+        Instantiate(explosionEffect, transform.position, Quaternion.identity);
         GameManager.instance.KillPlayer(this);
     }
 
@@ -509,6 +517,8 @@ public class Player : MonoBehaviour
     {
         deaths++;
         dead = true;
+        CameraController.instance.Shake();
+        Instantiate(explosionEffect, transform.position, Quaternion.identity);
         GameManager.instance.KillPlayer(this);
     }
 
@@ -588,6 +598,7 @@ public class Player : MonoBehaviour
             lastInputSprint = input.sprint;
             lastInputUse = input.use;
         }
+        nameDisplay.gameObject.transform.parent.rotation = Quaternion.Euler(90, 0, 0);
     }
     private void Awake()
     {

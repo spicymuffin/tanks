@@ -1,6 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
-using System;
 using UnityEngine;
 
 public class AudioSelection : MonoBehaviour
@@ -9,7 +7,7 @@ public class AudioSelection : MonoBehaviour
     public AudioSource hittingWallSound2;
     public System.Random rand = new System.Random();
 
-    public void TheChoice()
+    public void Choose()
     {
         int value = rand.Next(1, 3);
         if(value == 1)
@@ -27,7 +25,7 @@ public class AudioSelection : MonoBehaviour
 
     public void Awake()
     {
-        TheChoice();
+        Choose();
         StartCoroutine(Destroyer());
     }
 
