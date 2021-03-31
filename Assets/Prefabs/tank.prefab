@@ -628,11 +628,11 @@ GameObject:
   - component: {fileID: 2901097796110787564}
   - component: {fileID: 2901097796110787565}
   - component: {fileID: 2901097796110787563}
+  - component: {fileID: 2453235561105424773}
   - component: {fileID: 2570976194033733576}
   - component: {fileID: -8032729957670958484}
   - component: {fileID: -927291113398518925}
   - component: {fileID: -1496296083508917297}
-  - component: {fileID: 2453235561105424773}
   m_Layer: 0
   m_Name: tank
   m_TagString: Player
@@ -702,6 +702,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10a3aab0770abde4b94f5c2dbbb4ec43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  explosionSound: {fileID: 7183025157981252049, guid: fc7772400a552b540ba59501c80d288a,
+    type: 3}
   shotSound: {fileID: 2570976194033733576}
   pickUpAirDropSound: {fileID: -8032729957670958484}
   usingAirDropSound: {fileID: -927291113398518925}
@@ -743,6 +745,24 @@ MonoBehaviour:
   landminesCreated: 0
   landmineKills: 0
   nameDisplay: {fileID: 4726694336212280354}
+--- !u!114 &2453235561105424773
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2901097796110787567}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d656eda11d324e647b5c009bac8582d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  right: {fileID: 4047135641431171109}
+  left: {fileID: 160130520250425846}
+  trail: {fileID: 8608982295824349722, guid: 94e0efbf4d8c3744c94bffffdefb798d, type: 3}
+  spacing: 0.7
+  rotationAnchor: {fileID: 1473714924623525258}
+  emit: 0
 --- !u!82 &2570976194033733576
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1127,24 +1147,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &2453235561105424773
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2901097796110787567}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d656eda11d324e647b5c009bac8582d7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  right: {fileID: 4047135641431171109}
-  left: {fileID: 160130520250425846}
-  trail: {fileID: 8608982295824349722, guid: 94e0efbf4d8c3744c94bffffdefb798d, type: 3}
-  spacing: 0.7
-  rotationAnchor: {fileID: 1473714924623525258}
-  emit: 0
 --- !u!1 &2901097796647018274
 GameObject:
   m_ObjectHideFlags: 0

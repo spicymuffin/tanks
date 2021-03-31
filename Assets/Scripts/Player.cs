@@ -10,6 +10,7 @@ using Random = UnityEngine.Random;
 public class Player : MonoBehaviour
 {
     #region Audio
+    public GameObject explosionSound;
     public AudioSource shotSound;
     public AudioSource pickUpAirDropSound;
     public AudioSource usingAirDropSound;
@@ -480,7 +481,7 @@ public class Player : MonoBehaviour
             rb.AddForce(acceleration * transform.right * -mag.x * counterMovement);
         }
         if (Math.Abs(mag.y) > threshold && Math.Abs(y) < jsThreshold || (mag.y < -threshold && y > 0) || (mag.y > threshold && y < 0))
-        {
+        {   
             rb.AddForce(acceleration * transform.forward * -mag.y * counterMovement);
         }
     } 
@@ -492,6 +493,7 @@ public class Player : MonoBehaviour
     /// </summary>
     public void BulletDie()
     {
+        GameObject soundofExplode = Instantiate(explosionSound);
         StopAllCoroutines();
         closeCalls--;
         deaths++;
@@ -505,6 +507,7 @@ public class Player : MonoBehaviour
     /// </summary>
     public void LandmineDie()
     {
+        GameObject soundofExplode = Instantiate(explosionSound);
         StopAllCoroutines();
         deaths++;
         dead = true;
@@ -515,6 +518,7 @@ public class Player : MonoBehaviour
 
     public void ExplosionDie()
     {
+        GameObject soundofExplode = Instantiate(explosionSound);
         deaths++;
         dead = true;
         CameraController.instance.Shake();
@@ -524,6 +528,7 @@ public class Player : MonoBehaviour
 
     public void Die()
     {
+        GameObject soundofExplode = Instantiate(explosionSound);
         StopAllCoroutines();
         deaths++;
         dead = true;
