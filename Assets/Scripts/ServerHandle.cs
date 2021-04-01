@@ -32,17 +32,12 @@ public class ServerHandle
     public static void PlayerMovement(int _fromClient, Packet _packet)
     {
         Player.Input input = new Player.Input();
-        //public bool fire;
-        //public bool sprint;
-        //public bool use;
-        //public float horizontal;
-        //public float vertical;
-        input.fire = _packet.ReadBool();
         input.sprint = _packet.ReadBool();
         input.use = _packet.ReadBool();
-        input.horizontal = _packet.ReadFloat();
-        input.vertical = _packet.ReadFloat();
-        //Debug.Log($"pack {input.horizontal}:{input.vertical}");
+        input.MH = _packet.ReadFloat();
+        input.MV = _packet.ReadFloat();
+        input.FH = _packet.ReadFloat();
+        input.FV = _packet.ReadFloat();
         if (Server.clients[_fromClient].player != null)
         {
             Server.clients[_fromClient].player.SetInput(input);

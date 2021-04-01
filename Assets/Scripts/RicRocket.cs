@@ -30,7 +30,7 @@ public class RicRocket : MonoBehaviour
             {
                 Destroy(this.gameObject);
             }
-            if (hit.collider.CompareTag("Player"))
+            if (hit.collider.transform.parent.CompareTag("Player"))
             {
                 Player hitPlayer;
                 hitPlayer = hit.collider.GetComponent<Player>();

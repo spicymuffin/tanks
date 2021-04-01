@@ -7,7 +7,7 @@ public class TrailEffect : MonoBehaviour
     public float spacing;
     public GameObject trail;
     public Transform rotationAnchor;
-    public GameObject trails;
+    private GameObject trails;
     private Vector3 prevPos;
     public bool emit = true;
 

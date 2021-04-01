@@ -9,81 +9,59 @@ using Random = UnityEngine.Random;
 
 public class Player : MonoBehaviour
 {
-    #region Audio
-    public GameObject explosionSound;
-    public AudioSource shotSound;
-    public AudioSource pickUpAirDropSound;
-    public AudioSource usingAirDropSound;
-    public AudioSource pickUpAirDropCancelSound;
-    #endregion
-
     #region Networking
+    [Header("Networking")]
     public int id;
     public string username;
     public Client myClient;
     public struct Input
     {
-        public bool fire;
         public bool sprint;
         public bool use;
-        public float horizontal;
-        public float vertical;
+        public float MH;
+        public float MV;
+        public float FH;
+        public float FV;
     }
     public Input input;
     #endregion
-
-    #region Assignables
-    public float rotSens = 200f;
-    public float maxVelocity = 12f;
-    public float acceleration = 100000;
-    public float sprintPropulsion = 12f;
+    #region Movement
+    private float hullTargetAngle = 0;
+    [Header("Movement")]
+    public float hullRotationSpeed = 0.15f;
+    public float maxVelocity = 6f;
+    public float acceleration = 50;
     #endregion
-
-    #region Objects & Transforms & Rigidbodies
-    private Rigidbody rb;
-    public GameObject Rocket;
-    public GameObject RicRocket;
-    public GameObject shield;
-    public GameObject landmine;
-    public Transform tip;
-    public Transform shieldPos;
-    public Image rocketIcon;
-    public GameObject UIPanel;
-    public GameObject explosionEffect;
-    #endregion
-
     #region Counter movement
+    [Header("Counter movement")]
     public float counterMovement = 0.6f;
-    public float threshold = 0.01f;
-    public float jsThreshold = 0.05f;
     #endregion
-
     #region Input processing
-    private bool fire = false;
     private bool sprint = false;
     private bool use = false;
 
-    private bool lastInputFire = false;
     private bool lastInputSprint = false;
     private bool lastInputUse = false;
     #endregion
-
     #region Sprint
+    [Header("Sprint")]
+    public float sprintPropulsion = 12f;
     public float sprintStamina = 1;
     public float sprintStaminaRegenRate = 0.2f;
     public float sprintStaminaDepletionRate = 0.4f;
     public bool isDepleting = false;
     #endregion
-
     #region Fire
-    public float maxBulletDeviationAngle = 3.00f;
+    [Header("Fire")]
+    public float maxBulletDeviationAngle = 1.00f;
     public const int MAX_ROCKETS = 5;
     public float reloadTime = 0.6f;
+    public float headRotationSpeed = 0.15f;
+    private float headTargetAngle = 0;
     List<Image> rockets = new List<Image>();
     int currentRockets = MAX_ROCKETS;
     bool isReloading = false;
     #endregion
-
     #region UIPanel
     GameObject myUIPanel;
     TextMeshProUGUI myUINameDisplay;
@@ -92,7 +70,6 @@ public class Player : MonoBehaviour
     GameObject myUIItemPanel;
     GameObject currentItemIcon;
     #endregion
-
     #region Airdrop logic
     bool hasItem = false;
     Item currentItem = null;
@@ -230,8 +207,8 @@ public class Player : MonoBehaviour
     bool isShielded = false;
 
     #endregion
-
     #region Stats
+    [Header("Stats")]
     public int shots = 0;
     public int closeCalls = 0;
     public int ADTotal = 0;
@@ -241,15 +218,36 @@ public class Player : MonoBehaviour
     public int landminesCreated = 0;
     public int landmineKills = 0;
     #endregion
-
     #region NameDisplay
+    [Header("Name display")]
     public TextMeshProUGUI nameDisplay;
     #endregion
-
     #region State
-    private bool dead = false; 
+    private bool dead = false;
+    #endregion
+    #region Objects & Transforms & Rigidbodies
+    private Rigidbody rb;
+    [Header("Objects & Transforms")]
+    public GameObject Rocket;
+    public GameObject RicRocket;
+    public GameObject shield;
+    public GameObject landmine;
+    public Transform tip;
+    public Transform shieldPos;
+    public Image rocketIcon;
+    public GameObject UIPanel;
+    public GameObject explosionEffect;
+    public Transform head;
+    #endregion
+    #region Audio
+    [Header("Audio")]
+    public AudioSource shotSound;
+    public AudioSource pickUpAirDropSound;
+    public AudioSource usingAirDropSound;
+    public AudioSource pickUpAirDropCancelSound;
     #endregion
 
+    #region Startup Functions
     /// <summary>
     /// Initialize to NM
     /// </summary>
@@ -260,11 +258,6 @@ public class Player : MonoBehaviour
         id = _id;
         username = _username;
     }
-
-    public void Start()
-    {
-        shotSound = GetComponent<AudioSource>();
-    }
     /// <summary>
     /// Startup this script
     /// </summary>
@@ -272,7 +265,7 @@ public class Player : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
     }
-
+    #endregion
     #region Reload Functions
     Coroutine reloadCoroutine;
     /// <summary>
@@ -302,9 +295,8 @@ public class Player : MonoBehaviour
     {
         rockets[currentRockets - 1].enabled = false;
         currentRockets--;
-    } 
+    }
     #endregion
-
     #region UI Functions
     /// <summary>
     /// Start up UI
@@ -334,16 +326,14 @@ public class Player : MonoBehaviour
         {
             myUIStaminaBar.fillAmount = sprintStamina;
         }
-    } 
+    }
     #endregion
-
     #region Input handling Functions
     /// <summary>
     /// Check input, activate functions accordingly
     /// </summary>
     private void ButtonInput()
     {
-        Fire();
         Sprint();
         Use();
     }
@@ -352,53 +342,12 @@ public class Player : MonoBehaviour
     /// </summary>
     private void ProcessInput()
     {
-        if (!lastInputFire && input.fire) { fire = true; }
-        if (lastInputFire && input.fire) { fire = false; }
-        if (!input.fire) { fire = false; }
         if (!lastInputSprint && input.sprint) { sprint = true; }
         if (lastInputSprint && input.sprint) { sprint = false; }
         if (!input.sprint) { sprint = false; }
         if (!lastInputUse && input.use) { use = true; }
         if (lastInputUse && input.use) { use = false; }
         if (!input.use) { use = false; }
-    }
-    /// <summary>
-    /// Fires a rocket
-    /// </summary>
-    private void Fire()
-    {
-        if (fire && currentRockets != 0)
-        {
-            if (isReloading)
-            {
-                //Debug.Log("restart reload");
-                StopCoroutine(reloadCoroutine);
-                reloadCoroutine = StartCoroutine(Reload());
-            }
-            if (!isRicochet)
-            {
-                GameObject currentRocket = Instantiate(Rocket, tip.position, Quaternion.Euler(tip.rotation.eulerAngles.x, tip.rotation.eulerAngles.y + UnityEngine.Random.Range(-maxBulletDeviationAngle, maxBulletDeviationAngle), tip.rotation.eulerAngles.z));
-                shotSound.pitch = Random.Range(1, 2);
-                shotSound.Play();
-                currentRocket.GetComponent<Rocket>().sender = this;
-            }
-            else
-            {
-                GameObject currentRicRocket = Instantiate(RicRocket, tip.position, Quaternion.Euler(tip.rotation.eulerAngles.x, tip.rotation.eulerAngles.y + UnityEngine.Random.Range(-maxBulletDeviationAngle, maxBulletDeviationAngle), tip.rotation.eulerAngles.z));
-                currentRicRocket.GetComponent<RicRocket>().sender = this;
-            }
-            if (!infBullets)
-            {
-                RemoveBullet();
-            }
-            shots++;
-            //Debug.Log($"-bullet: {currentRockets}");
-        }
-        if (currentRockets < MAX_ROCKETS && !isReloading && !fire)
-        {
-            //Debug.Log($"start reload");
-            reloadCoroutine = StartCoroutine(Reload());
-        }
     }
     /// <summary>
     /// Activates sprint
@@ -446,13 +395,58 @@ public class Player : MonoBehaviour
     /// <param name="_input"></param>
     public void LogInput(Input _input)
     {
-        Debug.Log($"fire: {_input.fire}");
         Debug.Log($"sprint: {_input.sprint}");
         Debug.Log($"use: {_input.use}");
-        Debug.Log($"horizontal: {_input.horizontal}");
-        Debug.Log($"vertical: {_input.vertical}");
+        Debug.Log($"Mhorizontal: {_input.MH}");
+        Debug.Log($"Mvertical: {_input.MV}");
+        Debug.Log($"Fhorizontal: {_input.FH}");
+        Debug.Log($"Fvertical: {_input.FV}");
     }
     #endregion
+    public void Start()
+    {
+        shotSound = GetComponent<AudioSource>();
+    }
+
+
+    /// <summary>
+    /// Fires a rocket
+    /// </summary>
+    private void Fire()
+    {
+        //if (fire && currentRockets != 0)
+        {
+            if (isReloading)
+            {
+                //Debug.Log("restart reload");
+                StopCoroutine(reloadCoroutine);
+                reloadCoroutine = StartCoroutine(Reload());
+            }
+            if (!isRicochet)
+            {
+                GameObject currentRocket = Instantiate(Rocket, tip.position, Quaternion.Euler(tip.rotation.eulerAngles.x, tip.rotation.eulerAngles.y + UnityEngine.Random.Range(-maxBulletDeviationAngle, maxBulletDeviationAngle), tip.rotation.eulerAngles.z));
+                shotSound.pitch = Random.Range(1, 2);
+                shotSound.Play();
+                currentRocket.GetComponent<Rocket>().sender = this;
+            }
+            else
+            {
+                GameObject currentRicRocket = Instantiate(RicRocket, tip.position, Quaternion.Euler(tip.rotation.eulerAngles.x, tip.rotation.eulerAngles.y + UnityEngine.Random.Range(-maxBulletDeviationAngle, maxBulletDeviationAngle), tip.rotation.eulerAngles.z));
+                currentRicRocket.GetComponent<RicRocket>().sender = this;
+            }
+            if (!infBullets)
+            {
+                RemoveBullet();
+            }
+            shots++;
+            //Debug.Log($"-bullet: {currentRockets}");
+        }
+        //if (currentRockets < MAX_ROCKETS && !isReloading && !fire)
+        {
+            //Debug.Log($"start reload");
+            reloadCoroutine = StartCoroutine(Reload());
+        }
+    }
 
     #region Movement Functions
     /// <summary>
@@ -460,31 +454,56 @@ public class Player : MonoBehaviour
     /// </summary>
     private void Movement()
     {
-        CounterMovement();
-        transform.Rotate(0, input.horizontal * rotSens, 0);
+        Vector2 jsVector = new Vector2(input.MH, input.MV);
+        float magnitude = jsVector.magnitude;
+        CounterMovement(magnitude);
 
-        if (rb.velocity.magnitude < maxVelocity)
+        if (input.MH != 0 || input.MV != 0)
         {
-            rb.AddForce(transform.forward * acceleration * input.vertical);
+            hullTargetAngle = Mathf.Atan2(input.MH, input.MV) * Mathf.Rad2Deg;
+            Quaternion prevRot = head.rotation;
+            transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(0, hullTargetAngle, 0), hullRotationSpeed);
+            head.rotation = prevRot;
+
+            if (rb.velocity.magnitude < maxVelocity * magnitude)
+            {
+                rb.AddForce(transform.forward * acceleration);
+            }
         }
     }
+
     /// <summary>
     /// Apply counter movement
     /// </summary>
-    private void CounterMovement()
+    private void CounterMovement(float magnitude)
     {
         Vector2 mag = new Vector2(transform.InverseTransformDirection(rb.velocity).x, transform.InverseTransformDirection(rb.velocity).z);
-        float x = input.horizontal;
-        float y = input.vertical;
-        if (Math.Abs(mag.x) > threshold && Math.Abs(x) < jsThreshold || (mag.x < -threshold && x > 0) || (mag.x > threshold && x < 0) || (mag.x < -threshold && x < 0) || (mag.x > threshold && x > 0))
+
+        if (Math.Abs(mag.x) > 0.01)
         {
             rb.AddForce(acceleration * transform.right * -mag.x * counterMovement);
         }
-        if (Math.Abs(mag.y) > threshold && Math.Abs(y) < jsThreshold || (mag.y < -threshold && y > 0) || (mag.y > threshold && y < 0))
-        {   
+        if (Math.Abs(mag.y) > 0.01 && Math.Abs(magnitude) < 0.05f || (mag.y < -0.01 && magnitude > 0) || (mag.y > 0.01 && magnitude < 0))
+        {
             rb.AddForce(acceleration * transform.forward * -mag.y * counterMovement);
         }
-    } 
+    }
+
+    private void HeadRotationAndFire()
+    {
+        Vector2 jsVector = new Vector2(input.FH, input.FV);
+        float magnitude = jsVector.magnitude;
+
+        if (input.FH != 0 || input.FV != 0)
+        {
+            headTargetAngle = Mathf.Atan2(input.FH, input.FV) * Mathf.Rad2Deg;
+            head.rotation = Quaternion.Lerp(head.rotation, Quaternion.Euler(0, headTargetAngle + 180, 0), headRotationSpeed);
+            if (!isReloading)
+            {
+                Fire();
+            }
+        }
+    }
     #endregion
 
     #region Die Functions
@@ -493,7 +512,6 @@ public class Player : MonoBehaviour
     /// </summary>
     public void BulletDie()
     {
-        GameObject soundofExplode = Instantiate(explosionSound);
         StopAllCoroutines();
         closeCalls--;
         deaths++;
@@ -507,7 +525,6 @@ public class Player : MonoBehaviour
     /// </summary>
     public void LandmineDie()
     {
-        GameObject soundofExplode = Instantiate(explosionSound);
         StopAllCoroutines();
         deaths++;
         dead = true;
@@ -518,7 +535,6 @@ public class Player : MonoBehaviour
 
     public void ExplosionDie()
     {
-        GameObject soundofExplode = Instantiate(explosionSound);
         deaths++;
         dead = true;
         CameraController.instance.Shake();
@@ -528,7 +544,6 @@ public class Player : MonoBehaviour
 
     public void Die()
     {
-        GameObject soundofExplode = Instantiate(explosionSound);
         StopAllCoroutines();
         deaths++;
         dead = true;
@@ -593,13 +608,14 @@ public class Player : MonoBehaviour
     }
     private void FixedUpdate()
     {
+        //LogInput(input);
         ProcessInput();
         if (!dead)
         {
             Movement();
+            HeadRotationAndFire();
             ButtonInput();
             UpdateUI();
-            lastInputFire = input.fire;
             lastInputSprint = input.sprint;
             lastInputUse = input.use;
         }
