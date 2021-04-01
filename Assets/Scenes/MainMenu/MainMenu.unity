@@ -9638,7 +9638,7 @@ Light:
   serializedVersion: 10
   m_Type: 1
   m_Shape: 0
-  m_Color: {r: 0.6930852, g: 0, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Intensity: 0.85
   m_Range: 10
   m_SpotAngle: 30
@@ -9725,12 +9725,12 @@ MonoBehaviour:
     key6: {r: 0.5, g: 0, b: 1, a: 0}
     key7: {r: 1, g: 0, b: 0.8378444, a: 0}
     ctime0: 0
-    ctime1: 8192
-    ctime2: 16384
-    ctime3: 24576
-    ctime4: 32768
-    ctime5: 40959
-    ctime6: 49151
+    ctime1: 8867
+    ctime2: 18890
+    ctime3: 28527
+    ctime4: 37972
+    ctime5: 47609
+    ctime6: 57054
     ctime7: 65535
     atime0: 0
     atime1: 65535
@@ -13026,18 +13026,10 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2110725678}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 485718317}
-        m_MethodName: MoveToAudioSlider
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: [{m_Target: {fileID: 485718317}, m_MethodName: MoveToAudioSlider, m_Mode: 1,
+          m_Arguments: {m_ObjectArgument: {fileID: 0}, m_ObjectArgumentAssemblyTypeName: 'UnityEngine.Object,
+              UnityEngine', m_IntArgument: 0, m_FloatArgument: 0, m_StringArgument: '',
+            m_BoolArgument: 0}, m_CallState: 2}]
 --- !u!114 &2110725678
 MonoBehaviour:
   m_ObjectHideFlags: 0
