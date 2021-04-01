@@ -8,9 +8,10 @@ public class MainMenu : MonoBehaviour
     public static MainMenu instance;
 
     public GameObject MainCamera;
-    public GameObject LevelSelectingCameraPosition;
-    public GameObject CreateGameCameraPosition;
-    public GameObject MainMenuCameraPosition;
+    public GameObject levelSelectingCameraPosition;
+    public GameObject createGameCameraPosition;
+    public GameObject mainMenuCameraPosition;
+    public GameObject audioSliderCameraPosition;
 
     public void Awake()
     {
@@ -27,19 +28,25 @@ public class MainMenu : MonoBehaviour
     public void MoveToStartGame()
     {
         StopAllCoroutines();
-        StartCoroutine(LerpObject(CreateGameCameraPosition, MainCamera));
+        StartCoroutine(LerpObject(createGameCameraPosition, MainCamera));
     }
 
     public void MoveToMainMenu()
     {
         StopAllCoroutines();
-        StartCoroutine(LerpObject(MainMenuCameraPosition, MainCamera));
+        StartCoroutine(LerpObject(mainMenuCameraPosition, MainCamera));
     }
 
     public void MoveToLevelSelecting()
     {
         StopAllCoroutines();
-        StartCoroutine(LerpObject(LevelSelectingCameraPosition, MainCamera));
+        StartCoroutine(LerpObject(levelSelectingCameraPosition, MainCamera));
+    }
+
+    public void MoveToAudioSlider()
+    {
+        StopAllCoroutines();
+        StartCoroutine(LerpObject(audioSliderCameraPosition, MainCamera));
     }
 
     public void QuitGame()
