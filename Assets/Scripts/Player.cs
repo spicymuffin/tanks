@@ -241,10 +241,12 @@ public class Player : MonoBehaviour
     #endregion
     #region Audio
     [Header("Audio")]
+    public GameObject explosionSound;
+    public AudioSource playerSound;
     public AudioSource shotSound;
-    public AudioSource pickUpAirDropSound;
-    public AudioSource usingAirDropSound;
-    public AudioSource pickUpAirDropCancelSound;
+    public AudioClip pickUpAirDropSound;
+    public AudioClip usingAirDropSound;
+    public AudioClip pickUpAirDropCancelSound;
     #endregion
 
     #region Startup Functions
@@ -379,7 +381,7 @@ public class Player : MonoBehaviour
     {
         if (use && hasItem)
         {
-            usingAirDropSound.Play();
+            playerSound.PlayOneShot(usingAirDropSound);
             currentItem.Use();
         }
     }
@@ -562,20 +564,22 @@ public class Player : MonoBehaviour
         if (hasItem)
         {
             //play animation or some shit idk
-            pickUpAirDropCancelSound.Play();
+            playerSound.PlayOneShot(pickUpAirDropCancelSound);
             return;
         }
 
         if (_type == "InfiniteBullets")
         {
-            pickUpAirDropSound.Play();
+            playerSound.PlayOneShot(pickUpAirDropSound);
+            // pickUpAirDropSound.Play();
             InfiniteBulletsADC adc = _airdrop.GetComponent<InfiniteBulletsADC>();
             currentItemIcon = Instantiate(adc.icon, myUIItemPanel.transform);
             new InfiniteBullets(adc.time, this);
         }
         if (_type == "LandMine")
         {
-            pickUpAirDropSound.Play();
+            playerSound.PlayOneShot(pickUpAirDropSound);
+            // pickUpAirDropSound.Play();
             LandmineADC adc = _airdrop.GetComponent<LandmineADC>();
             currentItemIcon = Instantiate(adc.icon[adc.count - 1], myUIItemPanel.transform);
             new Landmine(adc.count, this);
@@ -584,14 +588,16 @@ public class Player : MonoBehaviour
         }
         if (_type == "Shield")
         {
-            pickUpAirDropSound.Play();
+            playerSound.PlayOneShot(pickUpAirDropSound);
+            // pickUpAirDropSound.Play();
             ShieldADC adc = _airdrop.GetComponent<ShieldADC>();
             currentItemIcon = Instantiate(adc.icon, myUIItemPanel.transform);
             new Shield(adc.time, this);
         }
         if (_type == "Ricochet")
         {
-            pickUpAirDropSound.Play();
+            playerSound.PlayOneShot(pickUpAirDropSound);
+            // pickUpAirDropSound.Play();
             RicochetADC adc = _airdrop.GetComponent<RicochetADC>();
             currentItemIcon = Instantiate(adc.icon, myUIItemPanel.transform);
             new Ricochet(adc.time, this);

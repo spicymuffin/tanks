@@ -5,10 +5,13 @@ public class AudioSelection : MonoBehaviour
 {
     public AudioSource hittingWallSound1;
     public AudioSource hittingWallSound2;
+    private float volumeValue = SoundManager.soundFloat;
     public System.Random rand = new System.Random();
 
     public void Choose()
     {
+        hittingWallSound1.volume = volumeValue;
+        hittingWallSound2.volume = volumeValue;
         int value = rand.Next(1, 3);
         if(value == 1)
         {
