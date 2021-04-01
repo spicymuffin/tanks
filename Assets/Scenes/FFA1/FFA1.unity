@@ -285,75 +285,6 @@ Mesh:
     offset: 0
     size: 0
     path: 
---- !u!1001 &171822497
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 6270904009115898870, guid: 29f2acd0a5951824c9915fe1446e0d34,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -4.97
-      objectReference: {fileID: 0}
-    - target: {fileID: 6270904009115898870, guid: 29f2acd0a5951824c9915fe1446e0d34,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.67
-      objectReference: {fileID: 0}
-    - target: {fileID: 6270904009115898870, guid: 29f2acd0a5951824c9915fe1446e0d34,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 11.58
-      objectReference: {fileID: 0}
-    - target: {fileID: 6270904009115898870, guid: 29f2acd0a5951824c9915fe1446e0d34,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6270904009115898870, guid: 29f2acd0a5951824c9915fe1446e0d34,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6270904009115898870, guid: 29f2acd0a5951824c9915fe1446e0d34,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6270904009115898870, guid: 29f2acd0a5951824c9915fe1446e0d34,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6270904009115898870, guid: 29f2acd0a5951824c9915fe1446e0d34,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6270904009115898870, guid: 29f2acd0a5951824c9915fe1446e0d34,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6270904009115898870, guid: 29f2acd0a5951824c9915fe1446e0d34,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6270904009115898870, guid: 29f2acd0a5951824c9915fe1446e0d34,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7246122113745158253, guid: 29f2acd0a5951824c9915fe1446e0d34,
-        type: 3}
-      propertyPath: m_Name
-      value: Autogun
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 29f2acd0a5951824c9915fe1446e0d34, type: 3}
 --- !u!1 &201999793
 GameObject:
   m_ObjectHideFlags: 0
@@ -740,6 +671,75 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!1001 &271328413
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 6270904009115898870, guid: 29f2acd0a5951824c9915fe1446e0d34,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -3.6530285
+      objectReference: {fileID: 0}
+    - target: {fileID: 6270904009115898870, guid: 29f2acd0a5951824c9915fe1446e0d34,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6270904009115898870, guid: 29f2acd0a5951824c9915fe1446e0d34,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 10.622816
+      objectReference: {fileID: 0}
+    - target: {fileID: 6270904009115898870, guid: 29f2acd0a5951824c9915fe1446e0d34,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6270904009115898870, guid: 29f2acd0a5951824c9915fe1446e0d34,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6270904009115898870, guid: 29f2acd0a5951824c9915fe1446e0d34,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6270904009115898870, guid: 29f2acd0a5951824c9915fe1446e0d34,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6270904009115898870, guid: 29f2acd0a5951824c9915fe1446e0d34,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6270904009115898870, guid: 29f2acd0a5951824c9915fe1446e0d34,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6270904009115898870, guid: 29f2acd0a5951824c9915fe1446e0d34,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6270904009115898870, guid: 29f2acd0a5951824c9915fe1446e0d34,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7246122113745158253, guid: 29f2acd0a5951824c9915fe1446e0d34,
+        type: 3}
+      propertyPath: m_Name
+      value: Autogun
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 29f2acd0a5951824c9915fe1446e0d34, type: 3}
 --- !u!1 &356505283
 GameObject:
   m_ObjectHideFlags: 0

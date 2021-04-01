@@ -15,6 +15,7 @@ public class ExplosiveBarrel : MonoBehaviour
     public LayerMask ignoreLineCast;
     public LayerMask ignoreRayCast;
     public GameObject explosionEffect;
+    public GameObject explosionSound;
 
     public void Awake()
     {
@@ -50,6 +51,7 @@ public class ExplosiveBarrel : MonoBehaviour
 
     public void Explode()
     {
+        GameObject soundofExplode = Instantiate(explosionSound);
         CameraController.instance.Shake();
         Instantiate(explosionEffect, transform.position, Quaternion.identity);
         Collider[] overlappedColliders = Physics.OverlapSphere(transform.position, radius);
