@@ -6,32 +6,15 @@ public class PauseMenu : MonoBehaviour
 {
     public static bool isGamePaused = false;
     public GameObject pauseMenu;
-    private Server asd;
+    public GameObject pausebutton;
 
-    public void Start()
-    {
-        asd = GetComponent<Server>();
-    }
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            if (isGamePaused)
-            {
-                Resume();
-            }
-            else
-            {
-                Pause();
-            }
-        }
-    }
 
     public void Pause()
     {
         pauseMenu.SetActive(true);
         Time.timeScale = 0f;
         isGamePaused = true;
+        pausebutton.SetActive(false);
     }
 
 
@@ -40,6 +23,7 @@ public class PauseMenu : MonoBehaviour
         pauseMenu.SetActive(false);
         Time.timeScale = 1f;
         isGamePaused = false;
+        pausebutton.SetActive(true);
     }
 
 
