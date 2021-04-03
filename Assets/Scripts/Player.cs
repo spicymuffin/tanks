@@ -627,6 +627,7 @@ public class Player : MonoBehaviour
         }
         nameDisplay.gameObject.transform.parent.rotation = Quaternion.Euler(90, 0, 0);
     }
+
     private void Awake()
     {
         StartUp();
