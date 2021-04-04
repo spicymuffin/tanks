@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1575572415422172562}
   - component: {fileID: -412611987343088328}
+  - component: {fileID: -8900660091722796063}
   m_Layer: 0
   m_Name: ShieldAudio
   m_TagString: Untagged
@@ -127,3 +128,17 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &-8900660091722796063
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8168459693039449581}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bcd67c7950338d74b8f707abc66f134e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  destroyOnAwake: 1
+  destroyAfter: 5
