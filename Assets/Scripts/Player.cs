@@ -54,13 +54,15 @@ public class Player : MonoBehaviour
     #region Fire
     [Header("Fire")]
     public float maxBulletDeviationAngle = 1.00f;
-    public const int MAX_ROCKETS = 5;
+    public const int MAX_ROCKETS = 10;
     public float reloadTime = 0.6f;
     public float headRotationSpeed = 0.15f;
+    public float coolDownTime = 0.5f;
     private float headTargetAngle = 0;
     List<Image> rockets = new List<Image>();
     int currentRockets = MAX_ROCKETS;
     bool isReloading = false;
+    bool isCoolingDown = false;
     #endregion
     #region UIPanel
     GameObject myUIPanel;
@@ -268,8 +270,9 @@ public class Player : MonoBehaviour
         rb = GetComponent<Rigidbody>();
     }
     #endregion
-    #region Reload Functions
+    #region Fire Functions
     Coroutine reloadCoroutine;
+    Coroutine coolDownCoroutine;
     /// <summary>
     /// Reload with delay
     /// </summary>
@@ -279,8 +282,17 @@ public class Player : MonoBehaviour
         isReloading = true;
         yield return new WaitForSeconds(reloadTime);
         AddBullet();
-        //Debug.Log($"+bullet: {currentRockets}");
         isReloading = false;
+    }
+    /// <summary>
+    /// Cool down
+    /// </summary>
+    /// <returns></returns>
+    IEnumerator FireCoolDown()
+    {
+        isCoolingDown = true;
+        yield return new WaitForSeconds(coolDownTime);
+        isCoolingDown = false;
     }
     /// <summary>
     /// Add a bullet + update UI
@@ -297,6 +309,72 @@ public class Player : MonoBehaviour
     {
         rockets[currentRockets - 1].enabled = false;
         currentRockets--;
+    }
+    /// <summary>
+    /// Fires a rocket
+    /// </summary>
+    private void Fire()
+    {
+        if (currentRockets != 0)
+        {
+            if (isReloading)
+            {
+                //Debug.Log("restart reload");
+                StopCoroutine(reloadCoroutine);
+                reloadCoroutine = StartCoroutine(Reload());
+            }
+            if (!isRicochet)
+            {
+                GameObject currentRocket = Instantiate(Rocket, tip.position, Quaternion.Euler(tip.rotation.eulerAngles.x, tip.rotation.eulerAngles.y + UnityEngine.Random.Range(-maxBulletDeviationAngle, maxBulletDeviationAngle), tip.rotation.eulerAngles.z));
+                shotSound.pitch = Random.Range(1, 2);
+                shotSound.Play();
+                currentRocket.GetComponent<Rocket>().sender = this;
+            }
+            else
+            {
+                GameObject currentRicRocket = Instantiate(RicRocket, tip.position, Quaternion.Euler(tip.rotation.eulerAngles.x, tip.rotation.eulerAngles.y + UnityEngine.Random.Range(-maxBulletDeviationAngle, maxBulletDeviationAngle), tip.rotation.eulerAngles.z));
+                currentRicRocket.GetComponent<RicRocket>().sender = this;
+            }
+            if (!infBullets)
+            {
+                RemoveBullet();
+            }
+            shots++;
+            //Debug.Log($"-bullet: {currentRockets}");
+        }
+    }
+    /// <summary>
+    /// Manage head rotation and firing
+    /// </summary>
+    private void HeadRotationAndFire()
+    {
+        Vector2 jsVector = new Vector2(input.FH, input.FV);
+        float magnitude = jsVector.magnitude;
+
+        if (input.FH != 0 || input.FV != 0)
+        {
+            headTargetAngle = Mathf.Atan2(input.FH, input.FV) * Mathf.Rad2Deg;
+            head.rotation = Quaternion.Lerp(head.rotation, Quaternion.Euler(0, headTargetAngle + 180, 0), headRotationSpeed);
+            if (!isCoolingDown)
+            {
+                Fire();
+                coolDownCoroutine = StartCoroutine(FireCoolDown());
+            }
+        }
+        else
+        {
+            if (coolDownCoroutine != null)
+            {
+                StopCoroutine(coolDownCoroutine);
+                coolDownCoroutine = null;
+                isCoolingDown = false;
+            }
+        }
+        if (currentRockets < MAX_ROCKETS && !isReloading)
+        {
+            //Debug.Log($"start reload");
+            reloadCoroutine = StartCoroutine(Reload());
+        }
     }
     #endregion
     #region UI Functions
@@ -405,51 +483,31 @@ public class Player : MonoBehaviour
         Debug.Log($"Fvertical: {_input.FV}");
     }
     #endregion
+    #region Unity calls
     public void Start()
     {
         shotSound = GetComponent<AudioSource>();
     }
-
-
-    /// <summary>
-    /// Fires a rocket
-    /// </summary>
-    private void Fire()
+    private void Awake()
     {
-        //if (fire && currentRockets != 0)
-        {
-            if (isReloading)
-            {
-                //Debug.Log("restart reload");
-                StopCoroutine(reloadCoroutine);
-                reloadCoroutine = StartCoroutine(Reload());
-            }
-            if (!isRicochet)
-            {
-                GameObject currentRocket = Instantiate(Rocket, tip.position, Quaternion.Euler(tip.rotation.eulerAngles.x, tip.rotation.eulerAngles.y + UnityEngine.Random.Range(-maxBulletDeviationAngle, maxBulletDeviationAngle), tip.rotation.eulerAngles.z));
-                shotSound.pitch = Random.Range(1, 2);
-                shotSound.Play();
-                currentRocket.GetComponent<Rocket>().sender = this;
-            }
-            else
-            {
-                GameObject currentRicRocket = Instantiate(RicRocket, tip.position, Quaternion.Euler(tip.rotation.eulerAngles.x, tip.rotation.eulerAngles.y + UnityEngine.Random.Range(-maxBulletDeviationAngle, maxBulletDeviationAngle), tip.rotation.eulerAngles.z));
-                currentRicRocket.GetComponent<RicRocket>().sender = this;
-            }
-            if (!infBullets)
-            {
-                RemoveBullet();
-            }
-            shots++;
-            //Debug.Log($"-bullet: {currentRockets}");
-        }
-        //if (currentRockets < MAX_ROCKETS && !isReloading && !fire)
-        {
-            //Debug.Log($"start reload");
-            reloadCoroutine = StartCoroutine(Reload());
-        }
+        StartUp();
     }
-
+    private void FixedUpdate()
+    {
+        //LogInput(input);
+        ProcessInput();
+        if (!dead)
+        {
+            Movement();
+            HeadRotationAndFire();
+            ButtonInput();
+            UpdateUI();
+            lastInputSprint = input.sprint;
+            lastInputUse = input.use;
+        }
+        nameDisplay.gameObject.transform.parent.rotation = Quaternion.Euler(90, 0, 0);
+    }
+    #endregion
     #region Movement Functions
     /// <summary>
     /// Main movement loop
@@ -490,24 +548,7 @@ public class Player : MonoBehaviour
             rb.AddForce(acceleration * transform.forward * -mag.y * counterMovement);
         }
     }
-
-    private void HeadRotationAndFire()
-    {
-        Vector2 jsVector = new Vector2(input.FH, input.FV);
-        float magnitude = jsVector.magnitude;
-
-        if (input.FH != 0 || input.FV != 0)
-        {
-            headTargetAngle = Mathf.Atan2(input.FH, input.FV) * Mathf.Rad2Deg;
-            head.rotation = Quaternion.Lerp(head.rotation, Quaternion.Euler(0, headTargetAngle + 180, 0), headRotationSpeed);
-            if (!isReloading)
-            {
-                Fire();
-            }
-        }
-    }
     #endregion
-
     #region Die Functions
     /// <summary>
     /// Die from a bullet
@@ -552,6 +593,7 @@ public class Player : MonoBehaviour
         GameManager.instance.KillPlayer(this);
     }
     #endregion
+    #region Misc Functions
 
     /// <summary>
     /// Give an airdrop to the player
@@ -612,24 +654,5 @@ public class Player : MonoBehaviour
         Stats myStats = new Stats(shots, closeCalls, ADTotal, kills, deaths, shieldBlocks, landminesCreated, landmineKills, myClient);
         GameManager.instance.currentRoundStats.SetPlayerStats(id, myStats);
     }
-    private void FixedUpdate()
-    {
-        //LogInput(input);
-        ProcessInput();
-        if (!dead)
-        {
-            Movement();
-            HeadRotationAndFire();
-            ButtonInput();
-            UpdateUI();
-            lastInputSprint = input.sprint;
-            lastInputUse = input.use;
-        }
-        nameDisplay.gameObject.transform.parent.rotation = Quaternion.Euler(90, 0, 0);
-    }
-
-    private void Awake()
-    {
-        StartUp();
-    }
+    #endregion
 }
