@@ -165,7 +165,7 @@ public class Player : MonoBehaviour
             }
 
             GameObject landmine = Instantiate(player.landmine, player.transform.position, Quaternion.identity);
-            landmine.GetComponent<LandmineScript>().sender = player;
+            landmine.GetComponent<LandmineScript>().creator = player;
             count--;
             if (count == 0)
             {
@@ -204,9 +204,9 @@ public class Player : MonoBehaviour
         }
     }
 
-    bool isRicochet = false;
-    bool infBullets = false;
-    bool isShielded = false;
+    public bool isRicochet = false;
+    public bool infBullets = false;
+    public bool isShielded = false;
 
     #endregion
     #region Stats
@@ -563,25 +563,12 @@ public class Player : MonoBehaviour
         Instantiate(explosionEffect, transform.position, Quaternion.identity);
         GameManager.instance.KillPlayer(this);
     }
-    /// <summary>
-    /// Die from a landmine
-    /// </summary>
-    public void LandmineDie()
-    {
-        StopAllCoroutines();
-        deaths++;
-        dead = true;
-        CameraController.instance.Shake();
-        Instantiate(explosionEffect, transform.position, Quaternion.identity);
-        GameManager.instance.KillPlayer(this);
-    }
 
     public void ExplosionDie()
     {
         deaths++;
         dead = true;
         CameraController.instance.Shake();
-        Instantiate(explosionEffect, transform.position, Quaternion.identity);
         GameManager.instance.KillPlayer(this);
     }
 

@@ -5,7 +5,6 @@ using UnityEngine;
 public class CameraController : MonoBehaviour
 {
     public static CameraController instance;
-    public Transform camera;
     public float shakeSpeed = 40f;
     public float shakeDistance = 0.7f;
     public float shakeDuration = 0.25f;
@@ -16,7 +15,7 @@ public class CameraController : MonoBehaviour
 
     private void Awake()
     {
-        normalPos = camera.localPosition;
+        normalPos = transform.localPosition;
         if (instance != null && instance != this)
         {
             Destroy(this.gameObject);
@@ -31,11 +30,11 @@ public class CameraController : MonoBehaviour
     {
         while (time < shakeDuration)
         {
-            if ((newPosition - camera.localPosition).sqrMagnitude <= tolerance * tolerance)
+            if ((newPosition - transform.localPosition).sqrMagnitude <= tolerance * tolerance)
             {
                 newPosition = normalPos + Random.insideUnitSphere * shakeDistance;
             }
-            camera.localPosition = Vector3.Lerp(transform.localPosition, newPosition, Time.deltaTime * shakeSpeed);
+            transform.localPosition = Vector3.Lerp(base.transform.localPosition, newPosition, Time.deltaTime * shakeSpeed);
             time += Time.deltaTime;
             yield return null;
         }
@@ -50,11 +49,11 @@ public class CameraController : MonoBehaviour
 
     private IEnumerator ResetPosSmooth(Vector3 normalPos)
     {
-        while (Vector3.Distance(camera.transform.localPosition, normalPos) > 0.01f)
+        while (Vector3.Distance(transform.transform.localPosition, normalPos) > 0.01f)
         {
-            camera.transform.localPosition = Vector3.Lerp(camera.transform.localPosition, normalPos, Time.deltaTime * 20f);
+            transform.transform.localPosition = Vector3.Lerp(transform.transform.localPosition, normalPos, Time.deltaTime * 20f);
             yield return null;
         }
-        camera.localPosition = normalPos;
+        transform.localPosition = normalPos;
     }
 }

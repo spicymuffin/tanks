@@ -6,90 +6,82 @@ public class ExplosiveBarrel : MonoBehaviour
 {
     public float radius;
     public float force;
-    public float explosionDelay;
-    private bool isExplosion;
-    private LevelConfig levelConfig;
     public bool run = false;
-    private Player player;
     private LayerMask ignoreMask;
-    public LayerMask ignoreLineCast;
-    public LayerMask ignoreRayCast;
+    public LayerMask ignoreExplosion;
     public GameObject explosionEffect;
     public GameObject explosionSound;
 
     public void Awake()
     {
-        ignoreMask = ignoreLineCast | ignoreRayCast;
-        levelConfig = GameObject.FindGameObjectWithTag("LevelConfig").GetComponent<LevelConfig>();
+        ignoreMask = ignoreExplosion;
     }
 
     public void FixedUpdate()
     {
         Run();
     }
+
     public void Run()
     {
         if (run)
         {
-            ExplodeDelay();
+            Explode();
         }
     }
+
     public void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Rocket"))
         {
-            ExplodeDelay();
+            Explode();
         }
-    }
-    public void ExplodeDelay()
-    {
-        if (isExplosion) return;
-        isExplosion = true;
-        Invoke("Explode", explosionDelay);
-        GetComponent<Renderer>().material.color = Color.red;
     }
 
     public void Explode()
     {
-        GameObject soundofExplode = Instantiate(explosionSound);
+        Player player;
+        GameObject instance = Instantiate(explosionSound);
+        instance.transform.parent = LevelConfig.instance.effects;
         CameraController.instance.Shake();
         Instantiate(explosionEffect, transform.position, Quaternion.identity);
-        Collider[] overlappedColliders = Physics.OverlapSphere(transform.position, radius);
+        Collider[] overlappedColliders = Physics.OverlapSphere(transform.position, radius, ~ignoreExplosion);
         for (int i = 0; i < overlappedColliders.Length; i++)
         {
-            Rigidbody rigidbody = overlappedColliders[i].attachedRigidbody;
+            Rigidbody rb = overlappedColliders[i].attachedRigidbody;
             RaycastHit hitData;
             bool hit = Physics.Raycast(transform.position, overlappedColliders[i].transform.position - transform.position, out hitData, Vector3.Distance(overlappedColliders[i].transform.position, transform.position), ~ignoreMask);
-            Debug.DrawRay(transform.position, overlappedColliders[i].transform.position - transform.position, Color.yellow, 60);
-            
+            //Debug.DrawRay(transform.position, overlappedColliders[i].transform.position - transform.position, Color.yellow, 60);
             if (hit)
             {
                 if (hitData.collider.gameObject == overlappedColliders[i].gameObject)
                 {
-                    if (rigidbody)
+                    if (rb)
                     {
-                        rigidbody.AddExplosionForce(force, transform.position, radius);
-
-                        if (overlappedColliders[i].TryGetComponent<Player>(out player))
+                        if (rb.TryGetComponent<Player>(out player))
                         {
-                            player.ExplosionDie();
+                            if (!player.isShielded)
+                            {
+                                player.ExplosionDie();
+                            }
+                        }
+                        else
+                        {
+                            rb.AddExplosionForce(force, transform.position, radius);
                         }
 
-                        ExplosiveBarrel barrel = rigidbody.GetComponent<ExplosiveBarrel>();
+                        ExplosiveBarrel barrel = rb.GetComponent<ExplosiveBarrel>();
                         if (barrel)
                         {
-                            if (Vector3.Distance(transform.position, rigidbody.position) < radius / 2f)
-                            {
-                                barrel.ExplodeDelay();
-                            }
+                            barrel.Explode();
                         }
 
                     }
                 }
 
-                GameObject inst = new GameObject();
-                inst.name = $"{hitData.collider.gameObject == overlappedColliders[i].gameObject}: {overlappedColliders[i].name}";
-                inst.transform.position = hitData.point;
+                //GameObject inst = new GameObject();
+                //inst.name = $"{hitData.collider.gameObject == overlappedColliders[i].gameObject}: {overlappedColliders[i].name}";
+                //inst.transform.position = hitData.point;
             }
         }
         Destroy(gameObject);

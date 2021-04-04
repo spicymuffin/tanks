@@ -61,7 +61,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 6dde0584edd981445bec6cbbe07f3b63, type: 2}
+  - {fileID: 2100000, guid: 25feb54458f08c048abf4eec73da5ea3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -124,8 +124,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: LandMine
-  randomizeCount: 1
-  count: 0
+  randomizeCount: 0
+  count: 2
   icon:
   - {fileID: 702409447214986744, guid: 0d1cac3781b289b4d99a234b72a3f43f, type: 3}
   - {fileID: 8982752782067297165, guid: 9282aa301e3f932468f46ad8fa681090, type: 3}
