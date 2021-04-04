@@ -7,7 +7,6 @@ public class TrailEffect : MonoBehaviour
     public float spacing;
     public GameObject trail;
     public Transform rotationAnchor;
-    private GameObject trails;
     private Vector3 prevPos;
     public bool emit = true;
 
@@ -19,7 +18,7 @@ public class TrailEffect : MonoBehaviour
             {
                 prevPos = transform.position;
                 GameObject instance = Instantiate(trail, transform.position, rotationAnchor.rotation);
-                instance.transform.parent = trails.transform;
+                instance.transform.parent = LevelConfig.instance.trails;
             }
         }
     }
@@ -27,7 +26,6 @@ public class TrailEffect : MonoBehaviour
     private void Awake()
     {
         prevPos = transform.position;
-        trails = GameObject.FindGameObjectWithTag("Trails");
     }
 
     public void DeleteTrails()

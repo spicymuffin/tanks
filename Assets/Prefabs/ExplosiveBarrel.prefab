@@ -9,11 +9,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7957219683595729063}
-  - component: {fileID: 5034119614950488628}
-  - component: {fileID: 3338295660369197658}
-  - component: {fileID: 7799986669908241317}
+  - component: {fileID: 6414336666499631876}
   - component: {fileID: 8487297998147530752}
   - component: {fileID: 7231007294727507870}
+  - component: {fileID: 3338295660369197658}
+  - component: {fileID: 5034119614950488628}
   m_Layer: 10
   m_Name: ExplosiveBarrel
   m_TagString: Untagged
@@ -35,14 +35,62 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &5034119614950488628
-MeshFilter:
+--- !u!64 &6414336666499631876
+MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5216774286813086909}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
   m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!54 &8487297998147530752
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5216774286813086909}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 1
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!114 &7231007294727507870
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5216774286813086909}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 661218d506d401a4b8f728319bba7253, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  radius: 5
+  force: 500
+  explosionDelay: 0
+  run: 0
+  ignoreExplosion:
+    serializedVersion: 2
+    m_Bits: 1024
+  ignoreRayCast:
+    serializedVersion: 2
+    m_Bits: 4
+  explosionEffect: {fileID: 6462400349667513841, guid: 8941c188ad48dfd45914839eb4ff2b80,
+    type: 3}
+  explosionSound: {fileID: 7183025157981252049, guid: fc7772400a552b540ba59501c80d288a,
+    type: 3}
 --- !u!23 &3338295660369197658
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -82,59 +130,11 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!136 &7799986669908241317
-CapsuleCollider:
+--- !u!33 &5034119614950488628
+MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5216774286813086909}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.5000001
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!54 &8487297998147530752
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5216774286813086909}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
---- !u!114 &7231007294727507870
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5216774286813086909}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 661218d506d401a4b8f728319bba7253, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  radius: 5
-  force: 500
-  explosionDelay: 0
-  run: 0
-  ignoreLineCast:
-    serializedVersion: 2
-    m_Bits: 1024
-  ignoreRayCast:
-    serializedVersion: 2
-    m_Bits: 4
-  explosionEffect: {fileID: 6462400349667513841, guid: 8941c188ad48dfd45914839eb4ff2b80,
-    type: 3}
-  explosionSound: {fileID: 7183025157981252049, guid: fc7772400a552b540ba59501c80d288a,
-    type: 3}
+  m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}

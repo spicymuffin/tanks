@@ -5,6 +5,20 @@ using System;
 
 public class LevelConfig : MonoBehaviour
 {
+    public static LevelConfig instance;
+
+    public void Awake()
+    {
+        if (instance != null && instance != this)
+        {
+            Destroy(this.gameObject);
+        }
+        else
+        {
+            instance = this;
+        }
+    }
+
     public List<GameObject> staticSP = new List<GameObject>();
     [HideInInspector]
     public List<Vector3> spawnpoints = new List<Vector3>();

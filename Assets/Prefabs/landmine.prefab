@@ -41,7 +41,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1219018694924661033}
-  - component: {fileID: 1219018694924661036}
   - component: {fileID: 1219018694924661032}
   m_Layer: 0
   m_Name: Landmine
@@ -65,19 +64,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!135 &1219018694924661036
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1219018694924661037}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.6
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &1219018694924661032
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -90,12 +76,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2231741775c3bc43b2378e06a325110, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeToArm: 1.5
+  timeToArm: 0.4
+  radius: 5
+  force: 500
+  falloff: 0.9
+  mr: {fileID: 6672790110066004583}
   armedMaterial: {fileID: 2100000, guid: 1f7b9ceff00235047870046bf71e4565, type: 2}
-  sender: {fileID: 0}
+  normalMaterial: {fileID: 2100000, guid: 995be41a4d0b7de4ea2c061ab666b201, type: 2}
   explosionEffect: {fileID: 6462400349667513841, guid: 8941c188ad48dfd45914839eb4ff2b80,
     type: 3}
-  subMesh: {fileID: 4639362087218452797}
+  explosionSound: {fileID: 7183025157981252049, guid: fc7772400a552b540ba59501c80d288a,
+    type: 3}
+  ignoreExplosion:
+    serializedVersion: 2
+    m_Bits: 1024
+  creator: {fileID: 0}
 --- !u!1 &3887795366025551471
 GameObject:
   m_ObjectHideFlags: 0
@@ -108,7 +103,7 @@ GameObject:
   - component: {fileID: 210300389949287959}
   - component: {fileID: 5693832394717420159}
   m_Layer: 0
-  m_Name: Cylinder
+  m_Name: body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -121,13 +116,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3887795366025551471}
-  m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
+  m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 100, y: 100, z: 100}
   m_Children: []
   m_Father: {fileID: 3610653318543604856}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!33 &210300389949287959
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -187,7 +182,7 @@ GameObject:
   - component: {fileID: 1072008258308620922}
   - component: {fileID: 6672790110066004583}
   m_Layer: 0
-  m_Name: Cylinder.001
+  m_Name: button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -200,13 +195,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4639362087218452797}
-  m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
+  m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 100, y: 100, z: 100}
   m_Children: []
   m_Father: {fileID: 3610653318543604856}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!33 &1072008258308620922
 MeshFilter:
   m_ObjectHideFlags: 0

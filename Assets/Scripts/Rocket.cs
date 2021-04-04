@@ -21,42 +21,53 @@ public class Rocket : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        //Debug.LogError($"hit!! {other.name}");
+        //Debug.Log($"hit: {other.name}");
         Player hitPlayer;
-        if (other.TryGetComponent<Player>(out hitPlayer))
-        {
-            if(hitPlayer == sender)
-            {
-                return;
-            }
-            else
-            {
-                hitPlayer.BulletDie();
-                Debug.Log($"killed: {hitPlayer.username}");
-                sender.kills++;
-            }
-        }
+        Rigidbody rb = other.attachedRigidbody;
+
         if (!other.CompareTag("CloseCallBox"))
         {
             GameObject instance;
+            Transform parent = other.transform.parent;
+
+            if (parent != null)
+            {
+                if (parent.TryGetComponent<Player>(out hitPlayer))
+                {
+                    if (hitPlayer == sender)
+                    {
+                        return;
+                    }
+                    else
+                    {
+                        Debug.Log($"killed: {hitPlayer.username}");
+                        hitPlayer.BulletDie();
+                        sender.kills++;
+                    }
+                }
+            }
+
             if (other.CompareTag("Shield"))
             {
-                GameObject shieldsound = Instantiate(shieldAudio);
-                if (other.GetComponent<ShieldScript>().player == sender)
+                if (other.transform.parent.GetComponent<ShieldScript>().player == sender)
                 {
                     return;
                 }
+                GameObject shieldsound = Instantiate(shieldAudio);
+                shieldsound.transform.parent = LevelConfig.instance.effects;
             }
+
             else
-            { 
+            {
                 instance = Instantiate(audioPlayer);
-                instance.transform.parent = GameObject.FindGameObjectWithTag("Effects").transform;
+                instance.transform.parent = LevelConfig.instance.effects;
             }
+
             instance = Instantiate(HitEffect, transform.position, Quaternion.identity);
-            smokeTrail.gameObject.transform.parent = GameObject.FindGameObjectWithTag("Effects").transform;
+            instance.transform.parent = LevelConfig.instance.effects;
+            smokeTrail.gameObject.transform.parent = LevelConfig.instance.effects;
             smokeTrail.Destroy();
-            Rigidbody rb = other.attachedRigidbody;
-            if (rb)
+            if (rb && !other.CompareTag("Shield"))
             {
                 rb.AddForce(transform.forward * punch);
             }
@@ -67,7 +78,7 @@ public class Rocket : MonoBehaviour
 
     private void Awake()
     {
-        transform.parent = GameObject.FindGameObjectWithTag("Rockets").transform;
+        transform.parent = LevelConfig.instance.rockets;
         StartCoroutine(Destroy());
     }
 
