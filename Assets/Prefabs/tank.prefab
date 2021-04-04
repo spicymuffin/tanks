@@ -1215,8 +1215,9 @@ GameObject:
   - component: {fileID: 2499590230671803505}
   - component: {fileID: 4483185050960448467}
   - component: {fileID: 5888824857111341167}
-  - component: {fileID: 260706401792055945}
   - component: {fileID: 7963815163377166584}
+  - component: {fileID: 4197390466701862207}
+  - component: {fileID: 8359849424719688461}
   m_Layer: 0
   m_Name: tank
   m_TagString: Player
@@ -1287,6 +1288,9 @@ MonoBehaviour:
   reloadTime: 0.8
   headRotationSpeed: 0.3
   coolDownTime: 0.5
+  isRicochet: 0
+  infBullets: 0
+  isShielded: 0
   shots: 0
   closeCalls: 0
   ADTotal: 0
@@ -1313,7 +1317,8 @@ MonoBehaviour:
   explosionSound: {fileID: 7183025157981252049, guid: fc7772400a552b540ba59501c80d288a,
     type: 3}
   playerSound: {fileID: 5888824857111341167}
-  shotSound: {fileID: 260706401792055945}
+  shotSound: {fileID: 4197390466701862207}
+  shotSoundClip: {fileID: 8300000, guid: a048a33c92ae49c459b8c2c122333f5a, type: 3}
   pickUpAirDropSound: {fileID: 8300000, guid: e78f9a04e7353a443ae37f44c7155185, type: 3}
   usingAirDropSound: {fileID: 8300000, guid: 895c2049c9e3a3e4a9323badadb18fbc, type: 3}
   pickUpAirDropCancelSound: {fileID: 8300000, guid: f7dd439cf5eba064e9a06278564b9ba2,
@@ -1414,7 +1419,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!82 &260706401792055945
+--- !u!114 &7963815163377166584
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5658468951768548697}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d656eda11d324e647b5c009bac8582d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!82 &4197390466701862207
 AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1510,7 +1527,7 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &7963815163377166584
+--- !u!114 &8359849424719688461
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1519,7 +1536,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5658468951768548697}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d656eda11d324e647b5c009bac8582d7, type: 3}
+  m_Script: {fileID: 11500000, guid: d3dc93d731f5d474c99fe54ece48a219, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &5751235751690014087

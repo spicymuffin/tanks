@@ -246,6 +246,7 @@ public class Player : MonoBehaviour
     public GameObject explosionSound;
     public AudioSource playerSound;
     public AudioSource shotSound;
+    public AudioClip shotSoundClip;
     public AudioClip pickUpAirDropSound;
     public AudioClip usingAirDropSound;
     public AudioClip pickUpAirDropCancelSound;
@@ -326,8 +327,8 @@ public class Player : MonoBehaviour
             if (!isRicochet)
             {
                 GameObject currentRocket = Instantiate(Rocket, tip.position, Quaternion.Euler(tip.rotation.eulerAngles.x, tip.rotation.eulerAngles.y + UnityEngine.Random.Range(-maxBulletDeviationAngle, maxBulletDeviationAngle), tip.rotation.eulerAngles.z));
-                shotSound.pitch = Random.Range(1, 2);
-                shotSound.Play();
+                shotSound.pitch = Random.Range(1.0f, 1.15f);
+                shotSound.PlayOneShot(shotSoundClip);
                 currentRocket.GetComponent<Rocket>().sender = this;
             }
             else
