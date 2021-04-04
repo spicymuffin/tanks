@@ -19,14 +19,12 @@ public class GameManager : MonoBehaviour
     List<PlayerScorePanel> scoreInterfaces = new List<PlayerScorePanel>();
     List<Stats> playerStats = new List<Stats>();
     Stats match = new Stats();
-
-    [Space(30)]
+    [Header("UI")]
     public GameObject ScoreboardUI;
     public List<GameObject> scoreboardPanelSpawnPoints = new List<GameObject>();
-
-    [Space(30)]
     public GameObject PlayerUI;
     public List<GameObject> playerUISpawnPoints = new List<GameObject>();
+    public GameObject PauseUI;
 
     [Header("Prefabs")]
     public GameObject ScoreBoardPanelPrefab;
@@ -142,6 +140,7 @@ public class GameManager : MonoBehaviour
     {
         CreateClientsList();
         StartScoreboardUI();
+        PauseUI.SetActive(true);
         if (queue.Count == 1)
         {
             lastRound = true;
@@ -188,7 +187,7 @@ public class GameManager : MonoBehaviour
     public void Check4EndRound()
     {
         Debug.Log($"players alive:{playersAlive.Count}");
-        if (playersAlive.Count == 1)
+        if (playersAlive.Count <= 1)
         {
             EndRound(playersAlive[0].myClient);
             playersAlive[0].StopAllCoroutines();

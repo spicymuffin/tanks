@@ -29,10 +29,12 @@ public class PauseMenu : MonoBehaviour
 
     public void GoToMainMenu()
     {
-        SceneManager.LoadScene("MainMenu");
         ServerSend.DisconnectAll();
         Server.Stop();
-        Destroy(NetworkManager.instance.gameObject);
+        SceneManager.MoveGameObjectToScene(NetworkManager.instance.gameObject, SceneManager.GetActiveScene());
+        SceneManager.MoveGameObjectToScene(GameManager.instance.gameObject, SceneManager.GetActiveScene());
+        Time.timeScale = 1f;
+        SceneManager.LoadScene("MainMenu");
     }
 
 

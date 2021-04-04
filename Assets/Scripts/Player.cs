@@ -561,7 +561,11 @@ public class Player : MonoBehaviour
         deaths++;
         dead = true;
         CameraController.instance.Shake();
-        Instantiate(explosionEffect, transform.position, Quaternion.identity);
+        GameObject instance;
+        instance = Instantiate(explosionEffect, transform.position, Quaternion.identity);
+        instance.transform.parent = LevelConfig.instance.effects;
+        instance = Instantiate(explosionSound, transform.position, Quaternion.identity);
+        instance.transform.parent = LevelConfig.instance.effects;
         GameManager.instance.KillPlayer(this);
     }
 
