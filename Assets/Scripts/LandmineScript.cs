@@ -99,7 +99,6 @@ public class LandmineScript : MonoBehaviour
         Destroy(gameObject);
     }
 
-
     private void FlipMat()
     {
         if (armed)
