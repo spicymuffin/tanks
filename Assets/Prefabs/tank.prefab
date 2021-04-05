@@ -1215,9 +1215,10 @@ GameObject:
   - component: {fileID: 2499590230671803505}
   - component: {fileID: 4483185050960448467}
   - component: {fileID: 5888824857111341167}
-  - component: {fileID: 7963815163377166584}
   - component: {fileID: 4197390466701862207}
+  - component: {fileID: 7963815163377166584}
   - component: {fileID: 8359849424719688461}
+  - component: {fileID: 1771370908870397734}
   m_Layer: 0
   m_Name: tank
   m_TagString: Player
@@ -1419,18 +1420,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &7963815163377166584
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5658468951768548697}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d656eda11d324e647b5c009bac8582d7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!82 &4197390466701862207
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1527,6 +1516,18 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &7963815163377166584
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5658468951768548697}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d656eda11d324e647b5c009bac8582d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &8359849424719688461
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1539,6 +1540,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3dc93d731f5d474c99fe54ece48a219, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!111 &1771370908870397734
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5658468951768548697}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: 17e91c00445d40b46838e88ec60bfc32, type: 2}
+  m_Animations:
+  - {fileID: 7400000, guid: 17e91c00445d40b46838e88ec60bfc32, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_CullingType: 0
 --- !u!1 &5751235751690014087
 GameObject:
   m_ObjectHideFlags: 0
