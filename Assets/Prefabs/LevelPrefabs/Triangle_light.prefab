@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5795550410888935310}
   - component: {fileID: 3258047409492086200}
   - component: {fileID: 9082179007707066689}
+  - component: {fileID: 4592247358674214808}
   m_Layer: 0
   m_Name: Triangle_light
   m_TagString: Untagged
@@ -79,3 +80,17 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!64 &4592247358674214808
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7365276261132895645}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 2443237146360861554, guid: dadbdabac81521341a9326016865f00c, type: 3}
