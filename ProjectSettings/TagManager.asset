@@ -21,6 +21,7 @@ TagManager:
   - Trails
   - Rockets
   - Effects
+  - Barrel
   layers:
   - Default
   - TransparentFX

@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 5034119614950488628}
   m_Layer: 10
   m_Name: ExplosiveBarrel
-  m_TagString: Untagged
+  m_TagString: Barrel
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -79,14 +79,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   radius: 5
   force: 500
-  explosionDelay: 0
   run: 0
   ignoreExplosion:
     serializedVersion: 2
     m_Bits: 1024
-  ignoreRayCast:
-    serializedVersion: 2
-    m_Bits: 4
   explosionEffect: {fileID: 6462400349667513841, guid: 8941c188ad48dfd45914839eb4ff2b80,
     type: 3}
   explosionSound: {fileID: 7183025157981252049, guid: fc7772400a552b540ba59501c80d288a,
