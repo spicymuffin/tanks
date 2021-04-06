@@ -34,6 +34,16 @@ public class GameManager : MonoBehaviour
     private bool lastRound = false;
     public SceneField winScene;
 
+    [System.Serializable]
+    public class Color
+    {
+        public string color;
+        public Material material;
+    }
+    [Header("Colors")]
+    public List<Color> colors = new List<Color>();
+
+
     public class RoundStats
     {
         GameManager GameManager;
@@ -206,6 +216,7 @@ public class GameManager : MonoBehaviour
                 _client.SendIntoGame(spawnpoints[index]);
                 _client.player.StartUpUI(playerUISpawnPoints[index]);
                 _client.player.myClient = _client;
+                _client.player.SetMaterial(_client.material);
                 playersAlive.Add(_client.player);
                 players4datacollect.Add(_client.player);
                 index++;

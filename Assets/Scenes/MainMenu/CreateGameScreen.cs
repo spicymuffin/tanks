@@ -106,7 +106,7 @@ public class CreateGameScreen : MonoBehaviour
         {
             message = message.Remove(message.Length - 1);
             message += playerCount.ToString();
-            msg = Encoding.ASCII.GetBytes(message); 
+            msg = Encoding.Unicode.GetBytes(message); 
             //Debug.Log("sending packet");
             udpClient.Send(msg, msg.Length, "255.255.255.255", 46969);
             int connectedCount = 0;
@@ -116,9 +116,13 @@ public class CreateGameScreen : MonoBehaviour
                 if (_client.connected && !connected.Contains(_client))
                 {
                     connected[_client.id - 1] = _client;
+                    _client.material = GameManager.instance.colors[_client.id - 1].material;
+                    _client.color = GameManager.instance.colors[_client.id - 1].color;
                     GameObject panel = Instantiate(PlayerPanel, PlayerPanelList.transform);
                     connectedPanels[_client.id - 1] = panel;
                     TextMeshProUGUI usrnm = panel.GetComponentInChildren<TextMeshProUGUI>();
+                    Image colorImg = panel.GetComponentsInChildren<Image>()[1];
+                    colorImg.material = _client.material;
                     usrnm.text = _client.username;
                     playerCount++;
                 }

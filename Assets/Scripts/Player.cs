@@ -240,6 +240,9 @@ public class Player : MonoBehaviour
     public GameObject UIPanel;
     public GameObject explosionEffect;
     public Transform head;
+    public Transform canvas;
+    public MeshRenderer headMR;
+    public MeshRenderer hullMR;
     #endregion
     #region Audio
     [Header("Audio")]
@@ -269,6 +272,7 @@ public class Player : MonoBehaviour
     private void StartUp()
     {
         rb = GetComponent<Rigidbody>();
+        canvas.transform.parent = null;
     }
     #endregion
     #region Fire Functions
@@ -507,6 +511,7 @@ public class Player : MonoBehaviour
             lastInputUse = input.use;
         }
         nameDisplay.gameObject.transform.parent.rotation = Quaternion.Euler(90, 0, 0);
+        canvas.position = transform.position + new Vector3(0, 1.9f, 0);
     }
     #endregion
     #region Movement Functions
@@ -645,6 +650,15 @@ public class Player : MonoBehaviour
     {
         Stats myStats = new Stats(shots, closeCalls, ADTotal, kills, deaths, shieldBlocks, landminesCreated, landmineKills, myClient);
         GameManager.instance.currentRoundStats.SetPlayerStats(id, myStats);
+    }
+    /// <summary>
+    /// Change player color
+    /// </summary>
+    /// <param name="material"> material to set</param>
+    public void SetMaterial(Material material)
+    {
+        headMR.material = material;
+        hullMR.material = material;
     }
     #endregion
 }

@@ -9547,6 +9547,15 @@ MonoBehaviour:
   winScene:
     m_SceneAsset: {fileID: 102900000, guid: bdd7ad956a7d73748b5316f4da521270, type: 3}
     m_SceneName: WinScreen
+  colors:
+  - color: red
+    material: {fileID: 2100000, guid: 86920cc4bfda04048b75d331a95102f4, type: 2}
+  - color: blue
+    material: {fileID: 2100000, guid: c1e5e6411167914458572649aa8c40de, type: 2}
+  - color: green
+    material: {fileID: 2100000, guid: 8d3574c1e1534cc4887b40902784e625, type: 2}
+  - color: yellow
+    material: {fileID: 2100000, guid: 1091699d49425ab49a4e4e482b45ce52, type: 2}
 --- !u!4 &1408864149
 Transform:
   m_ObjectHideFlags: 0

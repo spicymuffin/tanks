@@ -13,6 +13,8 @@ public class Client
     public string username;
     public bool connected = false;
     public int score = 0;
+    public Material material;
+    public string color;
 
     public Player player;
     public TCP tcp;
