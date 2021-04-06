@@ -61,8 +61,8 @@ public class Server
     /// <summary>Receives incoming UDP data.</summary>
     private static void UDPReceiveCallback(IAsyncResult _result)
     {
-        try
-        {
+        //try
+        //{
             IPEndPoint _clientEndPoint = new IPEndPoint(IPAddress.Any, 0);
             byte[] _data = udpListener.EndReceive(_result, ref _clientEndPoint);
             udpListener.BeginReceive(UDPReceiveCallback, null);
@@ -94,10 +94,10 @@ public class Server
                     clients[_clientId].udp.HandleData(_packet);
                 }
             }
-        }
-        catch (Exception _ex)
+        //}
+        //catch (Exception _ex)
         {
-            Debug.Log($"Error receiving UDP data: {_ex}");
+            //Debug.Log($"Error receiving UDP data: {_ex}");
         }
     }
 

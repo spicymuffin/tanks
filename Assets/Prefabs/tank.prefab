@@ -270,8 +270,9 @@ MonoBehaviour:
       m_Calls: []
   m_text: aaaaaaaaaaaaaaaaaaaaaaaaaaa
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 77d26d2f4d775474284b9194326e6193, type: 2}
+  m_sharedMaterial: {fileID: -149192930544931644, guid: 77d26d2f4d775474284b9194326e6193,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1317,6 +1318,9 @@ MonoBehaviour:
   explosionEffect: {fileID: 6462400349667513841, guid: 8941c188ad48dfd45914839eb4ff2b80,
     type: 3}
   head: {fileID: 4442526835109823782}
+  canvas: {fileID: 8056308642768761769}
+  headMR: {fileID: 733847426462492694}
+  hullMR: {fileID: 9181737600881316207}
   explosionSound: {fileID: 7183025157981252049, guid: fc7772400a552b540ba59501c80d288a,
     type: 3}
   playerSound: {fileID: 5888824857111341167}
