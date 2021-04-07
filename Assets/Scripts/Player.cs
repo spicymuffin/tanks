@@ -31,6 +31,8 @@ public class Player : MonoBehaviour
     public float hullRotationSpeed = 0.15f;
     public float maxVelocity = 6f;
     public float acceleration = 50;
+    public float speedBoost;
+    public float saveMaxVelocity;
     #endregion
     #region Counter movement
     [Header("Counter movement")]
@@ -529,8 +531,7 @@ public class Player : MonoBehaviour
             hullTargetAngle = Mathf.Atan2(input.MH, input.MV) * Mathf.Rad2Deg;
             Quaternion prevRot = head.rotation;
             transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(0, hullTargetAngle, 0), hullRotationSpeed);
-            head.rotation = prevRot;
-
+            head.rotation = prevRot;    
             if (rb.velocity.magnitude < maxVelocity * magnitude)
             {
                 rb.AddForce(transform.forward * acceleration);
@@ -661,4 +662,20 @@ public class Player : MonoBehaviour
         hullMR.material = material;
     }
     #endregion
+
+    
+    public void OnTriggerStay(Collider other)
+    {
+        if (other.CompareTag("BoostPad"))
+        {
+            maxVelocity += speedBoost;
+        }
+    }
+    public void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("BoostPad"))
+        {
+            maxVelocity = 6f;
+        }
+    }
 }

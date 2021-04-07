@@ -1280,6 +1280,8 @@ MonoBehaviour:
   hullRotationSpeed: 0.15
   maxVelocity: 6
   acceleration: 40
+  speedBoost: 0.5
+  saveMaxVelocity: 0
   counterMovement: 0.4
   sprintPropulsion: 12
   sprintStamina: 1
