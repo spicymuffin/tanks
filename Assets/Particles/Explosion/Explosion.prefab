@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6462400348002591085}
   - component: {fileID: 6462400348002591084}
   - component: {fileID: 6462400348002591075}
+  - component: {fileID: 5514419948430411071}
   m_Layer: 0
   m_Name: Secondary
   m_TagString: Untagged
@@ -4839,6 +4840,18 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
+--- !u!114 &5514419948430411071
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6462400348002591074}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e37d31af38ffe5d49850d95e173a4b60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6462400348141712246
 GameObject:
   m_ObjectHideFlags: 0
@@ -4850,6 +4863,7 @@ GameObject:
   - component: {fileID: 6462400348141712241}
   - component: {fileID: 6462400348141712240}
   - component: {fileID: 6462400348141712247}
+  - component: {fileID: 3531469293092264712}
   m_Layer: 0
   m_Name: Primary
   m_TagString: Untagged
@@ -9669,6 +9683,18 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
+--- !u!114 &3531469293092264712
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6462400348141712246}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e37d31af38ffe5d49850d95e173a4b60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6462400348307226460
 GameObject:
   m_ObjectHideFlags: 0
@@ -9680,6 +9706,7 @@ GameObject:
   - component: {fileID: 6462400348307226463}
   - component: {fileID: 6462400348307226462}
   - component: {fileID: 6462400348307226461}
+  - component: {fileID: 6575273182907182820}
   m_Layer: 0
   m_Name: Smoke
   m_TagString: Untagged
@@ -14526,6 +14553,18 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
+--- !u!114 &6575273182907182820
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6462400348307226460}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e37d31af38ffe5d49850d95e173a4b60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6462400348557426623
 GameObject:
   m_ObjectHideFlags: 0
@@ -14537,6 +14576,7 @@ GameObject:
   - component: {fileID: 6462400348557426618}
   - component: {fileID: 6462400348557426617}
   - component: {fileID: 6462400348557426616}
+  - component: {fileID: 1520800194967401497}
   m_Layer: 0
   m_Name: Small bois
   m_TagString: Untagged
@@ -19374,6 +19414,18 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
+--- !u!114 &1520800194967401497
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6462400348557426623}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e37d31af38ffe5d49850d95e173a4b60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6462400349118473527
 GameObject:
   m_ObjectHideFlags: 0
@@ -19477,6 +19529,7 @@ GameObject:
   - component: {fileID: 6462400349302022328}
   - component: {fileID: 6462400349302022335}
   - component: {fileID: 6462400349302022334}
+  - component: {fileID: 1800125396962049015}
   m_Layer: 0
   m_Name: Debris
   m_TagString: Untagged
@@ -24323,6 +24376,18 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
+--- !u!114 &1800125396962049015
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6462400349302022333}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e37d31af38ffe5d49850d95e173a4b60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6462400349667513841
 GameObject:
   m_ObjectHideFlags: 0

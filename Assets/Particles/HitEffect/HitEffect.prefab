@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4601479177290250231}
   - component: {fileID: 4601479177290250225}
   - component: {fileID: 4601479177290250224}
+  - component: {fileID: 950936176587746651}
   m_Layer: 0
   m_Name: White bois
   m_TagString: Untagged
@@ -4812,6 +4813,18 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
+--- !u!114 &950936176587746651
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4601479177290250230}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e37d31af38ffe5d49850d95e173a4b60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4601479178069496844
 GameObject:
   m_ObjectHideFlags: 0
@@ -4823,6 +4836,7 @@ GameObject:
   - component: {fileID: 4601479178069496845}
   - component: {fileID: 4601479178069496847}
   - component: {fileID: 4601479178069496846}
+  - component: {fileID: 1373034077781840246}
   m_Layer: 0
   m_Name: Smoke
   m_TagString: Untagged
@@ -9633,6 +9647,18 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
+--- !u!114 &1373034077781840246
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4601479178069496844}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e37d31af38ffe5d49850d95e173a4b60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4601479178144462704
 GameObject:
   m_ObjectHideFlags: 0
@@ -9644,6 +9670,7 @@ GameObject:
   - component: {fileID: 4601479178144462705}
   - component: {fileID: 4601479178144462707}
   - component: {fileID: 4601479178144462706}
+  - component: {fileID: 1997921949371245130}
   m_Layer: 0
   m_Name: Flames
   m_TagString: Untagged
@@ -14445,6 +14472,18 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
+--- !u!114 &1997921949371245130
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4601479178144462704}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e37d31af38ffe5d49850d95e173a4b60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4601479178203940319
 GameObject:
   m_ObjectHideFlags: 0
