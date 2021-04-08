@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 64132030981391648}
   - component: {fileID: 64132030981391650}
   - component: {fileID: 64132030981391651}
+  - component: {fileID: 9023472387899437361}
   m_Layer: 0
   m_Name: Smoke
   m_TagString: Untagged
@@ -4821,6 +4822,18 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
+--- !u!114 &9023472387899437361
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 64132030981391649}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e37d31af38ffe5d49850d95e173a4b60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &64132031115515122
 GameObject:
   m_ObjectHideFlags: 0
@@ -4879,6 +4892,7 @@ GameObject:
   - component: {fileID: 64132032314435290}
   - component: {fileID: 64132032314435292}
   - component: {fileID: 64132032314435293}
+  - component: {fileID: 2316278778799643774}
   m_Layer: 0
   m_Name: White bois
   m_TagString: Untagged
@@ -9680,3 +9694,15 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
+--- !u!114 &2316278778799643774
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 64132032314435291}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e37d31af38ffe5d49850d95e173a4b60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

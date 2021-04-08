@@ -16,12 +16,11 @@ public class GameManager : MonoBehaviour
     List<Player> playersAlive = new List<Player>();
     List<Player> players4datacollect = new List<Player>();
     List<RoundStats> matchStats = new List<RoundStats>();
-    List<PlayerScorePanel> scoreInterfaces = new List<PlayerScorePanel>();
     List<Stats> playerStats = new List<Stats>();
     Stats match = new Stats();
     [Header("UI")]
     public GameObject ScoreboardUI;
-    public List<GameObject> scoreboardPanelSpawnPoints = new List<GameObject>();
+    public ScoreBoard scoreboard;
     public GameObject PlayerUI;
     public List<GameObject> playerUISpawnPoints = new List<GameObject>();
     public GameObject PauseUI;
@@ -35,14 +34,16 @@ public class GameManager : MonoBehaviour
     public SceneField winScene;
 
     [System.Serializable]
-    public class Color
+    public class PlayerColor
     {
         public string color;
         public Material material;
     }
     [Header("Colors")]
-    public List<Color> colors = new List<Color>();
+    public List<PlayerColor> colors = new List<PlayerColor>();
 
+    [Header("Assignables")]
+    public Image curtain;
 
     public class RoundStats
     {
@@ -133,23 +134,13 @@ public class GameManager : MonoBehaviour
             }
         }
     }
-    public void StartScoreboardUI()
-    {
-        foreach (Client client in clients)
-        {
-            GameObject currentPanel = Instantiate(ScoreBoardPanelPrefab, scoreboardPanelSpawnPoints[client.id - 1].transform);
-            PlayerScorePanel panelInterface = currentPanel.GetComponent<PlayerScorePanel>();
-            panelInterface.SetUsername(client.username);
-            panelInterface.SetScore(0);
-            scoreInterfaces.Add(panelInterface);
-        }
-    }
+
     #endregion
     #region Match
     public void StartMatch()
     {
         CreateClientsList();
-        StartScoreboardUI();
+        scoreboard.Initialize(clients);
         PauseUI.SetActive(true);
         if (queue.Count == 1)
         {
@@ -182,12 +173,22 @@ public class GameManager : MonoBehaviour
         Spawn();
         PlayerUI.SetActive(true);
     }
+
+    //TODO: add kill rewards
     public void EndRound(Client winner)
     {
         currentRoundStats.CollectPlayerStats();
         matchStats.Add(currentRoundStats);
         winner.score++;
-        scoreInterfaces[winner.id - 1].SetScore(winner.score);
+
+        List<int> scores = new List<int>();
+        foreach (Client client in clients)
+        {
+            scores.Add(client.score);
+        }
+
+        scoreboard.PassScores(scores);
+
         StartCoroutine(ShowRoundEndScreen());
     }
     public void LoadLevelData()
@@ -228,14 +229,15 @@ public class GameManager : MonoBehaviour
         Debug.Log("Ending round...");
         if (!lastRound)
         {
-            yield return new WaitForSeconds(3f);
+            //Time.timeScale = 0;
+            yield return new WaitForSecondsRealtime(3f);
             StartCoroutine(LoadNextLevel());
             ScoreboardUI.SetActive(true);
             PlayerUI.SetActive(false);
             ClearPlayerUI();
-            yield return new WaitForSeconds(4f);
-            ScoreboardUI.SetActive(false);
+            yield return new WaitForSecondsRealtime(4f);
             StartRound();
+            ScoreboardUI.SetActive(false);
         }
         else
         {
@@ -258,6 +260,45 @@ public class GameManager : MonoBehaviour
                 print("null");
             }
             StatScreen.instance.PassStats(playerStats, match, clients);
+        }
+    }
+
+    public IEnumerator FadeCurtain(float speed = -1)
+    {
+        while (curtain.color.a >= 0 && curtain.color.a <= 1)
+        {
+            float alpha = curtain.color.a;
+            float red = curtain.color.r;
+            float grn = curtain.color.g;
+            float blu = curtain.color.b;
+
+            Color color = new Color(red, grn, blu, alpha + speed * Time.deltaTime);
+            curtain.color = color;
+            yield return null;
+        }
+
+        curtain.color = new Color(curtain.color.r, curtain.color.g, curtain.color.b, (int)curtain.color.a);
+    }
+
+    Coroutine fade;
+    public void FadeFlip()
+    {
+        if (Mathf.Round(curtain.color.a) == 0)
+        {
+            if (fade != null)
+            {
+                StopCoroutine(fade);
+            }
+            fade = StartCoroutine(FadeCurtain(1.5f));
+        }
+
+        if (Mathf.Round(curtain.color.a) == 1)
+        {
+            if (fade != null)
+            {
+                StopCoroutine(fade);
+            }
+            fade = StartCoroutine(FadeCurtain(-1.5f));
         }
     }
 
