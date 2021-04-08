@@ -12,6 +12,10 @@
     "com.unity.probuilder": "4.2.3",
     "com.unity.progrids": "3.0.3-preview.6",
     "com.unity.purchasing": "2.0.6",
+<<<<<<< HEAD
+=======
+    "com.unity.render-pipelines.universal": "7.1.8",
+>>>>>>> 0ef357efd0b0a453814bb734001f28777ea508cd
     "com.unity.shadergraph": "7.1.8",
     "com.unity.test-framework": "1.1.11",
     "com.unity.textmeshpro": "2.0.1",
