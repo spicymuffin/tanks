@@ -30,6 +30,7 @@ public class PlatformMovement : MonoBehaviour
                 transform.position = Vector3.Lerp(start, end, t / startMoveDuration);
                 yield return null;
             }
+
             while (time < endMoveDuration)
             {
                 time += Time.deltaTime;
