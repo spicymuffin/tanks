@@ -221,6 +221,7 @@ public class Player : MonoBehaviour
     public int shieldBlocks = 0;
     public int landminesCreated = 0;
     public int landmineKills = 0;
+    public int totalShots = 0;
     #endregion
     #region NameDisplay
     [Header("Name display")]
@@ -332,6 +333,9 @@ public class Player : MonoBehaviour
             }
             if (!isRicochet)
             {
+                shots++;
+                totalShots++;
+                PlayerPrefs.SetInt("totalShots", totalShots);
                 GameObject currentRocket = Instantiate(Rocket, tip.position, Quaternion.Euler(tip.rotation.eulerAngles.x, tip.rotation.eulerAngles.y + UnityEngine.Random.Range(-maxBulletDeviationAngle, maxBulletDeviationAngle), tip.rotation.eulerAngles.z));
                 shotSound.pitch = Random.Range(1.0f, 1.15f);
                 shotSound.PlayOneShot(shotSoundClip);
@@ -339,6 +343,11 @@ public class Player : MonoBehaviour
             }
             else
             {
+                shots++;
+                totalShots++;
+                PlayerPrefs.SetInt("totalShots", totalShots);
+                shotSound.pitch = Random.Range(1.0f, 1.15f);
+                shotSound.PlayOneShot(shotSoundClip);
                 GameObject currentRicRocket = Instantiate(RicRocket, tip.position, Quaternion.Euler(tip.rotation.eulerAngles.x, tip.rotation.eulerAngles.y + UnityEngine.Random.Range(-maxBulletDeviationAngle, maxBulletDeviationAngle), tip.rotation.eulerAngles.z));
                 currentRicRocket.GetComponent<RicRocket>().sender = this;
             }
@@ -346,8 +355,9 @@ public class Player : MonoBehaviour
             {
                 RemoveBullet();
             }
-            shots++;
             //Debug.Log($"-bullet: {currentRockets}");
+            Debug.Log(shots);
+            Debug.Log(totalShots);
         }
     }
     /// <summary>
@@ -493,6 +503,8 @@ public class Player : MonoBehaviour
     #region Unity calls
     public void Start()
     {
+        totalShots = PlayerPrefs.GetInt("saveShots");
+        Debug.Log(totalShots);
         shotSound = GetComponent<AudioSource>();
     }
     private void Awake()

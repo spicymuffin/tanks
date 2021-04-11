@@ -12,9 +12,8 @@ GameObject:
   - component: {fileID: 4951475200576859722}
   - component: {fileID: 6067827690310173802}
   - component: {fileID: 5522061211465967850}
-  - component: {fileID: 464168353697146593}
   m_Layer: 0
-  m_Name: AuidioPlayer
+  m_Name: HittingTheWallSound
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -240,17 +239,3 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &464168353697146593
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3598380545733410865}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bcd67c7950338d74b8f707abc66f134e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  destroyOnAwake: 1
-  destroyAfter: 5

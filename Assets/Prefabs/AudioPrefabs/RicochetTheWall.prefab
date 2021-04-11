@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &8168459693039449581
+--- !u!1 &4030094859144760603
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,44 +8,45 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1575572415422172562}
-  - component: {fileID: -412611987343088328}
-  - component: {fileID: -8900660091722796063}
-  - component: {fileID: 3874477613720739908}
+  - component: {fileID: 5582049366818289888}
+  - component: {fileID: 9192730085423065264}
+  - component: {fileID: -1464554479574989069}
+  - component: {fileID: -8064335155045716440}
+  - component: {fileID: 6637035406906704684}
   m_Layer: 0
-  m_Name: ShieldAudio
+  m_Name: RicochetTheWall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &1575572415422172562
+--- !u!4 &5582049366818289888
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8168459693039449581}
+  m_GameObject: {fileID: 4030094859144760603}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0.7220982, y: 0.1390721, z: -1.8471415}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!82 &-412611987343088328
+--- !u!82 &9192730085423065264
 AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8168459693039449581}
+  m_GameObject: {fileID: 4030094859144760603}
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 03650ee69a409714da90542ef9bb1993, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 212a0fb1efdbb3f43892cff9ed1e5b84, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.724
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -129,13 +130,26 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &-8900660091722796063
+--- !u!114 &-1464554479574989069
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8168459693039449581}
+  m_GameObject: {fileID: 4030094859144760603}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad54a1ce3ac31e64fb2a9055543ff2ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ricochetSound: {fileID: 0}
+--- !u!114 &-8064335155045716440
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4030094859144760603}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bcd67c7950338d74b8f707abc66f134e, type: 3}
@@ -143,13 +157,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   destroyOnAwake: 1
   destroyAfter: 5
---- !u!114 &3874477613720739908
+--- !u!114 &6637035406906704684
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8168459693039449581}
+  m_GameObject: {fileID: 4030094859144760603}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d3dc93d731f5d474c99fe54ece48a219, type: 3}

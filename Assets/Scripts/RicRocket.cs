@@ -8,6 +8,8 @@ public class RicRocket : MonoBehaviour
     public Player sender;
     public int maxDeflects = 3;
     public GameObject sparks;
+    public GameObject ricochetTheWall;
+    public GameObject hittingTheWall;
     public SelfDestruct smokeTrail;
 
     private int deflectCounter = 0;
@@ -27,11 +29,15 @@ public class RicRocket : MonoBehaviour
                 Vector3 reflectDir = Vector3.Reflect(ray.direction, hit.normal);
                 float rot = 90 - Mathf.Atan2(reflectDir.z, reflectDir.x) * Mathf.Rad2Deg;
                 transform.eulerAngles = new Vector3(0, rot, 0);
+                GameObject ricochetSound = Instantiate(ricochetTheWall);
+                ricochetSound.transform.parent = LevelConfig.instance.effects;
                 GameObject instance = Instantiate(sparks, hit.point, Quaternion.LookRotation(hit.normal));
                 instance.transform.parent = LevelConfig.instance.effects;
             }
             else
             {
+                hittingTheWall = Instantiate(hittingTheWall);
+                hittingTheWall.transform.parent = LevelConfig.instance.effects;
                 smokeTrail.gameObject.transform.parent = LevelConfig.instance.effects;
                 smokeTrail.Destroy();
                 Destroy(this.gameObject);
