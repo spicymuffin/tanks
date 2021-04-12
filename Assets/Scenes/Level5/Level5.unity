@@ -99,7 +99,7 @@ LightmapSettings:
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 112000000, guid: be92ff978a497484284bee9b9139d8e4,
     type: 2}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -496,6 +496,41 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalPosition.y
       value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6043563136004353963, guid: 84b8d48bdd2ca674f83f5f4a9d9bebd3,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.6382201
+      objectReference: {fileID: 0}
+    - target: {fileID: 6043563136004353963, guid: 84b8d48bdd2ca674f83f5f4a9d9bebd3,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.039626356
+      objectReference: {fileID: 0}
+    - target: {fileID: 6043563136004353963, guid: 84b8d48bdd2ca674f83f5f4a9d9bebd3,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.10058292
+      objectReference: {fileID: 0}
+    - target: {fileID: 6043563136004353963, guid: 84b8d48bdd2ca674f83f5f4a9d9bebd3,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: -0.7622257
+      objectReference: {fileID: 0}
+    - target: {fileID: 6043563136004353963, guid: 84b8d48bdd2ca674f83f5f4a9d9bebd3,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 74.789
+      objectReference: {fileID: 0}
+    - target: {fileID: 6043563136004353963, guid: 84b8d48bdd2ca674f83f5f4a9d9bebd3,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -46.017002
+      objectReference: {fileID: 0}
+    - target: {fileID: 6043563136004353963, guid: 84b8d48bdd2ca674f83f5f4a9d9bebd3,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -411.002
       objectReference: {fileID: 0}
     - target: {fileID: 6043563136171109880, guid: 84b8d48bdd2ca674f83f5f4a9d9bebd3,
         type: 3}
@@ -2409,6 +2444,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Border
+      objectReference: {fileID: 0}
+    - target: {fileID: 3449142903010495054, guid: 9f0e1dd0b9d852e42a9b2f8a6d5cf6c0,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -29.28
+      objectReference: {fileID: 0}
+    - target: {fileID: 3449142903010495054, guid: 9f0e1dd0b9d852e42a9b2f8a6d5cf6c0,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -142.36
+      objectReference: {fileID: 0}
+    - target: {fileID: 3449142903010495054, guid: 9f0e1dd0b9d852e42a9b2f8a6d5cf6c0,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 179.375
       objectReference: {fileID: 0}
     - target: {fileID: 4029428451302644234, guid: 9f0e1dd0b9d852e42a9b2f8a6d5cf6c0,
         type: 3}

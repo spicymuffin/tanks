@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-7330131785073653124
+--- !u!114 &
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}
@@ -92,6 +92,7 @@ Material:
     - Vector1_64677329: 100
     - Vector1_68690454: 0.47
     - Vector1_7FA73ABF: 0.2
+    - Vector1_8A77714: -2.9
     - Vector1_8A77714: 5
     - Vector1_9494DB19: 0.55
     - Vector1_APP: 0.9

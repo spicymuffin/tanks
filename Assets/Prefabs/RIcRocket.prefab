@@ -144,7 +144,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 0
---- !u!114 &-6128751519061057225
+--- !u!114 &
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -160,6 +160,10 @@ MonoBehaviour:
   sender: {fileID: 0}
   maxDeflects: 3
   sparks: {fileID: 64132031115515122, guid: eb1de208369d67c49993bfa09e3513bc, type: 3}
+  ricochetTheWall: {fileID: 4030094859144760603, guid: 85f37cc2fc1f5784b835790b67c951ff,
+    type: 3}
+  hittingTheWall: {fileID: 3598380545733410865, guid: 2bf1d52c310ac374980f967eee73f5a4,
+    type: 3}
   smokeTrail: {fileID: 5447563599273984769}
 --- !u!1 &3671324627033068298
 GameObject:

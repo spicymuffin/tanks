@@ -28,6 +28,8 @@ public class GameManager : MonoBehaviour
     [Header("Prefabs")]
     public GameObject ScoreBoardPanelPrefab;
 
+    public Stats total = new Stats();
+
     bool isLoading = false;
 
     private bool lastRound = false;
@@ -399,5 +401,16 @@ public class GameManager : MonoBehaviour
             }
         }
     }
+
+    public void LoadTotalStats()
+    {
+        total.shots = PlayerPrefs.GetInt("totalShots");
+    }
+
+    public void SetTotalStats()
+    {
+        PlayerPrefs.SetInt("totalShots", total.shots);
+    }
+
     #endregion
 }

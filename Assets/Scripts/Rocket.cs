@@ -7,7 +7,7 @@ public class Rocket : MonoBehaviour
     public float speed;
     public float punch;
     public GameObject HitEffect;
-    public GameObject audioPlayer;
+    public GameObject hittingTheWall;
     public GameObject shieldAudio;
     public SelfDestruct smokeTrail;
     public Player sender;
@@ -59,7 +59,7 @@ public class Rocket : MonoBehaviour
 
             else
             {
-                instance = Instantiate(audioPlayer);
+                instance = Instantiate(hittingTheWall);
                 instance.transform.parent = LevelConfig.instance.effects;
             }
 

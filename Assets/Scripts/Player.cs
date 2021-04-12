@@ -7,6 +7,7 @@ using TMPro;
 using TankStatistics;
 using Random = UnityEngine.Random;
 
+//Если вдруг меня не станет бейби
 public class Player : MonoBehaviour
 {
     #region Networking
@@ -332,6 +333,8 @@ public class Player : MonoBehaviour
             }
             if (!isRicochet)
             {
+                shots++;
+                GameManager.instance.total.shots++;
                 GameObject currentRocket = Instantiate(Rocket, tip.position, Quaternion.Euler(tip.rotation.eulerAngles.x, tip.rotation.eulerAngles.y + UnityEngine.Random.Range(-maxBulletDeviationAngle, maxBulletDeviationAngle), tip.rotation.eulerAngles.z));
                 shotSound.pitch = Random.Range(1.0f, 1.15f);
                 shotSound.PlayOneShot(shotSoundClip);
@@ -339,6 +342,9 @@ public class Player : MonoBehaviour
             }
             else
             {
+                shots++;
+                shotSound.pitch = Random.Range(1.0f, 1.15f);
+                shotSound.PlayOneShot(shotSoundClip);
                 GameObject currentRicRocket = Instantiate(RicRocket, tip.position, Quaternion.Euler(tip.rotation.eulerAngles.x, tip.rotation.eulerAngles.y + UnityEngine.Random.Range(-maxBulletDeviationAngle, maxBulletDeviationAngle), tip.rotation.eulerAngles.z));
                 currentRicRocket.GetComponent<RicRocket>().sender = this;
             }
@@ -346,7 +352,6 @@ public class Player : MonoBehaviour
             {
                 RemoveBullet();
             }
-            shots++;
             //Debug.Log($"-bullet: {currentRockets}");
         }
     }
@@ -515,6 +520,21 @@ public class Player : MonoBehaviour
         nameDisplay.gameObject.transform.parent.rotation = Quaternion.Euler(90, 0, 0);
         canvas.position = transform.position + new Vector3(0, 1.9f, 0);
     }
+
+    public void OnTriggerStay(Collider other)
+    {
+        if (other.CompareTag("BoostPad"))
+        {
+            maxVelocity += speedBoost;
+        }
+    }
+    public void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("BoostPad"))
+        {
+            maxVelocity = 6f;
+        }
+    }
     #endregion
     #region Movement Functions
     /// <summary>
@@ -662,20 +682,4 @@ public class Player : MonoBehaviour
         hullMR.material = material;
     }
     #endregion
-
-    
-    public void OnTriggerStay(Collider other)
-    {
-        if (other.CompareTag("BoostPad"))
-        {
-            maxVelocity += speedBoost;
-        }
-    }
-    public void OnTriggerExit(Collider other)
-    {
-        if (other.CompareTag("BoostPad"))
-        {
-            maxVelocity = 6f;
-        }
-    }
 }

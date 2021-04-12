@@ -4820,7 +4820,7 @@ MonoBehaviour:
   punch: 400
   HitEffect: {fileID: 4601479178203940319, guid: 07b5b64445c628d41988258e2033d08a,
     type: 3}
-  audioPlayer: {fileID: 3598380545733410865, guid: 2bf1d52c310ac374980f967eee73f5a4,
+  hittingTheWall: {fileID: 3598380545733410865, guid: 2bf1d52c310ac374980f967eee73f5a4,
     type: 3}
   shieldAudio: {fileID: 8168459693039449581, guid: 5e6c5557f3899e749b43db0afff11c05,
     type: 3}
