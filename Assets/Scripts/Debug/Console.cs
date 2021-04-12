@@ -32,7 +32,7 @@ public class Console : MonoBehaviour
     {
         //if (!Application.isEditor) //Do not display in editor ( or you can use the UNITY_EDITOR macro to also disable the rest)
         {
-            myLog = GUI.TextArea(new Rect(Screen.width/3, 0, Screen.width, Screen.height/3), myLog); 
+            myLog = GUI.TextArea(new Rect(Screen.width / 3, 0, Screen.width, Screen.height / 3), myLog);
         }
     }
 }
