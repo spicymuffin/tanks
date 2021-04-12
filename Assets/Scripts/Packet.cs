@@ -156,8 +156,8 @@ public class Packet : IDisposable
     /// <param name="_value">The string to add.</param>
     public void Write(string _value)
     {
-        Write(_value.Length*2); // Add the length of the string to the packet
-        buffer.AddRange(Encoding.Unicode.GetBytes(_value)); // Add the string itself
+        Write(_value.Length); // Add the length of the string to the packet
+        buffer.AddRange(Encoding.ASCII.GetBytes(_value)); // Add the string itself
     }
     /// <summary>Adds a Vector3 to the packet.</summary>
     /// <param name="_value">The Vector3 to add.</param>
@@ -334,7 +334,7 @@ public class Packet : IDisposable
         try
         {
             int _length = ReadInt(); // Get the length of the string
-            string _value = Encoding.Unicode.GetString(readableBuffer, readPos, _length); // Convert the bytes to a string
+            string _value = Encoding.ASCII.GetString(readableBuffer, readPos, _length); // Convert the bytes to a string
             if (_moveReadPos && _value.Length > 0)
             {
                 // If _moveReadPos is true string is not empty

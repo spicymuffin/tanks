@@ -122,7 +122,7 @@ public class CreateGameScreen : MonoBehaviour
                     connectedPanels[_client.id - 1] = panel;
                     TextMeshProUGUI usrnm = panel.GetComponentInChildren<TextMeshProUGUI>();
                     Image colorImg = panel.GetComponentsInChildren<Image>()[1];
-                    colorImg.material = _client.material;
+                    colorImg.color = _client.color;
                     usrnm.text = _client.username;
                     playerCount++;
                 }

@@ -36,7 +36,7 @@ public class GameManager : MonoBehaviour
     [System.Serializable]
     public class PlayerColor
     {
-        public string color;
+        public Color color;
         public Material material;
     }
     [Header("Colors")]
