@@ -105,6 +105,36 @@ PrefabInstance:
       propertyPath: m_LocalScale.x
       value: 742
       objectReference: {fileID: 0}
+    - target: {fileID: 7281937709885102161, guid: 7964b21bc11b8eb4c8fae32503aa1920,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 0.11329044
+      objectReference: {fileID: 0}
+    - target: {fileID: 7281937709885102161, guid: 7964b21bc11b8eb4c8fae32503aa1920,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 0.040000025
+      objectReference: {fileID: 0}
+    - target: {fileID: 7281937709885102161, guid: 7964b21bc11b8eb4c8fae32503aa1920,
+        type: 3}
+      propertyPath: m_Center.x
+      value: -0.016645279
+      objectReference: {fileID: 0}
+    - target: {fileID: 7281937709885102161, guid: 7964b21bc11b8eb4c8fae32503aa1920,
+        type: 3}
+      propertyPath: m_Center.y
+      value: -0.020000009
+      objectReference: {fileID: 0}
+    - target: {fileID: 7281937709885102161, guid: 7964b21bc11b8eb4c8fae32503aa1920,
+        type: 3}
+      propertyPath: m_Center.z
+      value: 0.020000009
+      objectReference: {fileID: 0}
+    - target: {fileID: 7281937709885102161, guid: 7964b21bc11b8eb4c8fae32503aa1920,
+        type: 3}
+      propertyPath: m_Size.z
+      value: 0.040000007
+      objectReference: {fileID: 0}
     - target: {fileID: 7690908262370262336, guid: 7964b21bc11b8eb4c8fae32503aa1920,
         type: 3}
       propertyPath: m_Name
@@ -195,7 +225,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Big Cube_light (2)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7281937709885102161, guid: 7964b21bc11b8eb4c8fae32503aa1920, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 7964b21bc11b8eb4c8fae32503aa1920, type: 3}
 --- !u!4 &4741355546515714215 stripped
 Transform:
@@ -280,7 +311,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Big Cube_light (4)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7281937709885102161, guid: 7964b21bc11b8eb4c8fae32503aa1920, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 7964b21bc11b8eb4c8fae32503aa1920, type: 3}
 --- !u!4 &4741355546680286714 stripped
 Transform:

@@ -8,13 +8,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/MainMenu/MainMenu.unity
     guid: 23692892ca4e00942a732c1e507b34e1
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/FFA1/FFA1.unity
     guid: 7db7cf382d2967a45a7bf814e1198bde
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/FFA2/FFA2.unity
     guid: 55f1d410dfcf8d64eb0c8ff261941e75
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/FFA3/FFA3.unity
     guid: 1d456bec9ac049b42803442d378ef6a1
   - enabled: 1
@@ -23,4 +23,28 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/WinScreen/WinScreen.unity
     guid: bdd7ad956a7d73748b5316f4da521270
+  - enabled: 1
+    path: Assets/Scenes/Level1/Level1.unity
+    guid: 2ded93923b2269246b28ef66982050ec
+  - enabled: 1
+    path: Assets/Scenes/Level2/Level2.unity
+    guid: 5ec550f4fc9bb31468b3dd4e374df8bd
+  - enabled: 1
+    path: Assets/Scenes/Level3/Level3.unity
+    guid: b1f2d6bb74fd71f4388798043be83fd9
+  - enabled: 1
+    path: Assets/Scenes/Level4/Level4.unity
+    guid: fb8e8086b4c32e545afabb4c408e9043
+  - enabled: 1
+    path: Assets/Scenes/Level5/Level5.unity
+    guid: 549b7b6af3854314f90ef4975bcc6037
+  - enabled: 1
+    path: Assets/Scenes/Level6/Level6.unity
+    guid: b99aea4dfa7af934ebded4a09810e11f
+  - enabled: 1
+    path: Assets/Scenes/Level7/Level7.unity
+    guid: f20c2f7ae5b13b241a10cff3eedaf474
+  - enabled: 1
+    path: Assets/Scenes/Level8/Level8.unity
+    guid: 19916cd438bfc914eafe5fc65d905a6e
   m_configObjects: {}

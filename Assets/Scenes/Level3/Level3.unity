@@ -99,7 +99,7 @@ LightmapSettings:
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 112000000, guid: 275e219c7042d7c4791b9eca7faa3e58,
     type: 2}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -922,6 +922,21 @@ PrefabInstance:
       propertyPath: m_LocalScale.x
       value: 1127.7565
       objectReference: {fileID: 0}
+    - target: {fileID: 7281937709885102161, guid: 7964b21bc11b8eb4c8fae32503aa1920,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 0.066100985
+      objectReference: {fileID: 0}
+    - target: {fileID: 7281937709885102161, guid: 7964b21bc11b8eb4c8fae32503aa1920,
+        type: 3}
+      propertyPath: m_Size.z
+      value: 0.040000018
+      objectReference: {fileID: 0}
+    - target: {fileID: 7281937709885102161, guid: 7964b21bc11b8eb4c8fae32503aa1920,
+        type: 3}
+      propertyPath: m_Center.x
+      value: 0.006949463
+      objectReference: {fileID: 0}
     - target: {fileID: 7690908262370262336, guid: 7964b21bc11b8eb4c8fae32503aa1920,
         type: 3}
       propertyPath: m_Name
@@ -1531,7 +1546,7 @@ PrefabInstance:
     - target: {fileID: 2668508566049994170, guid: 22176f5cc2a2aec428f0a680492164d9,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -37.57511
+      value: -37.56
       objectReference: {fileID: 0}
     - target: {fileID: 2668508566049994170, guid: 22176f5cc2a2aec428f0a680492164d9,
         type: 3}
@@ -1657,7 +1672,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Big Cube_light
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7281937709885102161, guid: 7964b21bc11b8eb4c8fae32503aa1920, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 7964b21bc11b8eb4c8fae32503aa1920, type: 3}
 --- !u!1001 &1547316106
 PrefabInstance:
@@ -2299,7 +2315,7 @@ PrefabInstance:
     - target: {fileID: 5795550410888935310, guid: c4d2c354b5c586d48be352b4fef1ea69,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -34.03361
+      value: -34.04
       objectReference: {fileID: 0}
     - target: {fileID: 5795550410888935310, guid: c4d2c354b5c586d48be352b4fef1ea69,
         type: 3}
@@ -2803,15 +2819,20 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 828839323647180424, guid: 58da2ce79d2aa2443bde9b88ae7b54f8,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -33.89
+      objectReference: {fileID: 0}
     - target: {fileID: 828839323931281754, guid: 58da2ce79d2aa2443bde9b88ae7b54f8,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -26.88
+      value: -26.99
       objectReference: {fileID: 0}
     - target: {fileID: 828839324554740408, guid: 58da2ce79d2aa2443bde9b88ae7b54f8,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -30.43
+      value: -30.46
       objectReference: {fileID: 0}
     - target: {fileID: 2314823372375211443, guid: 58da2ce79d2aa2443bde9b88ae7b54f8,
         type: 3}
