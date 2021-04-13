@@ -1307,7 +1307,10 @@ MonoBehaviour:
   Rocket: {fileID: 5094415894566393892, guid: a24145628edefac498a26e4acb1e2f92, type: 3}
   RicRocket: {fileID: 3577377323879430604, guid: c04139b9a72491d4691d1e69a5614e31,
     type: 3}
-  shield: {fileID: 8645927170696408088, guid: 4cb4e743a44ea4443a2ab42945a36d45, type: 3}
+  shieldV1: {fileID: 4975504356212984251, guid: 6eed9af318e59ac49a35541b9412aaec,
+    type: 3}
+  shieldV2: {fileID: 4773813759249460336, guid: 206947901501bdc4f89a60a7047b50b1,
+    type: 3}
   landmine: {fileID: 1219018694924661037, guid: 2fbe0c749ffa3b04497b4727b98902df,
     type: 3}
   tip: {fileID: 8103555180130556071}

@@ -18,7 +18,7 @@ public class ShieldScript : MonoBehaviour
     
     private void OnTriggerEnter(Collider other)
     {
-        //if (other.CompareTag("Rocket"))
+        if (other.CompareTag("Rocket"))
         {
             if(other.GetComponent<Rocket>().sender != player)
             {
@@ -38,8 +38,19 @@ public class ShieldScript : MonoBehaviour
         material = mr.material;
         initialRadius = material.GetFloat("Vector1_RADIUS");
         AInit = material.GetFloat("Vector1_DSSLV");
+    }
+
+    public void Appear()
+    {
         StartCoroutine(LerpAppearance());
     }
+
+    public void Disappear()
+    {
+        StartCoroutine(LerpDisappearance());
+    }
+
+
 
     public IEnumerator LerpAppearance()
     {

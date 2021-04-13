@@ -2,16 +2,25 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class ScorePanel : MonoBehaviour
 {
     public Image bar;
+    public TextMeshProUGUI score;
     public float fillSpeed = 0.75f;
     public float moveSpeed = 5f;
 
-    public void SetFill(float fill)
+    public void SetFill(float fill, bool instant = false)
     {
-        StartCoroutine(IE_SetFill(fill));
+        if (!instant)
+        {
+            StartCoroutine(IE_SetFill(fill));
+        }
+        else
+        {
+            bar.fillAmount = fill;
+        }
     }
 
     public void MoveTo(Vector3 target)
@@ -35,5 +44,10 @@ public class ScorePanel : MonoBehaviour
             bar.fillAmount = Mathf.Lerp(bar.fillAmount, fill, fillSpeed * Time.deltaTime);
             yield return null;
         }
+    }
+
+    public void SetScore(int _score)
+    {
+        score.text = _score.ToString();
     }
 }
