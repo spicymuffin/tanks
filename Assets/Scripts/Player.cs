@@ -135,10 +135,25 @@ public class Player : MonoBehaviour
         IEnumerator Countdown()
         {
             player.isShielded = true;
-            GameObject shield = Instantiate(player.shield, player.shieldPos);
-            shield.GetComponent<ShieldScript>().player = player;
+            int a = UnityEngine.Random.Range(1, 3);
+            GameObject shield;
+            if (a == 1)
+            {
+                shield = Instantiate(player.shieldV1, player.shieldPos);
+            }
+            else
+            {
+                shield = Instantiate(player.shieldV2, player.shieldPos);
+            }
+            ShieldScript ss = shield.GetComponent<ShieldScript>();
+            ss.player = player;
+            ss.Appear();
+            yield return new WaitForSeconds(ss.ADuration);
+            shield.GetComponent<SphereCollider>().enabled = true;
             yield return new WaitForSeconds(time);
-            Destroy(shield);
+            shield.GetComponent<SphereCollider>().enabled = false;
+            ss.Disappear();
+            //Destroy(shield);
             player.isShielded = false;
         }
     }
@@ -235,7 +250,8 @@ public class Player : MonoBehaviour
     [Header("Objects & Transforms")]
     public GameObject Rocket;
     public GameObject RicRocket;
-    public GameObject shield;
+    public GameObject shieldV1;
+    public GameObject shieldV2;
     public GameObject landmine;
     public Transform tip;
     public Transform shieldPos;
@@ -334,7 +350,7 @@ public class Player : MonoBehaviour
             if (!isRicochet)
             {
                 shots++;
-                GameManager.instance.total.shots++;
+                //GameManager.instance.total.shots++;
                 GameObject currentRocket = Instantiate(Rocket, tip.position, Quaternion.Euler(tip.rotation.eulerAngles.x, tip.rotation.eulerAngles.y + UnityEngine.Random.Range(-maxBulletDeviationAngle, maxBulletDeviationAngle), tip.rotation.eulerAngles.z));
                 shotSound.pitch = Random.Range(1.0f, 1.15f);
                 shotSound.PlayOneShot(shotSoundClip);

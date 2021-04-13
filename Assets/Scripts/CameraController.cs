@@ -28,6 +28,7 @@ public class CameraController : MonoBehaviour
 
     private IEnumerator ShakeCoroutine(float shakeSpeed, float shakeDistance, float shakeDuration, float tolerance, Vector3 normalPos)
     {
+        yield return new WaitForSecondsRealtime(0.05f);
         while (time < shakeDuration)
         {
             if ((newPosition - transform.localPosition).sqrMagnitude <= tolerance * tolerance)
@@ -49,6 +50,7 @@ public class CameraController : MonoBehaviour
 
     private IEnumerator ResetPosSmooth(Vector3 normalPos)
     {
+        yield return new WaitForSecondsRealtime(0.03f);
         while (Vector3.Distance(transform.transform.localPosition, normalPos) > 0.01f)
         {
             transform.transform.localPosition = Vector3.Lerp(transform.transform.localPosition, normalPos, Time.deltaTime * 20f);

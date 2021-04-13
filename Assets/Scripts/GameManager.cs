@@ -231,15 +231,31 @@ public class GameManager : MonoBehaviour
         Debug.Log("Ending round...");
         if (!lastRound)
         {
-            //Time.timeScale = 0;
+            scoreboard.Sort();
+            scoreboard.SetDisplay(queue.Count);
+            Time.timeScale = 0;
             yield return new WaitForSecondsRealtime(3f);
-            StartCoroutine(LoadNextLevel());
             ScoreboardUI.SetActive(true);
             PlayerUI.SetActive(false);
+            scoreboard.anim.Play("endround");
+            yield return new WaitForSecondsRealtime(0.4f);
+            StartCoroutine(LoadNextLevel());
+            Time.timeScale = 1;
             ClearPlayerUI();
+            List<int> scores = new List<int>();
+            foreach(Client client in clients)
+            {
+                scores.Add(client.score);
+            }
+            scoreboard.PassScores(scores);
+            yield return new WaitForSecondsRealtime(0.25f);
+            scoreboard.PlayAnim();
             yield return new WaitForSecondsRealtime(4f);
             StartRound();
+            scoreboard.anim.Play("startround");
+            yield return new WaitForSeconds(0.4f);
             ScoreboardUI.SetActive(false);
+            scoreboard.ResetFills();
         }
         else
         {

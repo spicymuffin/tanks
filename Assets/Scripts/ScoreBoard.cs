@@ -1,12 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class ScoreBoard : MonoBehaviour
 {
     [Header("Assignables")]
     public GameObject score;
     public Transform container;
+    public Animation anim;
+    public TextMeshProUGUI counter;
     List<GameObject> scores = new List<GameObject>();
     List<PlayerScore> playerScores = new List<PlayerScore>();
     List<Vector3> startPositions = new List<Vector3>();
@@ -15,6 +18,7 @@ public class ScoreBoard : MonoBehaviour
     {
         public int id;
         public int score;
+        public string username;
         public Material material;
         public GameObject panel;
         public ScorePanel scorePanel;
@@ -30,13 +34,13 @@ public class ScoreBoard : MonoBehaviour
     }
 
     List<Client> debugList = new List<Client>() { new Client(1, "sex", 0), new Client(2, "leo", 0), new Client(3, "lox", 0), new Client(4, "sgay", 0) };
-    List<int> debugScores = new List<int>() { 2, 7, 6, 5 };
+    List<int> debugScores = new List<int>() { 2, 7, 5, 6 };
 
     private void Start()
     {
-        Initialize(debugList);
-        PassScores(debugScores);
-        StartCoroutine(PlayAnim());
+        //Initialize(debugList);
+        //PassScores(debugScores);
+        //StartCoroutine(PlayAnim());
     }
 
     public void Initialize(List<Client> clients)
@@ -45,7 +49,7 @@ public class ScoreBoard : MonoBehaviour
         {
             startPositions.Add(child.position);
         }
-
+        Debug.Log(clients.Count);
         for (int i = 0; i < clients.Count; i++)
         {
             GameObject instance = Instantiate(score, container);
@@ -54,6 +58,7 @@ public class ScoreBoard : MonoBehaviour
             PlayerScore pscr = new PlayerScore();
             pscr.id = clients[i].id;
             pscr.material = clients[i].material;
+            pscr.username = clients[i].username;
             pscr.panel = instance;
             pscr.scorePanel = instance.GetComponent<ScorePanel>();
             playerScores.Add(pscr);
@@ -76,23 +81,33 @@ public class ScoreBoard : MonoBehaviour
         }
     }
 
-    public IEnumerator PlayAnim()
+    public void PlayAnim()
     {
-        Sort();
+        StartCoroutine(IE_PlayAnim());
+    }
+
+    public void SetDisplay(int rounds)
+    {
+        counter.text = $"rounds remaining: {rounds.ToString()}";
+    }
+
+    public IEnumerator IE_PlayAnim()
+    {
         Debug.Log("playing..");
         int max = playerScores[0].score;
         for (int i = 0; i < playerScores.Count; i++)
         {
+            playerScores[i].scorePanel.SetScore(playerScores[i].score);
             if (i == 0)
             {
-                playerScores[i].scorePanel.SetFill(1f);
+                playerScores[0].scorePanel.SetFill(1f);
             }
             else
             {
                 playerScores[i].scorePanel.SetFill((float)playerScores[i].score / (float)max);
             }
         }
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(2f);
         for (int i = 0; i < playerScores.Count; i++)
         {
             if (i == 0)
@@ -105,6 +120,16 @@ public class ScoreBoard : MonoBehaviour
             }
         }
     }
+    
+    public void ResetFills()
+    {
+        foreach (PlayerScore scr in playerScores)
+        {
+            scr.scorePanel.SetFill(0, true);
+        }
+    }
+
+
 
     public void Sort()
     {
