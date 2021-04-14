@@ -49,7 +49,7 @@ public class Rocket : MonoBehaviour
 
             if (other.CompareTag("Shield"))
             {
-                if (other.transform.parent.GetComponent<ShieldScript>().player == sender)
+                if (other.GetComponent<ShieldScript>().player == sender)
                 {
                     return;
                 }
