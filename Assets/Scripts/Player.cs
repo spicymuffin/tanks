@@ -238,6 +238,9 @@ public class Player : MonoBehaviour
     public int shieldBlocks = 0;
     public int landminesCreated = 0;
     public int landmineKills = 0;
+    public int totalShots = 0;
+    public int totalKills = 0;
+    public int totalDeaths = 0;
     #endregion
     #region NameDisplay
     [Header("Name display")]
@@ -680,6 +683,16 @@ public class Player : MonoBehaviour
     {
         Stats myStats = new Stats(shots, closeCalls, ADTotal, kills, deaths, shieldBlocks, landminesCreated, landmineKills, myClient);
         GameManager.instance.currentRoundStats.SetPlayerStats(id, myStats);
+        lol();
+    }
+
+
+    public void lol()
+    {
+        PlayerPrefs.SetInt("totalShots", PlayerPrefs.GetInt("totalShots") + shots);
+        PlayerPrefs.SetInt("totalKills", PlayerPrefs.GetInt("totalKills") + kills) ;
+        PlayerPrefs.SetInt("totalDeaths", PlayerPrefs.GetInt("totalDeaths") + deaths);
+        Debug.LogError("asd");
     }
     /// <summary>
     /// Change player color
@@ -691,4 +704,5 @@ public class Player : MonoBehaviour
         hullMR.material = material;
     }
     #endregion
+
 }
