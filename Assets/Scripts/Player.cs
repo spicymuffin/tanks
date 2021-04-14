@@ -621,7 +621,6 @@ public class Player : MonoBehaviour
         dead = true;
         CameraController.instance.Shake();
         GameManager.instance.KillPlayer(this);
-        lol();
     }
 
     public void Die()
@@ -692,6 +691,7 @@ public class Player : MonoBehaviour
     {
         Stats myStats = new Stats(shots, closeCalls, ADTotal, kills, deaths, shieldBlocks, landminesCreated, landmineKills, myClient);
         GameManager.instance.currentRoundStats.SetPlayerStats(id, myStats);
+        lol();
     }
 
 
