@@ -153,7 +153,8 @@ public class Player : MonoBehaviour
             yield return new WaitForSeconds(time);
             shield.GetComponent<SphereCollider>().enabled = false;
             ss.Disappear();
-            //Destroy(shield);
+            yield return new WaitForSeconds(ss.ADuration);
+            Destroy(shield);
             player.isShielded = false;
         }
     }

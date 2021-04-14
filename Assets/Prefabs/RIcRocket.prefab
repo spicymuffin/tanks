@@ -88,11 +88,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1241022370307296893}
+  - component: {fileID: 8989133800140501251}
   - component: {fileID: 9121696020900023608}
   - component: {fileID: 7678571330915358543}
-  - component: {fileID: -6128751519061057225}
   m_Layer: 0
-  m_Name: RIcRocket
+  m_Name: RicRocket
   m_TagString: Rocket
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -114,6 +114,29 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8989133800140501251
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3577377323879430604}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed3ad4ef58d3944468c259801a592263, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 0.4
+  sender: {fileID: 0}
+  maxDeflects: 3
+  sparks: {fileID: 64132031115515122, guid: eb1de208369d67c49993bfa09e3513bc, type: 3}
+  hitEffect: {fileID: 4601479178203940319, guid: 07b5b64445c628d41988258e2033d08a,
+    type: 3}
+  ricochetTheWall: {fileID: 4030094859144760603, guid: 85f37cc2fc1f5784b835790b67c951ff,
+    type: 3}
+  hittingTheWall: {fileID: 3598380545733410865, guid: 2bf1d52c310ac374980f967eee73f5a4,
+    type: 3}
+  smokeTrail: {fileID: 5447563599273984769}
 --- !u!136 &9121696020900023608
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -144,27 +167,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 0
---- !u!114 &
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3577377323879430604}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ed3ad4ef58d3944468c259801a592263, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 0.4
-  sender: {fileID: 0}
-  maxDeflects: 3
-  sparks: {fileID: 64132031115515122, guid: eb1de208369d67c49993bfa09e3513bc, type: 3}
-  ricochetTheWall: {fileID: 4030094859144760603, guid: 85f37cc2fc1f5784b835790b67c951ff,
-    type: 3}
-  hittingTheWall: {fileID: 3598380545733410865, guid: 2bf1d52c310ac374980f967eee73f5a4,
-    type: 3}
-  smokeTrail: {fileID: 5447563599273984769}
 --- !u!1 &3671324627033068298
 GameObject:
   m_ObjectHideFlags: 0
