@@ -4818,7 +4818,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 0.4
   punch: 400
-  HitEffect: {fileID: 4601479178203940319, guid: 07b5b64445c628d41988258e2033d08a,
+  hitEffect: {fileID: 4601479178203940319, guid: 07b5b64445c628d41988258e2033d08a,
     type: 3}
   hittingTheWall: {fileID: 3598380545733410865, guid: 2bf1d52c310ac374980f967eee73f5a4,
     type: 3}

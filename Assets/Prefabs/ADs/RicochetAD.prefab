@@ -108,7 +108,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: Ricochet
-  time: 69
+  time: 10
   icon: {fileID: 5287623574202543784, guid: fc83264d7ccc4d84a8c778f382635019, type: 3}
 --- !u!54 &-3136147578786406716
 Rigidbody:
