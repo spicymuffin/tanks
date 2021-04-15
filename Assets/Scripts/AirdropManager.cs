@@ -8,6 +8,7 @@ public class AirdropManager : MonoBehaviour
     public Vector3 torque;
     public Vector2 waitTime;
     public Transform SpawnPoint;
+    public AudioSource airdropSound;
 
     public class bound
     {
@@ -96,6 +97,7 @@ public class AirdropManager : MonoBehaviour
 
         Vector3 rndTorque = new Vector3(Random.Range(-torque.x, torque.x), Random.Range(-torque.y, torque.y), Random.Range(-torque.z, torque.z));
         dropRb.AddTorque(rndTorque);
+        airdropSound.Play();
 
         //Debug.Log("launching...");
     }

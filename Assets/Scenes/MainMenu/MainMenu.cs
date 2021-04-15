@@ -12,6 +12,7 @@ public class MainMenu : MonoBehaviour
     public GameObject createGameCameraPosition;
     public GameObject mainMenuCameraPosition;
     public GameObject audioSliderCameraPosition;
+    public AudioSource buttonSound;
 
     public void Awake()
     {
@@ -23,6 +24,14 @@ public class MainMenu : MonoBehaviour
         {
             instance = this;
         }
+        buttonSound = GetComponent<AudioSource>();
+
+    }
+
+    public void ButtonSound()
+    {
+        buttonSound.pitch = Random.Range(1.0f, 1.15f);
+        buttonSound.Play();
     }
 
     public void MoveToStartGame()
