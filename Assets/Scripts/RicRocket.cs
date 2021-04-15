@@ -4,15 +4,22 @@ using UnityEngine;
 
 public class RicRocket : MonoBehaviour
 {
+    [Header("General")]
     public float speed;
-    public Player sender;
     public int maxDeflects = 3;
+    [Header("Effects")]
     public GameObject sparks;
     public GameObject hitEffect;
+    [Header("Sounds")]
     public GameObject ricochetTheWall;
     public GameObject hittingTheWall;
+    //где звук удара об щит??
+    [Header("Assignables")]
     public SelfDestruct smokeTrail;
+    [HideInInspector]
+    public Player sender;
 
+    private bool flag = false;
     private int deflectCounter = 0;
     private void FixedUpdate()
     {
@@ -44,7 +51,7 @@ public class RicRocket : MonoBehaviour
                 instance.transform.parent = LevelConfig.instance.effects;
                 smokeTrail.gameObject.transform.parent = LevelConfig.instance.effects;
                 smokeTrail.Destroy();
-                Destroy(this.gameObject);
+                flag = true;
             }
             Transform parent = hit.collider.transform.parent;
             if (parent)
@@ -55,15 +62,14 @@ public class RicRocket : MonoBehaviour
                     if (hitPlayer == sender)
                     {
                         hitPlayer.BulletDie();
-                        Debug.Log($"killed: {hitPlayer.username}");
                         sender.kills--;
                     }
                     else
                     {
                         hitPlayer.BulletDie();
-                        Debug.Log($"killed: {hitPlayer.username}");
                         sender.kills++;
                     }
+                    Destroy(this.gameObject);
                 }
             }
             if (hit.collider.CompareTag("Barrel"))
@@ -73,9 +79,20 @@ public class RicRocket : MonoBehaviour
                 smokeTrail.Destroy();
                 Destroy(this.gameObject);
             }
+            if (hit.collider.CompareTag("Shield"))
+            {
+                hit.collider.GetComponent<ShieldScript>().player.shieldBlocks++;
+            }
+            if (flag)
+            {
+                Destroy(this.gameObject);
+            }
         }
 
         //Hotta будто glo
     }
-
+    private void Awake()
+    {
+        transform.parent = LevelConfig.instance.rockets;
+    }
 }

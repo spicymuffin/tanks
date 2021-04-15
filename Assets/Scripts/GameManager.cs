@@ -261,17 +261,20 @@ public class GameManager : MonoBehaviour
         {
             //screen fade effect...?
             //start endgame
-            Debug.LogWarning("loaded winscreen");
-            yield return new WaitForSeconds(4f);
+            Time.timeScale = 0;
+            yield return new WaitForSeconds(3f);
             ScoreboardUI.SetActive(true);
             PlayerUI.SetActive(false);
-            ClearPlayerUI();
+            scoreboard.anim.Play("endround");
+            yield return new WaitForSecondsRealtime(0.4f);
             StartCoroutine(LoadLevel(winScene));
+            ClearPlayerUI();
             ParseStats();
             while (isLoading)
             {
                 yield return null;
             }
+            Time.timeScale = 1;
             ScoreboardUI.SetActive(false);
             if (StatScreen.instance == null)
             {

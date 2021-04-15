@@ -139,11 +139,11 @@ public class Player : MonoBehaviour
             GameObject shield;
             if (a == 1)
             {
-                shield = Instantiate(player.shieldV1, player.shieldPos);
+                shield = Instantiate(player.shieldV1, player.shieldPos.position, Quaternion.identity);
             }
             else
             {
-                shield = Instantiate(player.shieldV2, player.shieldPos);
+                shield = Instantiate(player.shieldV2, player.shieldPos.position, Quaternion.identity);
             }
             ShieldScript ss = shield.GetComponent<ShieldScript>();
             ss.player = player;
@@ -295,7 +295,7 @@ public class Player : MonoBehaviour
     private void StartUp()
     {
         rb = GetComponent<Rigidbody>();
-        canvas.transform.parent = null;
+        canvas.SetParent(null);
     }
     #endregion
     #region Fire Functions
@@ -347,24 +347,20 @@ public class Player : MonoBehaviour
         {
             if (isReloading)
             {
-                //Debug.Log("restart reload");
                 StopCoroutine(reloadCoroutine);
                 reloadCoroutine = StartCoroutine(Reload());
             }
+            shotSound.pitch = Random.Range(1.0f, 1.15f);
+            shotSound.PlayOneShot(shotSoundClip);
+            shots++;
+            rb.velocity /= 6;
             if (!isRicochet)
             {
-                shots++;
-                //GameManager.instance.total.shots++;
                 GameObject currentRocket = Instantiate(Rocket, tip.position, Quaternion.Euler(tip.rotation.eulerAngles.x, tip.rotation.eulerAngles.y + UnityEngine.Random.Range(-maxBulletDeviationAngle, maxBulletDeviationAngle), tip.rotation.eulerAngles.z));
-                shotSound.pitch = Random.Range(1.0f, 1.15f);
-                shotSound.PlayOneShot(shotSoundClip);
                 currentRocket.GetComponent<Rocket>().sender = this;
             }
             else
             {
-                shots++;
-                shotSound.pitch = Random.Range(1.0f, 1.15f);
-                shotSound.PlayOneShot(shotSoundClip);
                 GameObject currentRicRocket = Instantiate(RicRocket, tip.position, Quaternion.Euler(tip.rotation.eulerAngles.x, tip.rotation.eulerAngles.y + UnityEngine.Random.Range(-maxBulletDeviationAngle, maxBulletDeviationAngle), tip.rotation.eulerAngles.z));
                 currentRicRocket.GetComponent<RicRocket>().sender = this;
             }
@@ -651,7 +647,6 @@ public class Player : MonoBehaviour
         if (_type == "InfiniteBullets")
         {
             playerSound.PlayOneShot(pickUpAirDropSound);
-            // pickUpAirDropSound.Play();
             InfiniteBulletsADC adc = _airdrop.GetComponent<InfiniteBulletsADC>();
             currentItemIcon = Instantiate(adc.icon, myUIItemPanel.transform);
             new InfiniteBullets(adc.time, this);
@@ -659,7 +654,6 @@ public class Player : MonoBehaviour
         if (_type == "LandMine")
         {
             playerSound.PlayOneShot(pickUpAirDropSound);
-            // pickUpAirDropSound.Play();
             LandmineADC adc = _airdrop.GetComponent<LandmineADC>();
             currentItemIcon = Instantiate(adc.icon[adc.count - 1], myUIItemPanel.transform);
             new Landmine(adc.count, this);
@@ -669,7 +663,6 @@ public class Player : MonoBehaviour
         if (_type == "Shield")
         {
             playerSound.PlayOneShot(pickUpAirDropSound);
-            // pickUpAirDropSound.Play();
             ShieldADC adc = _airdrop.GetComponent<ShieldADC>();
             currentItemIcon = Instantiate(adc.icon, myUIItemPanel.transform);
             new Shield(adc.time, this);
@@ -677,7 +670,6 @@ public class Player : MonoBehaviour
         if (_type == "Ricochet")
         {
             playerSound.PlayOneShot(pickUpAirDropSound);
-            // pickUpAirDropSound.Play();
             RicochetADC adc = _airdrop.GetComponent<RicochetADC>();
             currentItemIcon = Instantiate(adc.icon, myUIItemPanel.transform);
             new Ricochet(adc.time, this);
@@ -700,7 +692,7 @@ public class Player : MonoBehaviour
         PlayerPrefs.SetInt("totalShots", PlayerPrefs.GetInt("totalShots") + shots);
         PlayerPrefs.SetInt("totalKills", PlayerPrefs.GetInt("totalKills") + kills) ;
         PlayerPrefs.SetInt("totalDeaths", PlayerPrefs.GetInt("totalDeaths") + deaths);
-        Debug.LogError("asd");
+        //Debug.LogError("asd");
     }
     /// <summary>
     /// Change player color

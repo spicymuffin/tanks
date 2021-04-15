@@ -4,12 +4,17 @@ using UnityEngine;
 
 public class Rocket : MonoBehaviour
 {
+    [Header("General")]
     public float speed;
     public float punch;
-    public GameObject HitEffect;
+    [Header("Effects")]
+    public GameObject hitEffect;
+    [Header("Sounds")]
     public GameObject hittingTheWall;
     public GameObject shieldAudio;
+    [Header("Assignables")]
     public SelfDestruct smokeTrail;
+    [HideInInspector]
     public Player sender;
 
 
@@ -39,8 +44,7 @@ public class Rocket : MonoBehaviour
                         return;
                     }
                     else
-                    {
-                        Debug.Log($"killed: {hitPlayer.username}");
+                    {                        
                         hitPlayer.BulletDie();
                         sender.kills++;
                     }
@@ -63,7 +67,7 @@ public class Rocket : MonoBehaviour
                 instance.transform.parent = LevelConfig.instance.effects;
             }
 
-            instance = Instantiate(HitEffect, transform.position, Quaternion.identity);
+            instance = Instantiate(hitEffect, transform.position, Quaternion.identity);
             instance.transform.parent = LevelConfig.instance.effects;
             smokeTrail.gameObject.transform.parent = LevelConfig.instance.effects;
             smokeTrail.Destroy();
@@ -79,13 +83,5 @@ public class Rocket : MonoBehaviour
     private void Awake()
     {
         transform.parent = LevelConfig.instance.rockets;
-        StartCoroutine(Destroy());
-    }
-
-
-    IEnumerator Destroy()
-    {
-        yield return new WaitForSeconds(20);
-        Destroy(this.gameObject);
     }
 }

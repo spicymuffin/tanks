@@ -4,16 +4,20 @@ using UnityEngine;
 
 public class ShieldScript : MonoBehaviour
 {
+    [HideInInspector]
     public Player player;
+    [Header("Assignables")]
     public MeshRenderer mr;
     private Material material;
-    public float decaySpeed = 2f;
-    private float initialRadius;
-    public float tolerance = 0.0001f;
+    [Header("Animations")]
+    public float hitDecaySpeed = 2f;
+    public float tolerance = 0.001f;
     public float target = -0.4f;
     public float ATarget = -0.1f;
     public float ADuration = 1.5f;
-    float AInit;
+
+    private float initialRadius;
+    private float AInit;
     private Coroutine cr;
     
     private void OnTriggerEnter(Collider other)
@@ -40,6 +44,11 @@ public class ShieldScript : MonoBehaviour
         AInit = material.GetFloat("Vector1_DSSLV");
     }
 
+    public void Update()
+    {
+        transform.position = player.shieldPos.position;
+    }
+
     public void Appear()
     {
         StartCoroutine(LerpAppearance());
@@ -49,8 +58,6 @@ public class ShieldScript : MonoBehaviour
     {
         StartCoroutine(LerpDisappearance());
     }
-
-
 
     public IEnumerator LerpAppearance()
     {
@@ -84,7 +91,7 @@ public class ShieldScript : MonoBehaviour
     {
         while (Mathf.Abs(material.GetFloat("Vector1_RADIUS") - target) > tolerance)
         {
-            material.SetFloat("Vector1_RADIUS", Mathf.Lerp(material.GetFloat("Vector1_RADIUS"), target, decaySpeed * Time.deltaTime));
+            material.SetFloat("Vector1_RADIUS", Mathf.Lerp(material.GetFloat("Vector1_RADIUS"), target, hitDecaySpeed * Time.deltaTime));
             yield return null;
         }
     }
