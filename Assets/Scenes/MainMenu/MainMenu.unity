@@ -10937,7 +10937,7 @@ MonoBehaviour:
   totalShots: 0
   totalKills: 0
   totalDeaths: 0
-  shots: {fileID: 0}
+  shots: {fileID: 960689012}
   kills: {fileID: 1544413007}
   deaths: {fileID: 1076749567}
 --- !u!43 &1485785066

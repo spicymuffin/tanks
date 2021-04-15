@@ -692,7 +692,7 @@ public class Player : MonoBehaviour
         PlayerPrefs.SetInt("totalShots", PlayerPrefs.GetInt("totalShots") + shots);
         PlayerPrefs.SetInt("totalKills", PlayerPrefs.GetInt("totalKills") + kills) ;
         PlayerPrefs.SetInt("totalDeaths", PlayerPrefs.GetInt("totalDeaths") + deaths);
-        Debug.LogError("asd");
+        //Debug.LogError("asd");
     }
     /// <summary>
     /// Change player color
