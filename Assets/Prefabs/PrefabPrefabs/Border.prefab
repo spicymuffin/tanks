@@ -174,7 +174,8 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 7b920186bd7be144791451426f4de536, type: 2}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4592247358674214808, guid: c4d2c354b5c586d48be352b4fef1ea69, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: c4d2c354b5c586d48be352b4fef1ea69, type: 3}
 --- !u!4 &7650067564305495156 stripped
 Transform:
@@ -264,7 +265,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Triangle_light (1)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4592247358674214808, guid: c4d2c354b5c586d48be352b4fef1ea69, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: c4d2c354b5c586d48be352b4fef1ea69, type: 3}
 --- !u!4 &7650067564209497784 stripped
 Transform:
@@ -354,7 +356,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Half Cylinder_dark1 (3)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8145087613096248543, guid: 7fe92ec6bdc86364fa9803caffa21a91, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 7fe92ec6bdc86364fa9803caffa21a91, type: 3}
 --- !u!4 &8555587538062953118 stripped
 Transform:
@@ -434,7 +437,8 @@ PrefabInstance:
       propertyPath: m_LocalScale.y
       value: 144.68
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4147838054988798106, guid: 9cccd15ece5df054b99e0fb0db493b3f, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 9cccd15ece5df054b99e0fb0db493b3f, type: 3}
 --- !u!4 &276836354388881742 stripped
 Transform:
@@ -594,7 +598,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Half Cylinder_dark1 (1)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8145087613096248543, guid: 7fe92ec6bdc86364fa9803caffa21a91, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 7fe92ec6bdc86364fa9803caffa21a91, type: 3}
 --- !u!4 &8555587538164592713 stripped
 Transform:
@@ -684,7 +689,8 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 174.99997
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: -4736390146308883357, guid: 399e60674ea94ff42abdc12911b9de5f, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 399e60674ea94ff42abdc12911b9de5f, type: 3}
 --- !u!4 &6439311533150608421 stripped
 Transform:
@@ -769,7 +775,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Half Cylinder_dark1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8145087613096248543, guid: 7fe92ec6bdc86364fa9803caffa21a91, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 7fe92ec6bdc86364fa9803caffa21a91, type: 3}
 --- !u!4 &8555587537824597386 stripped
 Transform:
@@ -934,7 +941,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4147838054988798106, guid: 9cccd15ece5df054b99e0fb0db493b3f, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 9cccd15ece5df054b99e0fb0db493b3f, type: 3}
 --- !u!4 &276836354191059792 stripped
 Transform:
@@ -1019,7 +1027,8 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 174.99997
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: -4736390146308883357, guid: 399e60674ea94ff42abdc12911b9de5f, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 399e60674ea94ff42abdc12911b9de5f, type: 3}
 --- !u!4 &6439311533017903870 stripped
 Transform:
@@ -1104,7 +1113,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Half Cylinder_dark2 (4)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: -58523357114164203, guid: b9c909d7e3f7d4447a1716fdbc302b45, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: b9c909d7e3f7d4447a1716fdbc302b45, type: 3}
 --- !u!4 &3991395921171531855 stripped
 Transform:
@@ -1189,7 +1199,8 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 174.99997
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2791281316110967205, guid: 0ed84edaea22520459a2dc36949029c6, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 0ed84edaea22520459a2dc36949029c6, type: 3}
 --- !u!4 &2088278382524554869 stripped
 Transform:
@@ -1264,7 +1275,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4147838054988798106, guid: 9cccd15ece5df054b99e0fb0db493b3f, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 9cccd15ece5df054b99e0fb0db493b3f, type: 3}
 --- !u!4 &276836354066291170 stripped
 Transform:
@@ -1279,6 +1291,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4029428451302644234}
     m_Modifications:
+    - target: {fileID: -3683290175795068669, guid: a818da6f003476c4994c0a03b52440db,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 0.47368062
+      objectReference: {fileID: 0}
+    - target: {fileID: -3683290175795068669, guid: a818da6f003476c4994c0a03b52440db,
+        type: 3}
+      propertyPath: m_Size.z
+      value: 0.0215264
+      objectReference: {fileID: 0}
+    - target: {fileID: -3683290175795068669, guid: a818da6f003476c4994c0a03b52440db,
+        type: 3}
+      propertyPath: m_Center.y
+      value: -0.23683977
+      objectReference: {fileID: 0}
+    - target: {fileID: -3683290175795068669, guid: a818da6f003476c4994c0a03b52440db,
+        type: 3}
+      propertyPath: m_Center.z
+      value: 0.010763199
+      objectReference: {fileID: 0}
     - target: {fileID: 1556627799646555295, guid: a818da6f003476c4994c0a03b52440db,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1424,7 +1456,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 90
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3869210485167388988, guid: 22176f5cc2a2aec428f0a680492164d9, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 22176f5cc2a2aec428f0a680492164d9, type: 3}
 --- !u!4 &2256272530989633383 stripped
 Transform:
@@ -1504,7 +1537,8 @@ PrefabInstance:
       propertyPath: m_LocalScale.y
       value: 144.68
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4147838054988798106, guid: 9cccd15ece5df054b99e0fb0db493b3f, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 9cccd15ece5df054b99e0fb0db493b3f, type: 3}
 --- !u!4 &276836355056747669 stripped
 Transform:
@@ -1594,6 +1628,36 @@ PrefabInstance:
       propertyPath: m_Name
       value: Half Cube_light (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 9191821235559814980, guid: 75ef2abbcf733314dba53c37db5b9e13,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 0.16645332
+      objectReference: {fileID: 0}
+    - target: {fileID: 9191821235559814980, guid: 75ef2abbcf733314dba53c37db5b9e13,
+        type: 3}
+      propertyPath: m_Center.y
+      value: 0.06322673
+      objectReference: {fileID: 0}
+    - target: {fileID: 9191821235559814980, guid: 75ef2abbcf733314dba53c37db5b9e13,
+        type: 3}
+      propertyPath: m_Center.z
+      value: 0.015453931
+      objectReference: {fileID: 0}
+    - target: {fileID: 9191821235559814980, guid: 75ef2abbcf733314dba53c37db5b9e13,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 0.031545106
+      objectReference: {fileID: 0}
+    - target: {fileID: 9191821235559814980, guid: 75ef2abbcf733314dba53c37db5b9e13,
+        type: 3}
+      propertyPath: m_Center.x
+      value: 0.004227435
+      objectReference: {fileID: 0}
+    - target: {fileID: 9191821235559814980, guid: 75ef2abbcf733314dba53c37db5b9e13,
+        type: 3}
+      propertyPath: m_Size.z
+      value: 0.030907854
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 75ef2abbcf733314dba53c37db5b9e13, type: 3}
 --- !u!4 &7488839201941307384 stripped
@@ -1679,7 +1743,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Half Cube_dark1 (3)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: -3683290175795068669, guid: a818da6f003476c4994c0a03b52440db, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: a818da6f003476c4994c0a03b52440db, type: 3}
 --- !u!4 &3449142903062244187 stripped
 Transform:
@@ -1854,7 +1919,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Half Cube_dark1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: -3683290175795068669, guid: a818da6f003476c4994c0a03b52440db, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: a818da6f003476c4994c0a03b52440db, type: 3}
 --- !u!4 &3449142903010495054 stripped
 Transform:
@@ -1934,7 +2000,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Half Cylinder_dark2 (3)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: -58523357114164203, guid: b9c909d7e3f7d4447a1716fdbc302b45, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: b9c909d7e3f7d4447a1716fdbc302b45, type: 3}
 --- !u!4 &3991395920745784780 stripped
 Transform:
@@ -2019,7 +2086,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Half Cylinder_dark1 (2)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8145087613096248543, guid: 7fe92ec6bdc86364fa9803caffa21a91, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 7fe92ec6bdc86364fa9803caffa21a91, type: 3}
 --- !u!4 &8555587538359306430 stripped
 Transform:
@@ -2104,7 +2172,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Half Cube_dark1 (1)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: -3683290175795068669, guid: a818da6f003476c4994c0a03b52440db, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: a818da6f003476c4994c0a03b52440db, type: 3}
 --- !u!4 &3449142903223980838 stripped
 Transform:
@@ -2189,7 +2258,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Half Cylinder_dark2 (1)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: -58523357114164203, guid: b9c909d7e3f7d4447a1716fdbc302b45, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: b9c909d7e3f7d4447a1716fdbc302b45, type: 3}
 --- !u!4 &3991395920654761352 stripped
 Transform:
@@ -2274,7 +2344,8 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 174.99997
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: -4736390146308883357, guid: 399e60674ea94ff42abdc12911b9de5f, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 399e60674ea94ff42abdc12911b9de5f, type: 3}
 --- !u!4 &6439311532411177798 stripped
 Transform:
@@ -2354,7 +2425,8 @@ PrefabInstance:
       propertyPath: m_LocalScale.y
       value: 144.68
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4147838054988798106, guid: 9cccd15ece5df054b99e0fb0db493b3f, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 9cccd15ece5df054b99e0fb0db493b3f, type: 3}
 --- !u!4 &276836354701684675 stripped
 Transform:
@@ -2429,7 +2501,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -90
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3869210485167388988, guid: 22176f5cc2a2aec428f0a680492164d9, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 22176f5cc2a2aec428f0a680492164d9, type: 3}
 --- !u!4 &2256272531527105670 stripped
 Transform:
@@ -2514,7 +2587,8 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 174.99995
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: -4736390146308883357, guid: 399e60674ea94ff42abdc12911b9de5f, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 399e60674ea94ff42abdc12911b9de5f, type: 3}
 --- !u!4 &6439311532247687399 stripped
 Transform:
@@ -2599,7 +2673,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Half Cube_light
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 9191821235559814980, guid: 75ef2abbcf733314dba53c37db5b9e13, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 75ef2abbcf733314dba53c37db5b9e13, type: 3}
 --- !u!4 &7488839203367607119 stripped
 Transform:
@@ -2684,7 +2759,8 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 175.00005
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3869210485167388988, guid: 22176f5cc2a2aec428f0a680492164d9, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 22176f5cc2a2aec428f0a680492164d9, type: 3}
 --- !u!4 &2256272531677594609 stripped
 Transform:
@@ -2769,7 +2845,8 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 174.99997
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: -4736390146308883357, guid: 399e60674ea94ff42abdc12911b9de5f, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 399e60674ea94ff42abdc12911b9de5f, type: 3}
 --- !u!4 &6439311532109734680 stripped
 Transform:
@@ -2849,7 +2926,8 @@ PrefabInstance:
       propertyPath: m_LocalScale.y
       value: 144.68
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4147838054988798106, guid: 9cccd15ece5df054b99e0fb0db493b3f, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 9cccd15ece5df054b99e0fb0db493b3f, type: 3}
 --- !u!4 &276836355458348371 stripped
 Transform:
@@ -2929,6 +3007,36 @@ PrefabInstance:
       propertyPath: m_LocalScale.y
       value: 144.68
       objectReference: {fileID: 0}
+    - target: {fileID: 4147838054988798106, guid: 9cccd15ece5df054b99e0fb0db493b3f,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 0.63461167
+      objectReference: {fileID: 0}
+    - target: {fileID: 4147838054988798106, guid: 9cccd15ece5df054b99e0fb0db493b3f,
+        type: 3}
+      propertyPath: m_Center.x
+      value: -0.2773059
+      objectReference: {fileID: 0}
+    - target: {fileID: 4147838054988798106, guid: 9cccd15ece5df054b99e0fb0db493b3f,
+        type: 3}
+      propertyPath: m_Center.z
+      value: 0.024322791
+      objectReference: {fileID: 0}
+    - target: {fileID: 4147838054988798106, guid: 9cccd15ece5df054b99e0fb0db493b3f,
+        type: 3}
+      propertyPath: m_Size.z
+      value: 0.04864555
+      objectReference: {fileID: 0}
+    - target: {fileID: 4147838054988798106, guid: 9cccd15ece5df054b99e0fb0db493b3f,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 0.044186518
+      objectReference: {fileID: 0}
+    - target: {fileID: 4147838054988798106, guid: 9cccd15ece5df054b99e0fb0db493b3f,
+        type: 3}
+      propertyPath: m_Center.y
+      value: -0.022093255
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9cccd15ece5df054b99e0fb0db493b3f, type: 3}
 --- !u!4 &276836355513479013 stripped
@@ -3004,7 +3112,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Big Cube_light
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7281937709885102161, guid: 7964b21bc11b8eb4c8fae32503aa1920, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 7964b21bc11b8eb4c8fae32503aa1920, type: 3}
 --- !u!4 &7396968904533382942 stripped
 Transform:
@@ -3089,7 +3198,8 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 175.00002
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3869210485167388988, guid: 22176f5cc2a2aec428f0a680492164d9, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 22176f5cc2a2aec428f0a680492164d9, type: 3}
 --- !u!4 &2256272531568900494 stripped
 Transform:
@@ -3163,6 +3273,26 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4147838054988798106, guid: 9cccd15ece5df054b99e0fb0db493b3f,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 0.6494057
+      objectReference: {fileID: 0}
+    - target: {fileID: 4147838054988798106, guid: 9cccd15ece5df054b99e0fb0db493b3f,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 0.040000018
+      objectReference: {fileID: 0}
+    - target: {fileID: 4147838054988798106, guid: 9cccd15ece5df054b99e0fb0db493b3f,
+        type: 3}
+      propertyPath: m_Size.z
+      value: 0.040000018
+      objectReference: {fileID: 0}
+    - target: {fileID: 4147838054988798106, guid: 9cccd15ece5df054b99e0fb0db493b3f,
+        type: 3}
+      propertyPath: m_Center.x
+      value: 0.32470286
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9cccd15ece5df054b99e0fb0db493b3f, type: 3}
@@ -3249,7 +3379,8 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 174.99997
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: -4736390146308883357, guid: 399e60674ea94ff42abdc12911b9de5f, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 399e60674ea94ff42abdc12911b9de5f, type: 3}
 --- !u!4 &6439311531971830040 stripped
 Transform:
@@ -3329,7 +3460,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Half Cylinder_dark2 (2)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: -58523357114164203, guid: b9c909d7e3f7d4447a1716fdbc302b45, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: b9c909d7e3f7d4447a1716fdbc302b45, type: 3}
 --- !u!4 &3991395920117806637 stripped
 Transform:
@@ -3419,7 +3551,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Half Cube_dark1 (5)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: -3683290175795068669, guid: a818da6f003476c4994c0a03b52440db, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: a818da6f003476c4994c0a03b52440db, type: 3}
 --- !u!4 &3449142903660711108 stripped
 Transform:
@@ -3509,7 +3642,8 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 174.99997
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: -4736390146308883357, guid: 399e60674ea94ff42abdc12911b9de5f, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 399e60674ea94ff42abdc12911b9de5f, type: 3}
 --- !u!4 &6439311531867006475 stripped
 Transform:
@@ -3584,7 +3718,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Triangle_dark1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 572114340928590802, guid: b8fe8318df5411943b6437984e7efd0e, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: b8fe8318df5411943b6437984e7efd0e, type: 3}
 --- !u!4 &7295011898390392654 stripped
 Transform:
@@ -3669,7 +3804,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Half Cylinder_dark2
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: -58523357114164203, guid: b9c909d7e3f7d4447a1716fdbc302b45, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: b9c909d7e3f7d4447a1716fdbc302b45, type: 3}
 --- !u!4 &3991395919929046080 stripped
 Transform:
@@ -3844,7 +3980,8 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 174.99995
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2791281316110967205, guid: 0ed84edaea22520459a2dc36949029c6, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 0ed84edaea22520459a2dc36949029c6, type: 3}
 --- !u!4 &2088278381051162551 stripped
 Transform:
@@ -3934,7 +4071,8 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 98.38502
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3869210485167388988, guid: 22176f5cc2a2aec428f0a680492164d9, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 22176f5cc2a2aec428f0a680492164d9, type: 3}
 --- !u!4 &2256272531973761554 stripped
 Transform:
@@ -4019,7 +4157,8 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 174.99997
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: -4736390146308883357, guid: 399e60674ea94ff42abdc12911b9de5f, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 399e60674ea94ff42abdc12911b9de5f, type: 3}
 --- !u!4 &6439311531494194082 stripped
 Transform:
@@ -4042,7 +4181,7 @@ PrefabInstance:
     - target: {fileID: 4147838054988798105, guid: 9cccd15ece5df054b99e0fb0db493b3f,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -30.82728
+      value: -30.79
       objectReference: {fileID: 0}
     - target: {fileID: 4147838054988798105, guid: 9cccd15ece5df054b99e0fb0db493b3f,
         type: 3}
@@ -4099,7 +4238,8 @@ PrefabInstance:
       propertyPath: m_LocalScale.y
       value: 144.68
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4147838054988798106, guid: 9cccd15ece5df054b99e0fb0db493b3f, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 9cccd15ece5df054b99e0fb0db493b3f, type: 3}
 --- !u!4 &276836355979567426 stripped
 Transform:
@@ -4189,7 +4329,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Half Cylinder_dark1 (4)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8145087613096248543, guid: 7fe92ec6bdc86364fa9803caffa21a91, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 7fe92ec6bdc86364fa9803caffa21a91, type: 3}
 --- !u!4 &8555587537665801487 stripped
 Transform:
@@ -4274,7 +4415,8 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 174.99997
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: -4736390146308883357, guid: 399e60674ea94ff42abdc12911b9de5f, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 399e60674ea94ff42abdc12911b9de5f, type: 3}
 --- !u!4 &6439311531458808432 stripped
 Transform:
@@ -4359,7 +4501,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Half Cube_dark1 (6)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: -3683290175795068669, guid: a818da6f003476c4994c0a03b52440db, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: a818da6f003476c4994c0a03b52440db, type: 3}
 --- !u!4 &3449142904259279418 stripped
 Transform:
@@ -4444,7 +4587,8 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 174.99995
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2791281316110967205, guid: 0ed84edaea22520459a2dc36949029c6, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 0ed84edaea22520459a2dc36949029c6, type: 3}
 --- !u!4 &2088278380742670601 stripped
 Transform:
@@ -4519,7 +4663,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4147838054988798106, guid: 9cccd15ece5df054b99e0fb0db493b3f, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 9cccd15ece5df054b99e0fb0db493b3f, type: 3}
 --- !u!4 &276836355839563678 stripped
 Transform:
@@ -4684,7 +4829,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4147838054988798106, guid: 9cccd15ece5df054b99e0fb0db493b3f, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 9cccd15ece5df054b99e0fb0db493b3f, type: 3}
 --- !u!4 &276836355763221335 stripped
 Transform:
@@ -4759,7 +4905,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Triangle_light
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4592247358674214808, guid: c4d2c354b5c586d48be352b4fef1ea69, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: c4d2c354b5c586d48be352b4fef1ea69, type: 3}
 --- !u!4 &7650067562252377666 stripped
 Transform:
@@ -4844,7 +4991,8 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 174.99995
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2791281316110967205, guid: 0ed84edaea22520459a2dc36949029c6, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 0ed84edaea22520459a2dc36949029c6, type: 3}
 --- !u!4 &2088278380888140507 stripped
 Transform:
