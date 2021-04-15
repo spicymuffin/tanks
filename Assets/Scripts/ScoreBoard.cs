@@ -88,7 +88,15 @@ public class ScoreBoard : MonoBehaviour
 
     public void SetDisplay(int rounds)
     {
-        counter.text = $"rounds remaining: {rounds.ToString()}";
+        counter.text = $"rounds remaining: {rounds}";
+    }
+
+    public void SetScores()
+    {
+        for (int i = 0; i < playerScores.Count; i++)
+        {
+            playerScores[i].scorePanel.SetScore(playerScores[i].score);
+        }
     }
 
     public IEnumerator IE_PlayAnim()
@@ -97,7 +105,6 @@ public class ScoreBoard : MonoBehaviour
         int max = playerScores[0].score;
         for (int i = 0; i < playerScores.Count; i++)
         {
-            playerScores[i].scorePanel.SetScore(playerScores[i].score);
             if (i == 0)
             {
                 playerScores[0].scorePanel.SetFill(1f);

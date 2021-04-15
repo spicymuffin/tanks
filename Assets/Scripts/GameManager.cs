@@ -108,6 +108,7 @@ public class GameManager : MonoBehaviour
     {
         //fucking slaves
         DontDestroyOnLoad(this.gameObject);
+        DontDestroyOnLoad(GameObject.FindGameObjectWithTag("EventSystem"));
     }
 
     void OnApplicationQuit()
@@ -233,6 +234,7 @@ public class GameManager : MonoBehaviour
         {
             scoreboard.Sort();
             scoreboard.SetDisplay(queue.Count);
+            scoreboard.SetScores();
             Time.timeScale = 0;
             yield return new WaitForSecondsRealtime(3f);
             ScoreboardUI.SetActive(true);

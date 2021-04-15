@@ -2,23 +2,23 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class TotalStatsManager : MonoBehaviour
 {
-    public int totalShots;
-    public int totalKills;
-    public int totalDeaths;
-    public Text shots;
-    public Text kills;
-    public Text deaths;
-    public void ShowStats()
+    public int shots;
+    public int kills;
+    public int deaths;
+    public TextMeshProUGUI shotsField;
+    public TextMeshProUGUI killsField;
+    public TextMeshProUGUI deathsField;
+    private void Awake()
     {
-        totalShots = PlayerPrefs.GetInt("totalShots");
-        totalKills = PlayerPrefs.GetInt("totalKills");
-        totalDeaths = PlayerPrefs.GetInt("totalDeaths");
-        shots.text = totalShots.ToString();
-        kills.text = totalKills.ToString();
-        deaths.text = totalDeaths.ToString();
-
+        shots = PlayerPrefs.GetInt("totalShots");
+        kills = PlayerPrefs.GetInt("totalKills");
+        deaths = PlayerPrefs.GetInt("totalDeaths");
+        shotsField.text = $"total shots: {shots}";
+        killsField.text = $"total kills: {kills}";
+        deathsField.text = $"total deaths: {deaths}";
     }
 }

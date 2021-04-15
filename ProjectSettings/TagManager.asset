@@ -23,6 +23,7 @@ TagManager:
   - Effects
   - Barrel
   - BoostPad
+  - EventSystem
   layers:
   - Default
   - TransparentFX
