@@ -99,7 +99,7 @@ LightmapSettings:
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 112000000, guid: dffbd95fff4bcea46a916863949af7de,
     type: 2}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -406,7 +406,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -68.1, y: 34.1}
+  m_AnchoredPosition: {x: 32.6, y: 78.7}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &36121616
@@ -3804,6 +3804,7 @@ GameObject:
   - component: {fileID: 601681403}
   - component: {fileID: 601681402}
   - component: {fileID: 601681404}
+  - component: {fileID: 601681406}
   - component: {fileID: 601681405}
   m_Layer: 0
   m_Name: ScoreBoardUI
@@ -3882,9 +3883,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   score: {fileID: 7523465448650426054, guid: 317c2bfda1dffc046a9c20d25b9458a3, type: 3}
   container: {fileID: 367319647}
-  anim: {fileID: 1518783557}
+  anim: {fileID: 601681405}
   counter: {fileID: 889586089}
---- !u!225 &601681405
+--- !u!111 &601681405
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 601681400}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 0}
+  m_Animations:
+  - {fileID: 7400000, guid: 65bc544a0d8a75348b9328902a43383e, type: 2}
+  - {fileID: 7400000, guid: 50717fa4bde7a8e4593839b693b0ea31, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 0
+  m_AnimatePhysics: 0
+  m_CullingType: 0
+--- !u!225 &601681406
 CanvasGroup:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -9049,7 +9067,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1408864147}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5324a627e16602344a9d6b1269b5690c, type: 3}
   m_Name: 
@@ -9639,7 +9657,6 @@ GameObject:
   - component: {fileID: 1518783554}
   - component: {fileID: 1518783556}
   - component: {fileID: 1518783555}
-  - component: {fileID: 1518783557}
   m_Layer: 0
   m_Name: strip
   m_TagString: Untagged
@@ -9705,23 +9722,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1518783553}
   m_CullTransparentMesh: 0
---- !u!111 &1518783557
-Animation:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1518783553}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Animation: {fileID: 0}
-  m_Animations:
-  - {fileID: 7400000, guid: 65bc544a0d8a75348b9328902a43383e, type: 2}
-  - {fileID: 7400000, guid: 50717fa4bde7a8e4593839b693b0ea31, type: 2}
-  m_WrapMode: 0
-  m_PlayAutomatically: 1
-  m_AnimatePhysics: 0
-  m_CullingType: 0
 --- !u!1 &1518908924
 GameObject:
   m_ObjectHideFlags: 0
@@ -9882,7 +9882,7 @@ MonoBehaviour:
   m_ChildAlignment: 0
   m_StartCorner: 0
   m_StartAxis: 0
-  m_CellSize: {x: 40, y: 30}
+  m_CellSize: {x: 25, y: 30}
   m_Spacing: {x: 3, y: 3}
   m_Constraint: 0
   m_ConstraintCount: 2

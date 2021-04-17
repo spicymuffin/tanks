@@ -8,6 +8,7 @@ public class ScorePanel : MonoBehaviour
 {
     public Image bar;
     public TextMeshProUGUI score;
+    public Image colorImage;
     public float fillSpeed = 0.75f;
     public float moveSpeed = 5f;
 
@@ -26,6 +27,11 @@ public class ScorePanel : MonoBehaviour
     public void MoveTo(Vector3 target)
     {
         StartCoroutine(IE_MoveTo(target));
+    }
+
+    public void SetColor(Color color)
+    {
+        colorImage.color = color;
     }
 
     public IEnumerator IE_MoveTo(Vector3 target)

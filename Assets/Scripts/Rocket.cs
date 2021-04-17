@@ -47,13 +47,14 @@ public class Rocket : MonoBehaviour
                     {                        
                         hitPlayer.BulletDie();
                         sender.kills++;
+                        Debug.LogError($"{sender.username} killed. {sender.kills}");
                     }
                 }
             }
 
             if (other.CompareTag("Shield"))
             {
-                if (other.transform.parent.GetComponent<ShieldScript>().player == sender)
+                if (other.transform.GetComponent<ShieldScript>().player == sender)
                 {
                     return;
                 }

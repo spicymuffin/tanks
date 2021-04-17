@@ -52,10 +52,12 @@ public class GameManager : MonoBehaviour
         GameManager GameManager;
         //for round-summary
         public List<Stats> playerStats = new List<Stats>();
+        public List<int> kills = new List<int>();
 
-        public void SetPlayerStats(int _id, Stats _stats)
+        public void SetPlayerStats(int _id, Stats _stats, int _kills)
         {
             playerStats[_id - 1] = _stats;
+            kills[_id - 1] = _kills;
             //PrintStatistic(_stats);
         }
         public void PrintStatistic(Stats _stats)
@@ -86,6 +88,7 @@ public class GameManager : MonoBehaviour
                 if (_client.connected == true)
                 {
                     playerStats.Add(new Stats());
+                    kills.Add(0);
                 }
             }
         }
@@ -182,12 +185,13 @@ public class GameManager : MonoBehaviour
     {
         currentRoundStats.CollectPlayerStats();
         matchStats.Add(currentRoundStats);
-        winner.score++;
+        winner.score += 2;
 
         List<int> scores = new List<int>();
-        foreach (Client client in clients)
+        for (int i = 0; i < clients.Count; i++)
         {
-            scores.Add(client.score);
+            clients[i].score += currentRoundStats.kills[i];
+            scores.Add(clients[i].score);
         }
 
         scoreboard.PassScores(scores);
@@ -240,7 +244,7 @@ public class GameManager : MonoBehaviour
             ScoreboardUI.SetActive(true);
             PlayerUI.SetActive(false);
             scoreboard.anim.Play("endround");
-            yield return new WaitForSecondsRealtime(0.4f);
+            yield return new WaitForSecondsRealtime(0.8f);
             StartCoroutine(LoadNextLevel());
             Time.timeScale = 1;
             ClearPlayerUI();
@@ -255,7 +259,7 @@ public class GameManager : MonoBehaviour
             yield return new WaitForSecondsRealtime(4f);
             StartRound();
             scoreboard.anim.Play("startround");
-            yield return new WaitForSeconds(0.4f);
+            yield return new WaitForSecondsRealtime(0.4f);
             ScoreboardUI.SetActive(false);
             scoreboard.ResetFills();
         }
@@ -264,7 +268,7 @@ public class GameManager : MonoBehaviour
             //screen fade effect...?
             //start endgame
             Time.timeScale = 0;
-            yield return new WaitForSeconds(3f);
+            yield return new WaitForSecondsRealtime(3f);
             ScoreboardUI.SetActive(true);
             PlayerUI.SetActive(false);
             scoreboard.anim.Play("endround");
