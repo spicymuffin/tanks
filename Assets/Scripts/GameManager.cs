@@ -9,6 +9,7 @@ using TMPro;
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
+    public AudioSource endGameSound;
     List<Level> queue;
     LevelConfig LevelConfig;
 
@@ -113,6 +114,7 @@ public class GameManager : MonoBehaviour
     void OnApplicationQuit()
     {
         Debug.Log("Application ending after " + Time.time + " seconds");
+        endGameSound.Play();
         ServerSend.DisconnectAll();
     }
 
