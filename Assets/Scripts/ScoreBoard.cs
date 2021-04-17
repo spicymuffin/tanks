@@ -49,7 +49,6 @@ public class ScoreBoard : MonoBehaviour
         {
             startPositions.Add(child.position);
         }
-        Debug.Log(clients.Count);
         for (int i = 0; i < clients.Count; i++)
         {
             GameObject instance = Instantiate(score, container);
@@ -62,6 +61,7 @@ public class ScoreBoard : MonoBehaviour
             pscr.panel = instance;
             pscr.scorePanel = instance.GetComponent<ScorePanel>();
             playerScores.Add(pscr);
+            pscr.scorePanel.SetColor(clients[i].color);
         }
     }
 
@@ -88,7 +88,15 @@ public class ScoreBoard : MonoBehaviour
 
     public void SetDisplay(int rounds)
     {
-        counter.text = $"rounds remaining: {rounds.ToString()}";
+        counter.text = $"rounds remaining: {rounds}";
+    }
+
+    public void SetScores()
+    {
+        for (int i = 0; i < playerScores.Count; i++)
+        {
+            playerScores[i].scorePanel.SetScore(playerScores[i].score);
+        }
     }
 
     public IEnumerator IE_PlayAnim()
@@ -96,8 +104,7 @@ public class ScoreBoard : MonoBehaviour
         Debug.Log("playing..");
         int max = playerScores[0].score;
         for (int i = 0; i < playerScores.Count; i++)
-        {
-            playerScores[i].scorePanel.SetScore(playerScores[i].score);
+        {   
             if (i == 0)
             {
                 playerScores[0].scorePanel.SetFill(1f);

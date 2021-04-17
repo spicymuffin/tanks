@@ -682,12 +682,13 @@ public class Player : MonoBehaviour
     public void SendStats()
     {
         Stats myStats = new Stats(shots, closeCalls, ADTotal, kills, deaths, shieldBlocks, landminesCreated, landmineKills, myClient);
-        GameManager.instance.currentRoundStats.SetPlayerStats(id, myStats);
-        lol();
+        GameManager.instance.currentRoundStats.SetPlayerStats(id, myStats, kills);
+        print(kills);
+        SendTotalStats();
     }
 
 
-    public void lol()
+    public void SendTotalStats()
     {
         PlayerPrefs.SetInt("totalShots", PlayerPrefs.GetInt("totalShots") + shots);
         PlayerPrefs.SetInt("totalKills", PlayerPrefs.GetInt("totalKills") + kills) ;

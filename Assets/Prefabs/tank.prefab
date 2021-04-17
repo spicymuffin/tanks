@@ -995,7 +995,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4442526835109823782}
   - component: {fileID: 6085281038405457956}
-  - component: {fileID: 7798842122228479098}
   m_Layer: 10
   m_Name: head
   m_TagString: Player
@@ -1030,22 +1029,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.34, y: 0.82, z: 1.34}
+  m_Size: {x: 1.7, y: 0.82, z: 1.7}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!136 &7798842122228479098
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4442526835109823783}
-  m_Material: {fileID: 13400000, guid: b624b8fecb9da9e48bf4726f1fb7a9af, type: 2}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.25
-  m_Height: 1.58
-  m_Direction: 2
-  m_Center: {x: 0, y: 0, z: -1.41}
 --- !u!1 &5079074627377981978
 GameObject:
   m_ObjectHideFlags: 0
@@ -1219,7 +1204,6 @@ GameObject:
   - component: {fileID: 4197390466701862207}
   - component: {fileID: 7963815163377166584}
   - component: {fileID: 8359849424719688461}
-  - component: {fileID: 1771370908870397734}
   m_Layer: 0
   m_Name: tank
   m_TagString: Player
@@ -1303,6 +1287,9 @@ MonoBehaviour:
   shieldBlocks: 0
   landminesCreated: 0
   landmineKills: 0
+  totalShots: 0
+  totalKills: 0
+  totalDeaths: 0
   nameDisplay: {fileID: 8287121290753475450}
   Rocket: {fileID: 5094415894566393892, guid: a24145628edefac498a26e4acb1e2f92, type: 3}
   RicRocket: {fileID: 3577377323879430604, guid: c04139b9a72491d4691d1e69a5614e31,
@@ -1549,22 +1536,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3dc93d731f5d474c99fe54ece48a219, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!111 &1771370908870397734
-Animation:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5658468951768548697}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Animation: {fileID: 7400000, guid: 17e91c00445d40b46838e88ec60bfc32, type: 2}
-  m_Animations:
-  - {fileID: 7400000, guid: 17e91c00445d40b46838e88ec60bfc32, type: 2}
-  m_WrapMode: 0
-  m_PlayAutomatically: 1
-  m_AnimatePhysics: 0
-  m_CullingType: 0
 --- !u!1 &5751235751690014087
 GameObject:
   m_ObjectHideFlags: 0
@@ -1589,7 +1560,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5751235751690014087}
   m_LocalRotation: {x: 0, y: -1, z: 0, w: 0}
-  m_LocalPosition: {x: 0, y: 0, z: -2.9}
+  m_LocalPosition: {x: 0, y: 0, z: -2.391}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4442526835109823782}
