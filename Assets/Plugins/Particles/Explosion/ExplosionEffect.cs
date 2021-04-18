@@ -12,7 +12,7 @@ public class ExplosionEffect : MonoBehaviour
 
     private void Awake()
     {
-        transform.parent = LevelConfig.instance.effects;
+        //transform.parent = LevelConfig.instance.effects;
         primary.Play();
         secondary.Play();
         smoke.Play();

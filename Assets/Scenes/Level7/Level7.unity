@@ -99,7 +99,7 @@ LightmapSettings:
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 112000000, guid: 5f0f6d4998f3d0a4aa2d514ccf4fae7b,
     type: 2}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -538,10 +538,20 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 828839323250154936, guid: 58da2ce79d2aa2443bde9b88ae7b54f8,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 0.004943243
+      objectReference: {fileID: 0}
+    - target: {fileID: 828839323250154936, guid: 58da2ce79d2aa2443bde9b88ae7b54f8,
+        type: 3}
+      propertyPath: m_Center.y
+      value: -0.0024716188
+      objectReference: {fileID: 0}
     - target: {fileID: 828839323647180424, guid: 58da2ce79d2aa2443bde9b88ae7b54f8,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -33.87
+      value: -33.89
       objectReference: {fileID: 0}
     - target: {fileID: 828839323931281754, guid: 58da2ce79d2aa2443bde9b88ae7b54f8,
         type: 3}
@@ -551,7 +561,7 @@ PrefabInstance:
     - target: {fileID: 828839324554740408, guid: 58da2ce79d2aa2443bde9b88ae7b54f8,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -30.36
+      value: -30.38
       objectReference: {fileID: 0}
     - target: {fileID: 2314823372375211443, guid: 58da2ce79d2aa2443bde9b88ae7b54f8,
         type: 3}
@@ -582,6 +592,31 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalPosition.z
       value: -8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5957551076313563330, guid: 58da2ce79d2aa2443bde9b88ae7b54f8,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 0.006615379
+      objectReference: {fileID: 0}
+    - target: {fileID: 5957551076313563330, guid: 58da2ce79d2aa2443bde9b88ae7b54f8,
+        type: 3}
+      propertyPath: m_Center.y
+      value: -0.01959137
+      objectReference: {fileID: 0}
+    - target: {fileID: 7052193303148378805, guid: 58da2ce79d2aa2443bde9b88ae7b54f8,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 0.008641335
+      objectReference: {fileID: 0}
+    - target: {fileID: 7052193303148378805, guid: 58da2ce79d2aa2443bde9b88ae7b54f8,
+        type: 3}
+      propertyPath: m_Center.x
+      value: 0.015679331
+      objectReference: {fileID: 0}
+    - target: {fileID: 7052193303148378805, guid: 58da2ce79d2aa2443bde9b88ae7b54f8,
+        type: 3}
+      propertyPath: m_Center.y
+      value: 0.057873417
       objectReference: {fileID: 0}
     - target: {fileID: 8712213052339180735, guid: 58da2ce79d2aa2443bde9b88ae7b54f8,
         type: 3}

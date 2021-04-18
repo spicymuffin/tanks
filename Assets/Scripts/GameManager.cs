@@ -9,6 +9,9 @@ using TMPro;
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
+    public AudioSource audioSource;
+    public AudioClip endRoundSound;
+    public AudioClip endGameSound;
     List<Level> queue;
     LevelConfig LevelConfig;
 
@@ -233,6 +236,7 @@ public class GameManager : MonoBehaviour
             Time.timeScale = 1;
             yield return new WaitForSecondsRealtime(0.25f);
             scoreboard.PlayAnim();
+            audioSource.PlayOneShot(endRoundSound);
             yield return new WaitForSecondsRealtime(4f);
             StartRound();
             Time.timeScale = 0;
@@ -265,6 +269,8 @@ public class GameManager : MonoBehaviour
                 print("null");
             }
             StatScreen.instance.PassStats(playerStats, match, clients);
+            audioSource.PlayOneShot(endGameSound);
+
         }
     }
 
