@@ -37,6 +37,17 @@ public class ShieldScript : MonoBehaviour
             cr = StartCoroutine(LerpRadius());
         }
     }
+
+    public void HitEffect(Vector3 position)
+    {
+        material.SetVector("Vector3_CENTER", transform.InverseTransformPoint(position));
+        material.SetFloat("Vector1_RADIUS", initialRadius);
+        if (cr != null)
+        {
+            StopCoroutine(cr);
+        }
+        cr = StartCoroutine(LerpRadius());
+    }
     private void Awake()
     {
         material = mr.material;

@@ -13,7 +13,7 @@ Material:
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 1
+  m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
   stringTagMap: {}
   disabledShaderPasses: []
@@ -26,24 +26,20 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - Boolean_88C0E6EB: 1
-    - Vector1_11A8D6C0: 6.17
-    - Vector1_11EF29D: 1.05
     - Vector1_262A0C90: 1.07
-    - Vector1_2DCDB8BB: 2
+    - Vector1_2DCDB8BB: 5
     - Vector1_4C654E56: 0.15
-    - Vector1_6357F117: 0.84
+    - Vector1_6357F117: 0.85
     - Vector1_7DF45629: 0.5
     - Vector1_C4E2A87C: 3.01
-    - Vector1_D774936A: -1.94
-    - Vector1_DSSLV: 1.1
+    - Vector1_DSSLV: 1.2
     - Vector1_F588D58A: 0.75
-    - Vector1_F8985F3C: 3.05
-    - Vector1_RADIUS: 0.5
+    - Vector1_F8985F3C: 4
+    - Vector1_RADIUS: 0
     m_Colors:
     - Color_2A860DA3: {r: 0.4464631, g: 1, b: 0, a: 0}
-    - Color_2DFD89C3: {r: 0, g: 1, b: 0.04726863, a: 0}
-    - Color_81CACF30: {r: 0.47910014, g: 0.0039215684, b: 1, a: 1}
-    - Color_D91D3ADE: {r: 1, g: 0.8183497, b: 0, a: 1}
+    - Color_81CACF30: {r: 0.5764706, g: 0.003921569, b: 1, a: 1}
+    - Color_D91D3ADE: {r: 1, g: 0.8666667, b: 0, a: 1}
     - Vector3_CENTER: {r: 0, g: 0, b: 0, a: 0}
 --- !u!114 &2117130152383140989
 MonoBehaviour:

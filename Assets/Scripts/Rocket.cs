@@ -47,7 +47,7 @@ public class Rocket : MonoBehaviour
                     {                        
                         hitPlayer.BulletDie();
                         sender.kills++;
-                        Debug.LogError($"{sender.username} killed. {sender.kills}");
+                        Debug.LogError($"{sender.username} killed: {sender.kills}");
                     }
                 }
             }
