@@ -42,8 +42,8 @@ public class ExplosiveBarrel : MonoBehaviour
     {
         Player player;
         GameObject instance = Instantiate(explosionSound);
-        instance.transform.parent = LevelConfig.instance.effects;
-        CameraController.instance.Shake();
+        //instance.transform.parent = LevelConfig.instance.effects;
+        //CameraController.instance.Shake();
         Instantiate(explosionEffect, transform.position, Quaternion.identity);
         Collider[] overlappedColliders = Physics.OverlapSphere(transform.position, radius, ~ignoreExplosion);
         for (int i = 0; i < overlappedColliders.Length; i++)
