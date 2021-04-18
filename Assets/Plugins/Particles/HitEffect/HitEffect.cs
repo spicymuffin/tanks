@@ -10,7 +10,7 @@ public class HitEffect : MonoBehaviour
 
     private void Awake()
     {
-        transform.parent = LevelConfig.instance.effects;
+        //transform.parent = LevelConfig.instance.effects;
         smoke.Play();
         flames.Play();
         smallbois.Play();

@@ -1876,6 +1876,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Border
       objectReference: {fileID: 0}
+    - target: {fileID: 3449142902576853550, guid: 9f0e1dd0b9d852e42a9b2f8a6d5cf6c0,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -40
+      objectReference: {fileID: 0}
     - target: {fileID: 4029428451302644234, guid: 9f0e1dd0b9d852e42a9b2f8a6d5cf6c0,
         type: 3}
       propertyPath: m_LocalPosition.x
