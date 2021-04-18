@@ -662,18 +662,18 @@ public class Player : MonoBehaviour
 
     public void PlayTakeAnimation()
     {
-        int rnd = UnityEngine.Random.Range(0, 101);
+        int rnd = UnityEngine.Random.Range(1, 101);
         string anim = "";
 
         if (rnd == 100)
         {
             anim = takeADs[0];
         }
-        else if (rnd <= 75)
+        else if (rnd <= 60)
         {
             anim = takeADs[4];
         }
-        else if (rnd <= 90)
+        else if (rnd <= 80)
         {
             anim = takeADs[1];
         }
@@ -683,7 +683,7 @@ public class Player : MonoBehaviour
         }
         else
         {
-            anim = takeADs[1];
+            anim = takeADs[2];
         }
 
         ADanimation.Play(anim);
@@ -697,7 +697,7 @@ public class Player : MonoBehaviour
     public void GiveAirdrop(string _type, GameObject _airdrop)
     {
         ADprgbar.fillAmount = 1f;
-        int rnd = UnityEngine.Random.Range(0, 101);
+        int rnd = UnityEngine.Random.Range(1, 101);
         string anim = "";
         print(rnd);
 
@@ -705,11 +705,11 @@ public class Player : MonoBehaviour
         {
             anim = giveADs[0];
         }
-        else if (rnd <= 75)
+        else if (rnd <= 60)
         {
             anim = giveADs[4];
         }
-        else if (rnd <= 90)
+        else if (rnd <= 80)
         {
             anim = giveADs[1];
         }
@@ -719,7 +719,7 @@ public class Player : MonoBehaviour
         }
         else
         {
-            anim = giveADs[1];
+            anim = giveADs[2];
         }
 
         ADTotal++;

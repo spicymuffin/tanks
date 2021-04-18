@@ -37,7 +37,7 @@ public class LevelDebugger : MonoBehaviour
             if (_client.connected == true && _client.player == null)
             {
                 _client.SendIntoGame(spawnpoints[index]);
-                _client.player.StartUpUI(playerUISpawnPoints[index]);
+                _client.player.StartUpUI();
                 _client.player.myClient = _client;
                 index++;
             }
