@@ -24,8 +24,6 @@ public class GameManager : MonoBehaviour
     [Header("UI")]
     public GameObject ScoreboardUI;
     public ScoreBoard scoreboard;
-    public GameObject PlayerUI;
-    public List<GameObject> playerUISpawnPoints = new List<GameObject>();
     public GameObject PauseUI;
 
     [Header("Prefabs")]
@@ -48,7 +46,7 @@ public class GameManager : MonoBehaviour
     public List<PlayerColor> colors = new List<PlayerColor>();
 
     [Header("Assignables")]
-    public Image curtain;
+    public Animation curtain;
 
     public class RoundStats
     {
@@ -57,11 +55,11 @@ public class GameManager : MonoBehaviour
         public List<Stats> playerStats = new List<Stats>();
         public List<int> kills = new List<int>();
 
-        public void SetPlayerStats(int _id, Stats _stats, int _kills)
+        public void SetPlayerStats(int _id, Stats _stats)
         {
             playerStats[_id - 1] = _stats;
-            kills[_id - 1] = _kills;
-            //PrintStatistic(_stats);
+            kills[_id - 1] = _stats.kills + _stats.landmineKills;
+            PrintStatistic(_stats);
         }
         public void PrintStatistic(Stats _stats)
         {
@@ -129,21 +127,6 @@ public class GameManager : MonoBehaviour
     }
 
     #region UI
-    public void ClearPlayerUI()
-    {
-        foreach (GameObject panel in playerUISpawnPoints)
-        {
-            try
-            {
-                Destroy(panel.transform.GetChild(0).gameObject);
-            }
-            catch
-            {
-
-            }
-        }
-    }
-
     #endregion
     #region Match
     public void StartMatch()
@@ -159,6 +142,7 @@ public class GameManager : MonoBehaviour
     }
     IEnumerator LoadAndStartFirstLevel(SceneField _scene)
     {
+        curtain.Play("startround");
         AsyncOperation asyncLoadLevel = SceneManager.LoadSceneAsync(_scene, LoadSceneMode.Single);
         while (!asyncLoadLevel.isDone)
         {
@@ -180,26 +164,12 @@ public class GameManager : MonoBehaviour
     {
         currentRoundStats = new RoundStats(this);
         Spawn();
-        PlayerUI.SetActive(true);
     }
 
     //TODO: add kill rewards
     public void EndRound(Client winner)
     {
-        currentRoundStats.CollectPlayerStats();
-        matchStats.Add(currentRoundStats);
-        winner.score += 2;
-
-        List<int> scores = new List<int>();
-        for (int i = 0; i < clients.Count; i++)
-        {
-            clients[i].score += currentRoundStats.kills[i];
-            scores.Add(clients[i].score);
-        }
-
-        scoreboard.PassScores(scores);
-
-        StartCoroutine(ShowRoundEndScreen());
+        StartCoroutine(ShowRoundEndScreen(winner));
     }
     public void LoadLevelData()
     {
@@ -225,7 +195,7 @@ public class GameManager : MonoBehaviour
             if (_client.connected == true && _client.player == null)
             {
                 _client.SendIntoGame(spawnpoints[index]);
-                _client.player.StartUpUI(playerUISpawnPoints[index]);
+                _client.player.StartUpUI();
                 _client.player.myClient = _client;
                 _client.player.SetMaterial(_client.material);
                 playersAlive.Add(_client.player);
@@ -234,9 +204,24 @@ public class GameManager : MonoBehaviour
             }
         }
     }
-    public IEnumerator ShowRoundEndScreen()
+    public IEnumerator ShowRoundEndScreen(Client winner)
     {
         Debug.Log("Ending round...");
+        yield return new WaitForEndOfFrame();
+        yield return new WaitForEndOfFrame();
+        currentRoundStats.CollectPlayerStats();
+        matchStats.Add(currentRoundStats);
+        winner.score += 2;
+
+        List<int> scores = new List<int>();
+        for (int i = 0; i < clients.Count; i++)
+        {
+            clients[i].score += currentRoundStats.kills[i];
+            scores.Add(clients[i].score);
+        }
+
+        scoreboard.PassScores(scores);
+
         if (!lastRound)
         {
             scoreboard.Sort();
@@ -245,27 +230,22 @@ public class GameManager : MonoBehaviour
             Time.timeScale = 0;
             yield return new WaitForSecondsRealtime(3f);
             ScoreboardUI.SetActive(true);
-            PlayerUI.SetActive(false);
             scoreboard.anim.Play("endround");
             yield return new WaitForSecondsRealtime(0.8f);
             StartCoroutine(LoadNextLevel());
             Time.timeScale = 1;
-            ClearPlayerUI();
-            List<int> scores = new List<int>();
-            foreach(Client client in clients)
-            {
-                scores.Add(client.score);
-            }
-            scoreboard.PassScores(scores);
             yield return new WaitForSecondsRealtime(0.25f);
             scoreboard.PlayAnim();
             audioSource.PlayOneShot(endRoundSound);
             yield return new WaitForSecondsRealtime(4f);
             StartRound();
+            Time.timeScale = 0;
             scoreboard.anim.Play("startround");
             yield return new WaitForSecondsRealtime(0.4f);
             ScoreboardUI.SetActive(false);
             scoreboard.ResetFills();
+            yield return new WaitForSecondsRealtime(3f);
+            Time.timeScale = 1;
         }
         else
         {
@@ -274,11 +254,9 @@ public class GameManager : MonoBehaviour
             Time.timeScale = 0;
             yield return new WaitForSecondsRealtime(3f);
             ScoreboardUI.SetActive(true);
-            PlayerUI.SetActive(false);
             scoreboard.anim.Play("endround");
             yield return new WaitForSecondsRealtime(0.4f);
             StartCoroutine(LoadLevel(winScene));
-            ClearPlayerUI();
             ParseStats();
             while (isLoading)
             {
@@ -293,45 +271,6 @@ public class GameManager : MonoBehaviour
             StatScreen.instance.PassStats(playerStats, match, clients);
             audioSource.PlayOneShot(endGameSound);
 
-        }
-    }
-
-    public IEnumerator FadeCurtain(float speed = -1)
-    {
-        while (curtain.color.a >= 0 && curtain.color.a <= 1)
-        {
-            float alpha = curtain.color.a;
-            float red = curtain.color.r;
-            float grn = curtain.color.g;
-            float blu = curtain.color.b;
-
-            Color color = new Color(red, grn, blu, alpha + speed * Time.deltaTime);
-            curtain.color = color;
-            yield return null;
-        }
-
-        curtain.color = new Color(curtain.color.r, curtain.color.g, curtain.color.b, (int)curtain.color.a);
-    }
-
-    Coroutine fade;
-    public void FadeFlip()
-    {
-        if (Mathf.Round(curtain.color.a) == 0)
-        {
-            if (fade != null)
-            {
-                StopCoroutine(fade);
-            }
-            fade = StartCoroutine(FadeCurtain(1.5f));
-        }
-
-        if (Mathf.Round(curtain.color.a) == 1)
-        {
-            if (fade != null)
-            {
-                StopCoroutine(fade);
-            }
-            fade = StartCoroutine(FadeCurtain(-1.5f));
         }
     }
 

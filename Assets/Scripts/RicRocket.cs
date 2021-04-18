@@ -82,6 +82,7 @@ public class RicRocket : MonoBehaviour
             if (hit.collider.CompareTag("Shield"))
             {
                 hit.collider.GetComponent<ShieldScript>().player.shieldBlocks++;
+                hit.collider.GetComponent<ShieldScript>().HitEffect(hit.point);
             }
             if (flag)
             {

@@ -57,7 +57,7 @@ public class Player : MonoBehaviour
     #region Fire
     [Header("Fire")]
     public float maxBulletDeviationAngle = 1.00f;
-    public const int MAX_ROCKETS = 10;
+    public const int MAX_ROCKETS = 7;
     public float reloadTime = 0.6f;
     public float headRotationSpeed = 0.15f;
     public float coolDownTime = 0.5f;
@@ -66,14 +66,6 @@ public class Player : MonoBehaviour
     int currentRockets = MAX_ROCKETS;
     bool isReloading = false;
     bool isCoolingDown = false;
-    #endregion
-    #region UIPanel
-    GameObject myUIPanel;
-    TextMeshProUGUI myUINameDisplay;
-    Image myUIStaminaBar;
-    GameObject myUIRocketPanel;
-    GameObject myUIItemPanel;
-    GameObject currentItemIcon;
     #endregion
     #region Airdrop logic
     bool hasItem = false;
@@ -99,17 +91,28 @@ public class Player : MonoBehaviour
 
         public override void Use()
         {
-            Destroy(player.currentItemIcon);
             player.StartCoroutine(Countdown());
-            player.hasItem = false;
-            player.currentItem = null;
         }
 
         IEnumerator Countdown()
         {
+            player.ADrunning = true;
             player.infBullets = true;
-            yield return new WaitForSeconds(time);
+            float t = 0.0f;
+            float start = 1;
+            float end = 0;
+            while (t < time)
+            {
+                t += Time.deltaTime;
+                player.ADprgbar.fillAmount = Mathf.Lerp(start, end, t / time);
+                yield return null;
+            }
+            player.PlayTakeAnimation();
             player.infBullets = false;
+            player.hasItem = false;
+            player.currentItem = null;
+            Destroy(player.currentItemIcon);
+            player.ADrunning = false;
         }
     }
 
@@ -126,36 +129,38 @@ public class Player : MonoBehaviour
 
         public override void Use()
         {
-            Destroy(player.currentItemIcon);
             player.StartCoroutine(Countdown());
-            player.hasItem = false;
-            player.currentItem = null;
         }
 
         IEnumerator Countdown()
         {
+            player.ADrunning = true;
             player.isShielded = true;
-            int a = UnityEngine.Random.Range(1, 3);
-            GameObject shield;
-            if (a == 1)
-            {
-                shield = Instantiate(player.shieldV1, player.shieldPos.position, Quaternion.identity);
-            }
-            else
-            {
-                shield = Instantiate(player.shieldV2, player.shieldPos.position, Quaternion.identity);
-            }
+            GameObject shield = Instantiate(player.shieldV1, player.shieldPos.position, Quaternion.identity);
             ShieldScript ss = shield.GetComponent<ShieldScript>();
             ss.player = player;
             ss.Appear();
             yield return new WaitForSeconds(ss.ADuration);
             shield.GetComponent<SphereCollider>().enabled = true;
-            yield return new WaitForSeconds(time);
+            float t = 0.0f;
+            float start = 1;
+            float end = 0;
+            while (t < time)
+            {
+                t += Time.deltaTime;
+                player.ADprgbar.fillAmount = Mathf.Lerp(start, end, t / time);
+                yield return null;
+            }
             shield.GetComponent<SphereCollider>().enabled = false;
             ss.Disappear();
             yield return new WaitForSeconds(ss.ADuration);
             Destroy(shield);
+            player.PlayTakeAnimation();
             player.isShielded = false;
+            player.hasItem = false;
+            player.currentItem = null;
+            Destroy(player.currentItemIcon);
+            player.ADrunning = false;
         }
     }
 
@@ -163,12 +168,14 @@ public class Player : MonoBehaviour
     {
         public LandmineADC adc;
         public int count;
+        public float dec;
         public Landmine(int _count, Player _player)
         {
             player = _player;
             count = _count;
             player.currentItem = this;
             player.hasItem = true;
+            dec = 1 / (float)count;
         }
 
         public override void Use()
@@ -176,18 +183,20 @@ public class Player : MonoBehaviour
             Destroy(player.currentItemIcon);
             if (count != 1)
             {
-                player.currentItemIcon = Instantiate(adc.icon[count - 2], player.myUIItemPanel.transform);
+                player.currentItemIcon = Instantiate(adc.icon[count - 2], player.ADslot.transform);
             }
             else
             {
-                player.currentItemIcon = Instantiate(adc.icon[0], player.myUIItemPanel.transform);
+                player.currentItemIcon = Instantiate(adc.icon[0], player.ADslot.transform);
             }
 
             GameObject landmine = Instantiate(player.landmine, player.transform.position, Quaternion.identity);
             landmine.GetComponent<LandmineScript>().creator = player;
             count--;
+            player.ADprgbar.fillAmount = dec * count;
             if (count == 0)
             {
+                player.PlayTakeAnimation();
                 player.hasItem = false;
                 player.currentItem = null;
                 Destroy(player.currentItemIcon);
@@ -209,23 +218,35 @@ public class Player : MonoBehaviour
 
         public override void Use()
         {
-            Destroy(player.currentItemIcon);
             player.StartCoroutine(Countdown());
-            player.hasItem = false;
-            player.currentItem = null;
         }
 
         IEnumerator Countdown()
         {
+            player.ADrunning = true;
             player.isRicochet = true;
-            yield return new WaitForSeconds(time);
+            float t = 0.0f;
+            float start = 1;
+            float end = 0;
+            while (t < time)
+            {
+                t += Time.deltaTime;
+                player.ADprgbar.fillAmount = Mathf.Lerp(start, end, t / time);
+                yield return null;
+            }
+            player.PlayTakeAnimation();
             player.isRicochet = false;
+            player.hasItem = false;
+            player.currentItem = null;
+            Destroy(player.currentItemIcon);
+            player.ADrunning = false;
         }
     }
 
     public bool isRicochet = false;
     public bool infBullets = false;
     public bool isShielded = false;
+    public bool ADrunning = false;
 
     #endregion
     #region Stats
@@ -242,9 +263,16 @@ public class Player : MonoBehaviour
     public int totalKills = 0;
     public int totalDeaths = 0;
     #endregion
-    #region NameDisplay
-    [Header("Name display")]
+    #region Display
+    [Header("Display")]
+    public Image staminabar;
+    public Image rocketIcon;
+    public Transform rocketTray;
+    public Transform ADslot;
     public TextMeshProUGUI nameDisplay;
+    public Image ADprgbar;
+    public Animation ADanimation;
+    GameObject currentItemIcon;
     #endregion
     #region State
     private bool dead = false;
@@ -255,12 +283,9 @@ public class Player : MonoBehaviour
     public GameObject Rocket;
     public GameObject RicRocket;
     public GameObject shieldV1;
-    public GameObject shieldV2;
     public GameObject landmine;
     public Transform tip;
     public Transform shieldPos;
-    public Image rocketIcon;
-    public GameObject UIPanel;
     public GameObject explosionEffect;
     public Transform head;
     public Transform canvas;
@@ -276,6 +301,10 @@ public class Player : MonoBehaviour
     public AudioClip pickUpAirDropSound;
     public AudioClip usingAirDropSound;
     public AudioClip pickUpAirDropCancelSound;
+    #endregion
+    #region Animations
+    List<string> giveADs = new List<string>() { "giveAD0", "giveAD1", "giveAD2", "giveAD3", "giveAD4" };
+    List<string> takeADs = new List<string>() { "takeAD0", "takeAD1", "takeAD2", "takeAD3", "takeAD4" };
     #endregion
 
     #region Startup Functions
@@ -345,7 +374,7 @@ public class Player : MonoBehaviour
     {
         if (currentRockets != 0)
         {
-            if (isReloading)
+            if (isReloading && !infBullets)
             {
                 StopCoroutine(reloadCoroutine);
                 reloadCoroutine = StartCoroutine(Reload());
@@ -410,19 +439,13 @@ public class Player : MonoBehaviour
     /// Start up UI
     /// </summary>
     /// <param name="_panelPosGameObject"></param>
-    public void StartUpUI(GameObject _panelPosGameObject)
+    public void StartUpUI()
     {
-        myUIPanel = Instantiate(UIPanel, _panelPosGameObject.transform);
-        myUINameDisplay = myUIPanel.transform.FindObjectsWithTag("UIName")[0].GetComponent<TextMeshProUGUI>();
-        myUIStaminaBar = myUIPanel.transform.FindObjectsWithTag("UIStamina")[0].GetComponent<Image>();
-        myUIRocketPanel = myUIPanel.transform.FindObjectsWithTag("UIBullet")[0];
-        myUIItemPanel = myUIPanel.transform.FindObjectsWithTag("UIItem")[0];
-        myUINameDisplay.text = username;
         nameDisplay.text = username;
         //Start bulllets
         for (int i = 0; i < MAX_ROCKETS; i++)
         {
-            rockets.Add(Instantiate(rocketIcon, myUIRocketPanel.transform));
+            rockets.Add(Instantiate(rocketIcon, rocketTray.transform));
         }
     }
     /// <summary>
@@ -430,9 +453,9 @@ public class Player : MonoBehaviour
     /// </summary>
     private void UpdateUI()
     {
-        if (myUIStaminaBar != null)
+        if (staminabar != null)
         {
-            myUIStaminaBar.fillAmount = sprintStamina;
+            staminabar.fillAmount = sprintStamina;
         }
     }
     #endregion
@@ -485,7 +508,7 @@ public class Player : MonoBehaviour
     /// </summary>
     private void Use()
     {
-        if (use && hasItem)
+        if (use && hasItem && !ADrunning)
         {
             playerSound.PlayOneShot(usingAirDropSound);
             currentItem.Use();
@@ -567,10 +590,14 @@ public class Player : MonoBehaviour
             hullTargetAngle = Mathf.Atan2(input.MH, input.MV) * Mathf.Rad2Deg;
             Quaternion prevRot = head.rotation;
             transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(0, hullTargetAngle, 0), hullRotationSpeed);
-            head.rotation = prevRot;    
+            head.rotation = prevRot;
             if (rb.velocity.magnitude < maxVelocity * magnitude)
             {
                 rb.AddForce(transform.forward * acceleration);
+            }
+            if (rb.velocity.magnitude > maxVelocity)
+            {
+                rb.velocity *= 0.97f;
             }
         }
     }
@@ -608,6 +635,8 @@ public class Player : MonoBehaviour
         instance.transform.parent = LevelConfig.instance.effects;
         instance = Instantiate(explosionSound, transform.position, Quaternion.identity);
         instance.transform.parent = LevelConfig.instance.effects;
+        rb.velocity = Vector3.zero;
+        print(kills);
         GameManager.instance.KillPlayer(this);
     }
 
@@ -616,6 +645,7 @@ public class Player : MonoBehaviour
         deaths++;
         dead = true;
         CameraController.instance.Shake();
+        rb.velocity = Vector3.zero;
         GameManager.instance.KillPlayer(this);
     }
 
@@ -624,10 +654,40 @@ public class Player : MonoBehaviour
         StopAllCoroutines();
         deaths++;
         dead = true;
+        rb.velocity = Vector3.zero;
         GameManager.instance.KillPlayer(this);
     }
     #endregion
     #region Misc Functions
+
+    public void PlayTakeAnimation()
+    {
+        int rnd = UnityEngine.Random.Range(0, 101);
+        string anim = "";
+
+        if (rnd == 100)
+        {
+            anim = takeADs[0];
+        }
+        else if (rnd <= 75)
+        {
+            anim = takeADs[4];
+        }
+        else if (rnd <= 90)
+        {
+            anim = takeADs[1];
+        }
+        else if (rnd <= 95)
+        {
+            anim = takeADs[3];
+        }
+        else
+        {
+            anim = takeADs[1];
+        }
+
+        ADanimation.Play(anim);
+    }
 
     /// <summary>
     /// Give an airdrop to the player
@@ -636,8 +696,34 @@ public class Player : MonoBehaviour
     /// <param name="_airdrop">The airdrop gameobject</param>
     public void GiveAirdrop(string _type, GameObject _airdrop)
     {
+        ADprgbar.fillAmount = 1f;
+        int rnd = UnityEngine.Random.Range(0, 101);
+        string anim = "";
+        print(rnd);
+
+        if (rnd == 100)
+        {
+            anim = giveADs[0];
+        }
+        else if (rnd <= 75)
+        {
+            anim = giveADs[4];
+        }
+        else if (rnd <= 90)
+        {
+            anim = giveADs[1];
+        }
+        else if (rnd <= 95)
+        {
+            anim = giveADs[3];
+        }
+        else
+        {
+            anim = giveADs[1];
+        }
+
         ADTotal++;
-        if (hasItem)
+        if (hasItem || currentItem != null)
         {
             //play animation or some shit idk
             playerSound.PlayOneShot(pickUpAirDropCancelSound);
@@ -648,14 +734,14 @@ public class Player : MonoBehaviour
         {
             playerSound.PlayOneShot(pickUpAirDropSound);
             InfiniteBulletsADC adc = _airdrop.GetComponent<InfiniteBulletsADC>();
-            currentItemIcon = Instantiate(adc.icon, myUIItemPanel.transform);
+            currentItemIcon = Instantiate(adc.icon, ADslot.transform);
             new InfiniteBullets(adc.time, this);
         }
         if (_type == "LandMine")
         {
             playerSound.PlayOneShot(pickUpAirDropSound);
             LandmineADC adc = _airdrop.GetComponent<LandmineADC>();
-            currentItemIcon = Instantiate(adc.icon[adc.count - 1], myUIItemPanel.transform);
+            currentItemIcon = Instantiate(adc.icon[adc.count - 1], ADslot.transform);
             new Landmine(adc.count, this);
             var item = currentItem as Landmine;
             item.adc = adc;
@@ -664,16 +750,17 @@ public class Player : MonoBehaviour
         {
             playerSound.PlayOneShot(pickUpAirDropSound);
             ShieldADC adc = _airdrop.GetComponent<ShieldADC>();
-            currentItemIcon = Instantiate(adc.icon, myUIItemPanel.transform);
+            currentItemIcon = Instantiate(adc.icon, ADslot.transform);
             new Shield(adc.time, this);
         }
         if (_type == "Ricochet")
         {
             playerSound.PlayOneShot(pickUpAirDropSound);
             RicochetADC adc = _airdrop.GetComponent<RicochetADC>();
-            currentItemIcon = Instantiate(adc.icon, myUIItemPanel.transform);
+            currentItemIcon = Instantiate(adc.icon, ADslot.transform);
             new Ricochet(adc.time, this);
         }
+        ADanimation.Play(anim);
     }
 
     /// <summary>
@@ -682,7 +769,7 @@ public class Player : MonoBehaviour
     public void SendStats()
     {
         Stats myStats = new Stats(shots, closeCalls, ADTotal, kills, deaths, shieldBlocks, landminesCreated, landmineKills, myClient);
-        GameManager.instance.currentRoundStats.SetPlayerStats(id, myStats, kills);
+        GameManager.instance.currentRoundStats.SetPlayerStats(id, myStats);
         print(kills);
         SendTotalStats();
     }
@@ -691,7 +778,7 @@ public class Player : MonoBehaviour
     public void SendTotalStats()
     {
         PlayerPrefs.SetInt("totalShots", PlayerPrefs.GetInt("totalShots") + shots);
-        PlayerPrefs.SetInt("totalKills", PlayerPrefs.GetInt("totalKills") + kills) ;
+        PlayerPrefs.SetInt("totalKills", PlayerPrefs.GetInt("totalKills") + kills);
         PlayerPrefs.SetInt("totalDeaths", PlayerPrefs.GetInt("totalDeaths") + deaths);
         //Debug.LogError("asd");
     }
@@ -705,5 +792,4 @@ public class Player : MonoBehaviour
         hullMR.material = material;
     }
     #endregion
-
 }

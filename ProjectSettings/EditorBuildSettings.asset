@@ -5,6 +5,12 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
+  - enabled: 0
+    path: Assets/Scenes/ShaderTest.unity
+    guid: 71835db29f7c3ec4384ebe22320ccbf1
+  - enabled: 1
+    path: Assets/Scenes/TestScene.unity
+    guid: 3c480f0cfc32ace4693e3e03a67ed96e
   - enabled: 1
     path: Assets/Scenes/MainMenu/MainMenu.unity
     guid: 23692892ca4e00942a732c1e507b34e1
@@ -17,9 +23,6 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/FFA3/FFA3.unity
     guid: 1d456bec9ac049b42803442d378ef6a1
-  - enabled: 1
-    path: Assets/Scenes/TestScene.unity
-    guid: 3c480f0cfc32ace4693e3e03a67ed96e
   - enabled: 1
     path: Assets/Scenes/WinScreen/WinScreen.unity
     guid: bdd7ad956a7d73748b5316f4da521270
