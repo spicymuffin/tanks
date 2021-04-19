@@ -142,7 +142,7 @@ public class GameManager : MonoBehaviour
     }
     IEnumerator LoadAndStartFirstLevel(SceneField _scene)
     {
-        curtain.Play("startround");
+        //curtain.Play("startround");
         AsyncOperation asyncLoadLevel = SceneManager.LoadSceneAsync(_scene, LoadSceneMode.Single);
         while (!asyncLoadLevel.isDone)
         {
@@ -239,13 +239,13 @@ public class GameManager : MonoBehaviour
             audioSource.PlayOneShot(endRoundSound);
             yield return new WaitForSecondsRealtime(4f);
             StartRound();
-            Time.timeScale = 0;
+            //Time.timeScale = 0;
             scoreboard.anim.Play("startround");
             yield return new WaitForSecondsRealtime(0.4f);
             ScoreboardUI.SetActive(false);
             scoreboard.ResetFills();
-            yield return new WaitForSecondsRealtime(3f);
-            Time.timeScale = 1;
+            //yield return new WaitForSecondsRealtime(3f);
+            //Time.timeScale = 1;
         }
         else
         {

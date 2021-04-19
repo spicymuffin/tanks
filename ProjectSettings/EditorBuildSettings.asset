@@ -8,7 +8,7 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/ShaderTest.unity
     guid: 71835db29f7c3ec4384ebe22320ccbf1
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/TestScene.unity
     guid: 3c480f0cfc32ace4693e3e03a67ed96e
   - enabled: 1
