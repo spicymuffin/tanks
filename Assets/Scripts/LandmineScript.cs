@@ -18,10 +18,13 @@ public class LandmineScript : MonoBehaviour
     public GameObject explosionSound;
     public LayerMask ignoreExplosion;
 
-    [Header("Public variables")]
+    [Header("Misc")]
+    public bool decorative = false;
+
+    [HideInInspector]
     public Player creator;
 
-    
+
     private LayerMask ignoreMask;
     float elapsedTime = 0f;
     float nextTime = 0f;
@@ -33,16 +36,19 @@ public class LandmineScript : MonoBehaviour
     }
     private void Update()
     {
-        elapsedTime += Time.deltaTime;
-
-        if (elapsedTime >= nextTime)
+        if (!decorative)
         {
-            timeToArm = timeToArm * falloff;
-            nextTime += timeToArm;
-            FlipMat();
-            if(timeToArm < 0.02f)
+            elapsedTime += Time.deltaTime;
+
+            if (elapsedTime >= nextTime)
             {
-                Explode();
+                timeToArm = timeToArm * falloff;
+                nextTime += timeToArm;
+                FlipMat();
+                if (timeToArm < 0.02f)
+                {
+                    Explode();
+                }
             }
         }
     }
@@ -110,6 +116,36 @@ public class LandmineScript : MonoBehaviour
         {
             mr.material = armedMaterial;
             armed = true;
+        }
+    }
+
+    public void Animate(float timeToArm)
+    {
+        StartCoroutine(Anim_IE(timeToArm));
+    }
+
+    public IEnumerator Anim_IE(float timeToArm)
+    {
+        float time = 0;
+        float nextTime = 0;
+
+
+        while (true)
+        {
+            time += Time.deltaTime;
+            if (time >= nextTime)
+            {
+                timeToArm = timeToArm * falloff;
+                nextTime += timeToArm;
+                FlipMat();
+                if (timeToArm < 0.02f)
+                {
+                    mr.material = armedMaterial;
+                    armed = true;
+                    break;
+                }
+            }
+            yield return null;
         }
     }
 }
