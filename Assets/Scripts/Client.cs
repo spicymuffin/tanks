@@ -250,7 +250,7 @@ public class Client
 
         ThreadManager.ExecuteOnMainThread(() =>
         {
-            player = null;
+            //player = null;
         });
 
         connected = false;

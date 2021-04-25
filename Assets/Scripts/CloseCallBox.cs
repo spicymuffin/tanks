@@ -9,7 +9,7 @@ public class CloseCallBox : MonoBehaviour
     {
         if(other.TryGetComponent<Rocket>(out Rocket rocket))
         {
-            if (rocket.sender != player) player.closeCalls++;
+            if (rocket.sender != player && !player.dead) player.closeCalls++;
         }
     }
 }
