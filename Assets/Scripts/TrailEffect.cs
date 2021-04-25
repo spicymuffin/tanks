@@ -7,6 +7,7 @@ public class TrailEffect : MonoBehaviour
     public float spacing;
     public GameObject trail;
     public Transform rotationAnchor;
+    public AudioSource drivingSound;
     private Vector3 prevPos;
     public bool emit = true;
 
@@ -19,6 +20,7 @@ public class TrailEffect : MonoBehaviour
                 prevPos = transform.position;
                 GameObject instance = Instantiate(trail, transform.position, rotationAnchor.rotation);
                 instance.transform.parent = LevelConfig.instance.trails;
+                drivingSound.Play();    
             }
         }
     }
