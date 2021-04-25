@@ -9,7 +9,7 @@ public class LevelDebugger : MonoBehaviour
     public List<GameObject> playerUISpawnPoints = new List<GameObject>();
     public void StartServer()
     {
-        Server.Start(4, 26950);
+        Server.Start(50, 26950);
     }
 
     private void Start()

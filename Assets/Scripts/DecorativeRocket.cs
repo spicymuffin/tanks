@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Rocket : MonoBehaviour
+public class DecorativeRocket : MonoBehaviour
 {
     [Header("General")]
     public float speed;
@@ -47,29 +47,28 @@ public class Rocket : MonoBehaviour
                     {
                         hitPlayer.BulletDie();
                         sender.kills++;
+                        Debug.LogError($"{sender.username} killed: {sender.kills}");
                     }
                 }
             }
 
             if (other.CompareTag("Shield"))
             {
-                if (other.transform.parent.GetComponent<ShieldScript>().player == sender)
+                if (other.transform.GetComponent<ShieldScript>().player == sender)
                 {
                     return;
                 }
                 GameObject shieldsound = Instantiate(shieldAudio);
-                shieldsound.transform.parent = LevelConfig.instance.effects;
             }
 
             else
             {
                 instance = Instantiate(hittingTheWall);
-                instance.transform.parent = LevelConfig.instance.effects;
             }
 
             instance = Instantiate(hitEffect, transform.position, Quaternion.identity);
-            instance.transform.parent = LevelConfig.instance.effects;
-            smokeTrail.gameObject.transform.parent = LevelConfig.instance.effects;
+            //instance.transform.parent = LevelConfig.instance.effects;
+            smokeTrail.gameObject.transform.parent = null;
             smokeTrail.Destroy();
             if (rb && !other.CompareTag("Shield"))
             {
@@ -78,11 +77,4 @@ public class Rocket : MonoBehaviour
             Destroy(this.gameObject);
         }
     }
-
-
-    private void Awake()
-    {
-        transform.parent = LevelConfig.instance.rockets;
-    }
 }
-

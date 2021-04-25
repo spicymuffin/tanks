@@ -275,7 +275,8 @@ public class Player : MonoBehaviour
     GameObject currentItemIcon;
     #endregion
     #region State
-    private bool dead = false;
+    [HideInInspector]
+    public bool dead = false;
     #endregion
     #region Objects & Transforms & Rigidbodies
     private Rigidbody rb;
@@ -291,6 +292,10 @@ public class Player : MonoBehaviour
     public Transform canvas;
     public MeshRenderer headMR;
     public MeshRenderer hullMR;
+    public Transform phyHull;
+    public Transform phyHead;
+    public List<Transform> physicObjects = new List<Transform>();
+    public Transform explosionCenter;
     #endregion
     #region Audio
     [Header("Audio")]
@@ -306,6 +311,8 @@ public class Player : MonoBehaviour
     List<string> giveADs = new List<string>() { "giveAD0", "giveAD1", "giveAD2", "giveAD3", "giveAD4" };
     List<string> takeADs = new List<string>() { "takeAD0", "takeAD1", "takeAD2", "takeAD3", "takeAD4" };
     #endregion
+
+    public bool debug = false;
 
     #region Startup Functions
     /// <summary>
@@ -558,6 +565,11 @@ public class Player : MonoBehaviour
         }
         nameDisplay.gameObject.transform.parent.rotation = Quaternion.Euler(90, 0, 0);
         canvas.position = transform.position + new Vector3(0, 1.9f, 0);
+        if (debug)
+        {
+            BulletDie();
+            debug = false;
+        }
     }
 
     public void OnTriggerStay(Collider other)
@@ -635,6 +647,15 @@ public class Player : MonoBehaviour
         instance.transform.parent = LevelConfig.instance.effects;
         instance = Instantiate(explosionSound, transform.position, Quaternion.identity);
         instance.transform.parent = LevelConfig.instance.effects;
+        hullMR.transform.parent.gameObject.SetActive(false);
+        headMR.gameObject.SetActive(false);
+        phyHull.gameObject.SetActive(true);
+        phyHead.gameObject.SetActive(true);
+        Destroy(rb);
+        foreach(Transform tr in physicObjects)
+        {
+            tr.GetComponent<Rigidbody>().AddExplosionForce(15f, explosionCenter.position, 5f);
+        }
         rb.velocity = Vector3.zero;
         print(kills);
         GameManager.instance.KillPlayer(this);
@@ -642,11 +663,23 @@ public class Player : MonoBehaviour
 
     public void ExplosionDie()
     {
-        deaths++;
-        dead = true;
-        CameraController.instance.Shake();
-        rb.velocity = Vector3.zero;
-        GameManager.instance.KillPlayer(this);
+        if (!isShielded)
+        {
+            deaths++;
+            dead = true;
+            CameraController.instance.Shake();
+            hullMR.transform.parent.gameObject.SetActive(false);
+            headMR.gameObject.SetActive(false);
+            phyHull.gameObject.SetActive(true);
+            phyHead.gameObject.SetActive(true);
+            Destroy(rb);
+            foreach (Transform tr in physicObjects)
+            {
+                tr.GetComponent<Rigidbody>().AddExplosionForce(15f, explosionCenter.position, 5f);
+            }
+            rb.velocity = Vector3.zero;
+            GameManager.instance.KillPlayer(this);
+        }
     }
 
     public void Die()

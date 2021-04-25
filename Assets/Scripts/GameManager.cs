@@ -86,7 +86,7 @@ public class GameManager : MonoBehaviour
             GameManager = _GameManager;
             foreach (Client _client in GameManager.clients)
             {
-                if (_client.connected == true)
+                //if (_client.connected == true)
                 {
                     playerStats.Add(new Stats());
                     kills.Add(0);
@@ -190,9 +190,9 @@ public class GameManager : MonoBehaviour
         LevelConfig.RandomizeSpawnPoints();
         int index = 0;
         List<Vector3> spawnpoints = LevelConfig.spawnpoints;
-        foreach (Client _client in Server.clients.Values)
+        foreach (Client _client in GameManager.instance.clients)
         {
-            if (_client.connected == true && _client.player == null)
+            //if (_client.connected == true && _client.player == null)
             {
                 _client.SendIntoGame(spawnpoints[index]);
                 _client.player.StartUpUI();
@@ -224,19 +224,21 @@ public class GameManager : MonoBehaviour
 
         if (!lastRound)
         {
+            ScoreboardUI.SetActive(true);
+            scoreboard.PlayAnim();
+            audioSource.PlayOneShot(endRoundSound);
             scoreboard.Sort();
             scoreboard.SetDisplay(queue.Count);
             scoreboard.SetScores();
             Time.timeScale = 0;
             yield return new WaitForSecondsRealtime(3f);
-            ScoreboardUI.SetActive(true);
+            CameraController.instance.StopAllCoroutines();
+            yield return new WaitForEndOfFrame();
             scoreboard.anim.Play("endround");
-            yield return new WaitForSecondsRealtime(0.8f);
+            yield return new WaitForSecondsRealtime(1.2f);
             StartCoroutine(LoadNextLevel());
             Time.timeScale = 1;
-            yield return new WaitForSecondsRealtime(0.25f);
-            scoreboard.PlayAnim();
-            audioSource.PlayOneShot(endRoundSound);
+            yield return new WaitForSecondsRealtime(1f);
             yield return new WaitForSecondsRealtime(4f);
             StartRound();
             //Time.timeScale = 0;

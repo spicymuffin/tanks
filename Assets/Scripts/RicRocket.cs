@@ -31,7 +31,7 @@ public class RicRocket : MonoBehaviour
         Vector3 fwd = transform.TransformDirection(Vector3.forward);
         if (Physics.Raycast(transform.position, fwd, 1))
         {
-            GameObject instance;            
+            GameObject instance;
             if (deflectCounter != maxDeflects)
             {
                 deflectCounter++;
@@ -82,7 +82,6 @@ public class RicRocket : MonoBehaviour
             if (hit.collider.CompareTag("Shield"))
             {
                 hit.collider.GetComponent<ShieldScript>().player.shieldBlocks++;
-                hit.collider.GetComponent<ShieldScript>().HitEffect(hit.point);
             }
             if (flag)
             {

@@ -15,10 +15,15 @@ public class AutogunScript : MonoBehaviour
     public Coroutine brokenAuto;
     public bool isBroken = false;
     private Player nullPlayer = new Player();
+    public bool decorative = false;
+    public AudioSource asource;
 
     public void Awake()
     {
-        fireCoroutine = StartCoroutine(FireDelay());
+        if (!decorative)
+        {
+            fireCoroutine = StartCoroutine(FireDelay());
+        }
     }
 
     public void OnTriggerEnter(Collider rocket)
@@ -49,5 +54,12 @@ public class AutogunScript : MonoBehaviour
             Awake();
             isBroken = false;
         }
+    }
+
+    public void ShootDecorative()
+    {
+        GameObject currentRocket = Instantiate(rocket, tip2.position, Quaternion.Euler(tip2.rotation.eulerAngles.x, tip2.rotation.eulerAngles.y + UnityEngine.Random.Range(-maxBulletDeviationAngle, maxBulletDeviationAngle), tip2.rotation.eulerAngles.z));
+        currentRocket.GetComponent<DecorativeRocket>().sender = nullPlayer;
+        asource.Play();
     }
 }

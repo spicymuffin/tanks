@@ -24,8 +24,7 @@ public class NetworkManager : MonoBehaviour
     private void Start()
     {
         DontDestroyOnLoad(this.gameObject);
-        QualitySettings.vSyncCount = 0;
-        Application.targetFrameRate = 60;
+        //Application.targetFrameRate = 60;
         //Server.Start(50, 26950);
     }
 

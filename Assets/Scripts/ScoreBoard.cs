@@ -33,9 +33,6 @@ public class ScoreBoard : MonoBehaviour
         }
     }
 
-    List<Client> debugList = new List<Client>() { new Client(1, "sex", 0), new Client(2, "leo", 0), new Client(3, "lox", 0), new Client(4, "sgay", 0) };
-    List<int> debugScores = new List<int>() { 2, 7, 5, 6 };
-
     private void Start()
     {
         //Initialize(debugList);

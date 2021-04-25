@@ -15,7 +15,8 @@ public class ShieldScript : MonoBehaviour
     public float target = -0.4f;
     public float ATarget = -0.1f;
     public float ADuration = 1.5f;
-
+    [Header("Misc")]
+    public bool decorative = false;
     private float initialRadius;
     private float AInit;
     private Coroutine cr;
@@ -57,7 +58,10 @@ public class ShieldScript : MonoBehaviour
 
     public void Update()
     {
-        transform.position = player.shieldPos.position;
+        if (!decorative)
+        {
+            transform.position = player.shieldPos.position;
+        }
     }
 
     public void Appear()
