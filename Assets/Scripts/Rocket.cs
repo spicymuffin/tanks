@@ -44,17 +44,16 @@ public class Rocket : MonoBehaviour
                         return;
                     }
                     else
-                    {                        
+                    {
                         hitPlayer.BulletDie();
                         sender.kills++;
-                        Debug.LogError($"{sender.username} killed: {sender.kills}");
                     }
                 }
             }
 
             if (other.CompareTag("Shield"))
             {
-                if (other.transform.GetComponent<ShieldScript>().player == sender)
+                if (other.transform.parent.GetComponent<ShieldScript>().player == sender)
                 {
                     return;
                 }
@@ -83,9 +82,7 @@ public class Rocket : MonoBehaviour
 
     private void Awake()
     {
-        if(LevelConfig.instance != null)
-        {
-            transform.parent = LevelConfig.instance.rockets;
-        }
+        transform.parent = LevelConfig.instance.rockets;
     }
 }
+

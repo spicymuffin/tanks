@@ -1939,7 +1939,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 343996500}
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -9.89, y: 2.54, z: 7.45}
+  m_LocalPosition: {x: -9.89, y: 2.54, z: 7.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1598140376}
@@ -3409,6 +3409,7 @@ GameObject:
   - component: {fileID: 601681404}
   - component: {fileID: 601681406}
   - component: {fileID: 601681405}
+  - component: {fileID: 601681407}
   m_Layer: 0
   m_Name: ScoreBoardUI
   m_TagString: Untagged
@@ -3513,10 +3514,29 @@ CanvasGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 601681400}
   m_Enabled: 1
-  m_Alpha: 1
+  m_Alpha: 0
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
+--- !u!95 &601681407
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 601681400}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 2
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &605367036
 GameObject:
   m_ObjectHideFlags: 0
@@ -7503,8 +7523,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audioSource: {fileID: 1408864151}
-  endRoundSound: {fileID: 8300000, guid: ee92ea60d4ca9044ab6b6ce251060369, type: 3}
-  endGameSound: {fileID: 8300000, guid: b5e010a6e151f094e8326676542f95d1, type: 3}
+  endRoundSound: {fileID: 8300000, guid: 4871d63175c5eb548b18d1f2f64c6211, type: 3}
+  endGameSound: {fileID: 8300000, guid: 88b974f8e4c2cff43ba322f7101d789d, type: 3}
   ScoreboardUI: {fileID: 601681400}
   scoreboard: {fileID: 601681404}
   PauseUI: {fileID: 2628126073783811624}

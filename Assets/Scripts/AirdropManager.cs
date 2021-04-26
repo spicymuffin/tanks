@@ -10,19 +10,19 @@ public class AirdropManager : MonoBehaviour
     public Transform SpawnPoint;
     public AudioSource airdropSound;
 
-    public class bound
+    public class Bound
     {
         public GameObject box;
         public float[] bounds;
 
-        public bound(GameObject _box, float[] _bounds)
+        public Bound(GameObject _box, float[] _bounds)
         {
             box = _box;
             bounds = _bounds;
         }
     }
 
-    public List<bound> AirdropSpawnRegions = new List<bound>();
+    public List<Bound> AirdropSpawnRegions = new List<Bound>();
     public List<GameObject> regions = new List<GameObject>();
     public List<GameObject> airdrops = new List<GameObject>();
     private bool isWaiting = false;
@@ -40,7 +40,7 @@ public class AirdropManager : MonoBehaviour
     {
         for (int i = 0; i < regions.Count; i++)
         {
-            AirdropSpawnRegions.Add(new bound(regions[i], GetBounds(regions[i])));
+            AirdropSpawnRegions.Add(new Bound(regions[i], GetBounds(regions[i])));
         }
     }
 
@@ -63,13 +63,19 @@ public class AirdropManager : MonoBehaviour
     {
         int index = Random.Range(0, AirdropSpawnRegions.Count);
         float height = Random.Range(this.height.x, this.height.y);
-        bound activeBound = AirdropSpawnRegions[index];
+        Bound activeBound = AirdropSpawnRegions[index];
         //active bound coords
         float[] ACB = activeBound.bounds;
         float x = Random.Range(ACB[0], ACB[1]);
         float y = Random.Range(ACB[2], ACB[3]);
         float z = SpawnPoint.position.y;
+
         Vector3 landingPosition = new Vector3(x, z, y);
+        
+        //GameObject marker = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+        //marker.transform.position = landingPosition;
+        //marker.name = "landing marker";
+        //Destroy(marker.GetComponent<SphereCollider>());
 
         //GameObject marker = new GameObject();
         //marker.transform.position = landingPosition;
